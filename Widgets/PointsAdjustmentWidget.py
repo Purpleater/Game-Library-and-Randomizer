@@ -37,8 +37,7 @@ class PointsAdjustmentWidget(QWidget):
             data = json.load(file)
             data['numberOfPoints'] += 1
 
-        with open('ApplicationInformation.json', 'w') as file:
-            json.dump(data, file, indent=4)
+        updateJSONData(data)
 
         self.pointsLabel.setText((f"# of Points: \n\n"
                                  f"_{getNumberOfPointsFromFile()}_"))
@@ -48,8 +47,7 @@ class PointsAdjustmentWidget(QWidget):
             data = json.load(file)
             data['numberOfPoints'] += 2
 
-        with open('ApplicationInformation.json', 'w') as file:
-            json.dump(data, file, indent=4)
+        updateJSONData(data)
 
         self.pointsLabel.setText((f"# of Points: \n\n"
                                  f"_{getNumberOfPointsFromFile()}_"))

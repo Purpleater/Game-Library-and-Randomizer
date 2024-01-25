@@ -43,51 +43,53 @@ class Game:
         }
 
 
-def getLastGameId():
+def loadJSONData():
     with open('ApplicationInformation.json', 'r') as file:
         data = json.load(file)
-        lastUsedId = int(data["lastGameId"])
+        return data
+
+
+def updateJSONData(data):
+    with open('ApplicationInformation.json', 'w') as file:
+        json.dump(data, file, indent=4)
+
+
+def getLastGameId():
+    data = loadJSONData()
+    lastUsedId = int(data["lastGameId"])
     return lastUsedId
 
 
 def updateLastGameID():
-    with open('ApplicationInformation.json', 'r') as file:
-        data = json.load(file)
-        lastId = int(data["lastGameId"])
-        data["lastGameId"] = lastId + 1
-
-    with open('ApplicationInformation.json', 'w') as file:
-        json.dump(data, file, indent=4)
+    data = loadJSONData()
+    lastId = int(data["lastGameId"])
+    data["lastGameId"] = lastId + 1
+    updateJSONData(data)
 
 
 def updateFullGameList(newGame):
-    with open('ApplicationInformation.json', 'r') as file:
-        data = json.load(file)
-        fullGameList = data['fullGameList']
-        fullGameList.append(newGame)
-    with open('ApplicationInformation.json', 'w') as file:
-        json.dump(data, file, indent=4)
+    data = loadJSONData()
+    fullGameList = data['fullGameList']
+    fullGameList.append(newGame)
+    updateJSONData(data)
 
 
 def getNumberOfPointsFromFile():
-    with open('ApplicationInformation.json', 'r') as file:
-        data = json.load(file)
-        pointsNumber = data["numberOfPoints"]
+    data = loadJSONData()
+    pointsNumber = data["numberOfPoints"]
     return pointsNumber
 
 
 def loadSortedList():
-    with open('ApplicationInformation.json', 'r') as file:
-        data = json.load(file)
-        listOfGames = data['fullGameList']
-        sortedGameList = sorted(listOfGames, key=lambda x: x["name"])
+    data = loadJSONData()
+    listOfGames = data['fullGameList']
+    sortedGameList = sorted(listOfGames, key=lambda x: x["name"])
     return sortedGameList
 
 
 def loadPersonalList():
-    with open('ApplicationInformation.json', 'r') as file:
-        data = json.load(file)
-        personalList = data['personalGameList']
+    data = loadJSONData()
+    personalList = data['personalGameList']
     return personalList
 
 
@@ -107,17 +109,15 @@ def showProcessConfirmationWindow(specificProcess):
 
 
 def editExistingGameInformation(gameId, gameCompletion, gameReplayability):
-    with open('ApplicationInformation.json', 'r') as file:
-        gameListData = json.load(file)
+    data = loadJSONData()
 
-    for game in gameListData['fullGameList']:
+    for game in data['fullGameList']:
         if game["id"] == gameId:
             game["completed"] = gameCompletion
             game["replayabilityFactor"] = gameReplayability
             print(f"Updated Entry: {game}")
 
-    with open('ApplicationInformation.json', 'w') as file:
-        json.dump(gameListData, file, indent=4)
+    updateJSONData(data)
 
 
 def convertGameIDListIntoNames(gameList):
@@ -127,11 +127,11 @@ def convertGameIDListIntoNames(gameList):
                 gameList[i] = game["name"]
     gameList.append("Free Space (Pick Any Game)")
 
+
 def detectIfEnoughTimeHasPassed():
     todaysDate = datetime.now()
-    with open('ApplicationInformation.json', 'r') as file:
-        data = json.load(file)
-        savedDate = data['savedDate']
+    data = loadJSONData()
+    savedDate = data['savedDate']
     dateObject = datetime.strptime(savedDate, "%Y,%m,%d")
     daysDifference = (todaysDate - dateObject).days
 
@@ -140,19 +140,17 @@ def detectIfEnoughTimeHasPassed():
     else:
         return False
 
+
 def loadSpecificList(listName):
-    with open('ApplicationInformation.json', 'r') as file:
-        data = json.load(file)
-        list = data[listName]
+    data = loadJSONData()
+    list = data[listName]
     return list
 
+
 def replaceDate():
-    with open('ApplicationInformation.json', 'r') as file:
-        data = json.load(file)
-        todaysDate = datetime.now()
-        newDate = todaysDate.strftime("%Y,%m,%d")
-        data["savedDate"] = newDate
+    data = loadJSONData()
+    todaysDate = datetime.now()
+    newDate = todaysDate.strftime("%Y,%m,%d")
+    data["savedDate"] = newDate
 
-    with open('ApplicationInformation.json', 'w') as file:
-        json.dump(data, file, indent=4)
-
+    updateJSONData(data)

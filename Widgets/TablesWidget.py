@@ -167,38 +167,33 @@ class TablesWidget(QWidget):
 
 
     def loadPersonalList(self):
-        with open('ApplicationInformation.json', 'r') as file:
-            data = json.load(file)
-            loadedPersonalList = data['personalGameList']
+        data = loadJSONData()
+        loadedPersonalList = data['personalGameList']
 
-            for i in range(len(loadedPersonalList)):
-                item = QTableWidgetItem(loadedPersonalList[i])
-                item.setFlags(item.flags() & Qt.ItemIsEditable)
-                item.setForeground((QColor(Qt.black)))
-                self.personalTable.setItem(i, 0, item)
+        for i in range(len(loadedPersonalList)):
+            item = QTableWidgetItem(loadedPersonalList[i])
+            item.setFlags(item.flags() & Qt.ItemIsEditable)
+            item.setForeground((QColor(Qt.black)))
+            self.personalTable.setItem(i, 0, item)
 
     def saveAllInformation(self):
-        with open('ApplicationInformation.json', 'r') as file:
-            data = json.load(file)
+        data = loadJSONData()
 
-            savedRollTable = data['rollGameList']
-            savedDrawTable = data['cardDrawList']
+        savedRollTable = data['rollGameList']
+        savedDrawTable = data['cardDrawList']
 
-            savedRollTable.clear()
-            savedDrawTable.clear()
+        savedRollTable.clear()
+        savedDrawTable.clear()
 
-            data["gameOfTheWeek"] = random.choice(loadSortedList())['name']
+        data["gameOfTheWeek"] = random.choice(loadSortedList())['name']
 
-            for row in range(20):
-                savedRollTable.append(self.rollTable.item(row, 0).text())
+        for row in range(20):
+            savedRollTable.append(self.rollTable.item(row, 0).text())
 
-            for row in range(14):
-                savedDrawTable.append(self.cardTable.item(row, 1).text())
+        for row in range(14):
+            savedDrawTable.append(self.cardTable.item(row, 1).text())
 
-        with open('ApplicationInformation.json', 'w') as file:
-            json.dump(data, file, indent=4)
+        updateJSONData(data)
         print("Information re-roll successful")
         replaceDate()
         print("Date Replacement successful")
-
-

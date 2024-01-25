@@ -9,6 +9,7 @@ from Widgets.TablesWidget import TablesWidget
 from Widgets.PointsAdjustmentWidget import PointsAdjustmentWidget
 from Widgets.TimeSensitiveInfoWidget import TimeSensitiveInfoWidget
 from Widgets.EditGamesWindow import EditGameWindow
+from Widgets.ColorModeSelectionWindow import ColorSelectionWindow
 
 
 class MainApplication(QMainWindow):
@@ -34,6 +35,8 @@ class MainApplication(QMainWindow):
         # connect buttons to methods
         self.editGameListInformationButton.clicked.connect(self.showGameListWindow)
         self.exitButton.clicked.connect(self.quitApplication)
+        self.paletteSettingsButton.clicked.connect(self.showColorChangeWindow)
+
 
         # add extra settings buttons to layout
 
@@ -54,6 +57,12 @@ class MainApplication(QMainWindow):
         self.editGameListWindow = EditGameWindow()
         self.editGameListWindow.setObjectName("editGamesListWindow")
 
+        self.colorSelectionWindow = ColorSelectionWindow()
+        self.colorSelectionWindow.setObjectName("colorSelectionWindow")
+
+        # color selected signal
+        self.colorSelectionWindow.colorSelection.connect(self.updateColorPalette)
+
         # because I wanted to have both the points widget and weekly information widget below the tables
         # I combined these two widgets into the same layout
         self.informationButtonLayout.addWidget(self.pointInfoWidget)
@@ -64,6 +73,8 @@ class MainApplication(QMainWindow):
         self.mainLayout.addLayout(self.informationButtonLayout, 1, 0)
         self.mainLayout.addLayout(self.extraSettingsBar, 2, 0)
 
+        # set preferred color palette on load
+        '''self.loadPreferredColorPalette()'''
         # set main layout
         centralWidget = QWidget()
         centralWidget.setLayout(self.mainLayout)
@@ -74,12 +85,20 @@ class MainApplication(QMainWindow):
         self.editGameListWindow.setGeometry(200, 200, 550, 550)
         self.editGameListWindow.show()
 
-    def reloadApplication(self):
-        print("Reloading Application")
-        qApp.quit()
-        QCoreApplication.exit(0)
-        python = sys.executable
-        os.execl(python, python, * sys.argv)
+    def showColorChangeWindow(self):
+        self.colorSelectionWindow.setWindowTitle("Select UI Color Palette")
+        self.colorSelectionWindow.setGeometry(200, 200, 550, 550)
+        self.colorSelectionWindow.show()
+
+    def loadPreferredColorPalette(self):
+        data = loadJSONData()
+        self.updateColorPalette(data['savedColorPalette'])
+
+    def updateColorPalette(self, colorPalette):
+        with open(f'Color Palettes/{colorPalette}.css') as stylesheet:
+            style = stylesheet.read()
+            self.setStyleSheet(style)
+
 
     def quitApplication(self):
         QApplication.quit()

@@ -1,4 +1,4 @@
-from PyQt5.uic.properties import QtCore
+
 
 from common import *
 

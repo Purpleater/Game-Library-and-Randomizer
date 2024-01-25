@@ -85,14 +85,12 @@ class EditPersonalGameListWindow(QWidget):
                         list[i] = self.selectedGames[1]
 
                 # save the updated list
-                with open('ApplicationInformation.json', 'r') as file:
-                    data = json.load(file)
-                    personalList = data['personalGameList']
-                    for i in range(len(personalList)):
-                        personalList[i] = list[i]
-                with open('ApplicationInformation.json', 'w') as file:
-                    json.dump(data, file, indent=4)
-                    showProcessConfirmationWindow("Game swap")
+                data = loadJSONData()
+                personalList = data['personalGameList']
+                for i in range(len(personalList)):
+                    personalList[i] = list[i]
+                updateJSONData(data)
+                showProcessConfirmationWindow("Game swap")
                 self.populateList()
 
             self.selectionList.clear()

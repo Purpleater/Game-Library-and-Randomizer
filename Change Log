@@ -1,0 +1,8 @@
+This text document is used to keep track of all of the changes that I make to this program. The top-most updates are the most recent.
+
+
+______1/25/2024______
+
+- Implemented the "loadJSONData" and "updateJSONData" methods to common.py, significantly improving my sanity in the process
+- Replaced all instances of .JSON file access with either "loadJSONData" or "updateJSONData" depending on if the file was being read or written to.
+- Started working on the ability to change the UI color palette feature

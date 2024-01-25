@@ -1,4 +1,5 @@
 {
+    "savedColorPalette": "contrast",
     "savedDate": "2024,01,22",
     "gameOfTheWeek": "Civilization V",
     "weeklyListSelection": [
@@ -62,8 +63,8 @@
         "The Binding of Issac",
         "Against The Storm"
     ],
-    "numberOfPoints": 667,
-    "lastGameId": 149,
+    "numberOfPoints": 668,
+    "lastGameId": 150,
     "fullGameList": [
         {
             "name": "A Hat In Time",
@@ -950,6 +951,12 @@
         {
             "name": "Firewatch",
             "id": 148,
+            "completed": "Incomplete",
+            "replayabilityFactor": "Low"
+        },
+        {
+            "name": "Snake's Tale",
+            "id": 149,
             "completed": "Incomplete",
             "replayabilityFactor": "Low"
         }
