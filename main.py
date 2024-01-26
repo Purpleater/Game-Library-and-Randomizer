@@ -100,6 +100,7 @@ class MainApplication(QMainWindow):
             style = stylesheet.read()
             self.setStyleSheet(style)
             self.editGameListWindow.setStyleSheet(style)
+            self.timeSensitiveInfoWidget.setStyleSheet(style)
 
 
     def quitApplication(self):

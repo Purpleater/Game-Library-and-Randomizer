@@ -33,18 +33,18 @@ class TimeSensitiveInfoWidget(QWidget):
         with open('ApplicationInformation.json', 'r') as file:
             data = json.load(file)
             gameOfTheWeek = data["gameOfTheWeek"]
-            self.gameOfTheWeekLabel.setText(f"__Game of the week__\n{gameOfTheWeek}")
+            self.gameOfTheWeekLabel.setText(f"__Game of the week__\n\n{gameOfTheWeek}")
 
     def setGameOfTheWeek(self):
         gameOfTheWeek = random.choice(loadSortedList())["name"]
         self.gameOfTheWeekLabel.clear()
-        self.gameOfTheWeekLabel.setText(f"__Game of the week__\n{gameOfTheWeek}")
+        self.gameOfTheWeekLabel.setText(f"__Game of the week__\n\n{gameOfTheWeek}")
 
     def getSelectedList(self):
         with open('ApplicationInformation.json', 'r') as file:
             data = json.load(file)
             weeklyListSelection = data["weeklyListSelection"]
         day = datetime.today().weekday()
-        self.dailyListLabel.setText(f"__Daily List__\n{weeklyListSelection[day]}")
+        self.dailyListLabel.setText(f"__Daily List__\n\n{weeklyListSelection[day]}")
 
 

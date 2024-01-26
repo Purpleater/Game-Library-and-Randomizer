@@ -5,9 +5,9 @@ ______1/26/2024______
     + (Known Issue) The background of the scroll bar doesn't correctly change to black when using the contrast stylesheet
     + (Known Issue) SQUARE. WHITE. UPPER LEFT-HAND CORNER OF TABLES AAAAAAAAAAAAAAAAAAAAAAAAAA
     + (Known Issue) Some of the other windows don't have styling applied to them yet. This is not a bug. This is because I am lazy.
-    + (Known Issue) The time-sensitive information doesn't show up yet because the text remains black.
 
 - Adjusted the size of the "Edit Personal Games" Window
+- Created the list widget that lists color palette options and allows one to select a pallet to test
 
 ______1/25/2024______
 

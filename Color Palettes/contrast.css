@@ -74,3 +74,10 @@ QPushButton:hover{
     color: black;
 }
 
+/* TIME SENSITIVE INFO WIDGET */
+#timeSensitiveInfoWidget QLabel{
+    color: white;
+    padding: 5px;
+    font-size: 16px;
+}
+

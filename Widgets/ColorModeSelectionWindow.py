@@ -1,7 +1,9 @@
 from common import *
 from PyQt5.QtCore import pyqtSignal
 
+
 class ColorSelectionWindow(QWidget):
+    paletteList = ["Contrast"]
     colorSelection = pyqtSignal(str)
 
     def __init__(self):
@@ -9,11 +11,19 @@ class ColorSelectionWindow(QWidget):
         self.widgetUI()
 
     def widgetUI(self):
+        # layout creation
         self.mainLayout = QVBoxLayout()
-        self.clickButton = QPushButton("Click me to change color palette")
+
+        # create widgets
+        self.palettelistSelection = QListWidget()
+        self.clickButton = QPushButton("Test Color Palette")
         self.clickButton.clicked.connect(self.showColorDialog)
 
         # set widgets into layout
+        self.mainLayout.addWidget(self.palettelistSelection)
+        for i in range(len(self.paletteList)):
+            self.palettelistSelection.addItem(self.paletteList[i])
+
         self.mainLayout.addWidget(self.clickButton)
 
         self.setLayout(self.mainLayout)
@@ -26,4 +36,4 @@ class ColorSelectionWindow(QWidget):
             self.colorSelection.emit(selectedPalette)
 
     def getColorFromDialog(self):
-        return "contrast"
+        return self.palettelistSelection.selectedItems()[0].text()
