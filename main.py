@@ -55,7 +55,7 @@ class MainApplication(QMainWindow):
         self.timeSensitiveInfoWidget.setObjectName("timeSensitiveInfoWidget")
 
         self.editGameListWindow = EditGameWindow()
-        self.editGameListWindow.setObjectName("editGamesListWindow")
+        self.editGameListWindow.setObjectName("editGameListWindow")
 
         self.colorSelectionWindow = ColorSelectionWindow()
         self.colorSelectionWindow.setObjectName("colorSelectionWindow")
@@ -74,7 +74,8 @@ class MainApplication(QMainWindow):
         self.mainLayout.addLayout(self.extraSettingsBar, 2, 0)
 
         # set preferred color palette on load
-        '''self.loadPreferredColorPalette()'''
+
+        '''self.loadPreferredColorPalette() '''
         # set main layout
         centralWidget = QWidget()
         centralWidget.setLayout(self.mainLayout)
@@ -98,6 +99,7 @@ class MainApplication(QMainWindow):
         with open(f'Color Palettes/{colorPalette}.css') as stylesheet:
             style = stylesheet.read()
             self.setStyleSheet(style)
+            self.editGameListWindow.setStyleSheet(style)
 
 
     def quitApplication(self):

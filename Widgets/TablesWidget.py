@@ -1,6 +1,5 @@
 from common import *
 from Widgets.EditPersonalGameListWindow import EditPersonalGameListWindow
-from Widgets.TimeSensitiveInfoWidget import TimeSensitiveInfoWidget
 
 
 class TablesWidget(QWidget):
@@ -96,7 +95,8 @@ class TablesWidget(QWidget):
 
     def showEditPersonalGamesWindow(self):
         self.editPersonalGameListWindow.setWindowTitle("Edit Personal Games List")
-        self.editPersonalGameListWindow.setGeometry(200, 200, 550, 550)
+        self.editPersonalGameListWindow.setGeometry(200, 200, 350, 350)
+        self.editPersonalGameListWindow.setObjectName("editPersonalGamesListWindow")
         self.editPersonalGameListWindow.show()
 
     def loadStoredTables(self, diceList, cardList):

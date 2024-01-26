@@ -10,8 +10,8 @@ class PointsAdjustmentWidget(QWidget):
         self.mainLayout = QVBoxLayout()
 
         # create widgets
-        self.pointsLabel = QLabel(f"__# of Points__\n"
-                                  f"{getNumberOfPointsFromFile()}")
+        self.pointsLabel = QLabel(f"# of Points:\n\n"
+                                  f"__{getNumberOfPointsFromFile()}__")
         self.pointsLabel.setAlignment(Qt.AlignCenter)
 
         self.addOnePointButton = QPushButton("Add 1 Point")
@@ -40,7 +40,7 @@ class PointsAdjustmentWidget(QWidget):
         updateJSONData(data)
 
         self.pointsLabel.setText((f"# of Points: \n\n"
-                                 f"_{getNumberOfPointsFromFile()}_"))
+                                 f"__{getNumberOfPointsFromFile()}__"))
 
     def addTwoPoints(self):
         with open('ApplicationInformation.json', 'r') as file:
@@ -50,4 +50,4 @@ class PointsAdjustmentWidget(QWidget):
         updateJSONData(data)
 
         self.pointsLabel.setText((f"# of Points: \n\n"
-                                 f"_{getNumberOfPointsFromFile()}_"))
+                                 f"__{getNumberOfPointsFromFile()}__"))

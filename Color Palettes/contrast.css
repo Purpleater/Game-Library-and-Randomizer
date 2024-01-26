@@ -1,4 +1,76 @@
+/* GENERAL APPLICATION */
 QMainWindow{
     background-color: black;
     color: white;
 }
+
+QPushButton{
+    background-color: black;
+    color: white;
+    border: 1px solid white;
+    padding: 5px;
+    font-size: 15px;
+}
+
+QPushButton:hover{
+    background-color: #b4b4b4;
+    color: black;
+}
+
+/* TABLE WIDGET */
+#tableWidget QTableWidget{
+ background-color: black;
+ margin: 5px
+}
+
+#tableWidget QTableWidget::item{
+    color: white;
+    border: 1px solid #b4b4b4;
+}
+
+#tableWidget QHeaderView::section{
+    background-color: black;
+    color: white;
+}
+
+#tableWidget QWidget{
+    background-color: black;
+}
+
+#tableWidget QPushButton:hover{
+    background-color: #b4b4b4;
+    color: black;
+}
+
+#tableWidget QScrollBar::handle{
+    background: black;
+    background-color: grey;
+    border: 1px solid light-grey;
+}
+#tableWidget QScrollBar{
+    background: black;
+}
+#pointInfoWidget QLabel{
+    color: white;
+    padding: 5px;
+    font-size: 17px;
+}
+
+/* EDIT GAMES LIST WINDOW */
+#editGameListWindow{
+    background-color: black;
+    color: white;
+}
+#editGameListWindow QLabel{
+    color: white;
+    font-size: 12px
+}
+#editGameListWindow QListWidget {
+    background-color: black;
+    color: white
+}
+#editGameListWindow QListWidget::item:selected{
+    background-color: #b4b4b4;
+    color: black;
+}
+
