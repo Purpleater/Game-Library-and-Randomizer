@@ -63,6 +63,7 @@ class MainApplication(QMainWindow):
         # color selected signal
         self.colorSelectionWindow.colorSelection.connect(self.updateColorPalette)
 
+
         # because I wanted to have both the points widget and weekly information widget below the tables
         # I combined these two widgets into the same layout
         self.informationButtonLayout.addWidget(self.pointInfoWidget)
@@ -74,8 +75,8 @@ class MainApplication(QMainWindow):
         self.mainLayout.addLayout(self.extraSettingsBar, 2, 0)
 
         # set preferred color palette on load
-
-        '''self.loadPreferredColorPalette() '''
+        self.loadPreferredColorPalette()
+        ''''''
         # set main layout
         centralWidget = QWidget()
         centralWidget.setLayout(self.mainLayout)
@@ -105,6 +106,8 @@ class MainApplication(QMainWindow):
 
     def quitApplication(self):
         QApplication.quit()
+
+
 
 
 def main():

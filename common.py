@@ -140,6 +140,13 @@ def detectIfEnoughTimeHasPassed():
     else:
         return False
 
+def printNumberOfDaysLeft():
+    todaysDate = datetime.now()
+    data = loadJSONData()
+    savedDate = data['savedDate']
+    dateObject = datetime.strptime(savedDate, "%Y,%m,%d")
+    daysDifference = daysDifference = (todaysDate - dateObject).days
+    print(f"Number of Days left before next re-roll: {7 - daysDifference}")
 
 def loadSpecificList(listName):
     data = loadJSONData()

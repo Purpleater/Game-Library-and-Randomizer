@@ -1,11 +1,21 @@
 This text document is used to keep track of all of the changes that I make to this program. The top-most updates are the most recent.
 
+______1/27/2024______
+- Gave up on trying to resolve the ugly scroll bar background color. At this point I begrudgingly admit that its hideousness has grown on me.
+- Still working on implementing the remaining aspects of the "Contrast" style sheet option
+    + (Known Issue) The "Edit Personal Games List" Window and "Color Palette Selection" Window both lack the "Contrast" styling. This is once again because I am lazy.
+    + (Known Issue) It doesn't matter how hard I try to throw myself against the task, the stupid white square on the tables refuses to leave me. One must imagine Sisyphus happy.
+- Added a method that refreshes the "Personal Game Table" whenever an entry is swapped out
+    + (Known Issue) It will properly swap a game once while the application is running. If you want to switch out another set of games, you are required to reload the application
+    + (Known Issue) Games already present on the "Personal Game List" show up as games that can be swapped in.
+- Pondered making the "Add Custom Point Value" button functional.
+    + (Known Issue) The "Add Custom Point Value" window does not exist yet. At this point the button is fundamentally useless.
+
 ______1/26/2024______
 - Added "Contrast" stylesheet option
     + (Known Issue) The background of the scroll bar doesn't correctly change to black when using the contrast stylesheet
     + (Known Issue) SQUARE. WHITE. UPPER LEFT-HAND CORNER OF TABLES AAAAAAAAAAAAAAAAAAAAAAAAAA
     + (Known Issue) Some of the other windows don't have styling applied to them yet. This is not a bug. This is because I am lazy.
-
 - Adjusted the size of the "Edit Personal Games" Window
 - Created the list widget that lists color palette options and allows one to select a pallet to test
 

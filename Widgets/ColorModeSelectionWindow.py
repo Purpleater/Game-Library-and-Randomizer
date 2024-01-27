@@ -30,10 +30,10 @@ class ColorSelectionWindow(QWidget):
 
     def showColorDialog(self):
 
-        selectedPalette = self.getColorFromDialog()
+        selectedPalette = self.getColorFromList()
 
         if selectedPalette:
             self.colorSelection.emit(selectedPalette)
 
-    def getColorFromDialog(self):
+    def getColorFromList(self):
         return self.palettelistSelection.selectedItems()[0].text()

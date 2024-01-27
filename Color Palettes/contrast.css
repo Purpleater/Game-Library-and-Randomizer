@@ -42,13 +42,10 @@ QPushButton:hover{
     color: black;
 }
 
-#tableWidget QScrollBar::handle{
+#tableWidget QScrollBar{
     background: black;
     background-color: grey;
     border: 1px solid light-grey;
-}
-#tableWidget QScrollBar{
-    background: black;
 }
 #pointInfoWidget QLabel{
     color: white;
@@ -72,6 +69,12 @@ QPushButton:hover{
 #editGameListWindow QListWidget::item:selected{
     background-color: #b4b4b4;
     color: black;
+}
+
+#editGameListWindow QScrollBar{
+    background: black;
+    background-color: grey;
+    border: 1px solid light-grey;
 }
 
 /* TIME SENSITIVE INFO WIDGET */

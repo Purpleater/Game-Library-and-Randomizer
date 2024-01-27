@@ -11,7 +11,6 @@ class TablesWidget(QWidget):
 
     def widgetUI(self):
 
-
         self.mainLayout = QVBoxLayout()
         self.tableLayout = QHBoxLayout()
         self.buttonLayout = QHBoxLayout()
@@ -28,7 +27,6 @@ class TablesWidget(QWidget):
         self.rollTable = QTableWidget(20, 1, self)
         self.rollTable.setHorizontalHeaderLabels(["Game"])
         self.rollTable.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
-
 
         # Card Draw Table
         self.cardTable = QTableWidget(14, 2, self)
@@ -57,7 +55,6 @@ class TablesWidget(QWidget):
         self.editPersonalGameListWindow.setObjectName("editGamesListWindow")
 
         self.editPersonalTableButton.clicked.connect(self.showEditPersonalGamesWindow)
-
 
         # add widgets to table layout
         self.tableLayout.addWidget(self.rollTable)
@@ -89,6 +86,10 @@ class TablesWidget(QWidget):
         else:
             self.loadStoredTables(loadSpecificList("rollGameList"), loadSpecificList("cardDrawList"))
             print("Data load successful")
+            printNumberOfDaysLeft()
+
+        # table refresh signal
+        self.editPersonalGameListWindow.personalListChangeSignal.connect(self.refreshWindow)
 
         # set main layout
         self.setLayout(self.mainLayout)
@@ -112,7 +113,6 @@ class TablesWidget(QWidget):
             item.setFlags(item.flags() & Qt.ItemIsEditable)
             item.setForeground((QColor(Qt.black)))
             self.cardTable.setItem(i, 1, item)
-
 
     def generateTableContents(self):
         self.diceRollList.clear()
@@ -165,7 +165,6 @@ class TablesWidget(QWidget):
             item.setForeground((QColor(Qt.black)))
             self.cardTable.setItem(i, 1, item)
 
-
     def loadPersonalList(self):
         data = loadJSONData()
         loadedPersonalList = data['personalGameList']
@@ -197,3 +196,8 @@ class TablesWidget(QWidget):
         print("Information re-roll successful")
         replaceDate()
         print("Date Replacement successful")
+
+    def refreshWindow(self, confirmation):
+        if confirmation:
+            self.loadPersonalList()
+

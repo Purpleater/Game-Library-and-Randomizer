@@ -1,6 +1,11 @@
 from common import *
+from PyQt5.QtCore import pyqtSignal
 
 class EditPersonalGameListWindow(QWidget):
+    # this notifies the tables widget to refresh itself whenever the list is adjusted
+    personalListChangeSignal = pyqtSignal(bool)
+
+
     def __init__(self):
         super().__init__()
         self.widgetUI()
@@ -78,7 +83,10 @@ class EditPersonalGameListWindow(QWidget):
         elif self.clickCount == 2:
             selectedGame = self.selectionList.selectedItems()[0].text()
             self.selectedGames.append(selectedGame)
-            if self.showGameEditConfirmationWindow(self.selectedGames):
+
+            # convert user's confirmation into a value that can be evaluated by both the signal and the conditional
+            gameEditConfirmationValue = self.showGameEditConfirmationWindow(self.selectedGames)
+            if gameEditConfirmationValue:
                 list = loadPersonalList()
                 for i in range(len(list)):
                     if list[i] == self.selectedGames[0]:
@@ -91,6 +99,7 @@ class EditPersonalGameListWindow(QWidget):
                     personalList[i] = list[i]
                 updateJSONData(data)
                 showProcessConfirmationWindow("Game swap")
+                self.listChangeConfirmationPing(gameEditConfirmationValue)
                 self.populateList()
 
             self.selectionList.clear()
@@ -117,6 +126,10 @@ class EditPersonalGameListWindow(QWidget):
         for game in loadSortedList():
             if self.listSearch.text().lower() in game["name"].lower():
                 self.selectionList.addItem(game["name"])
+
+    def listChangeConfirmationPing(self, confirmationBool):
+        if confirmationBool:
+            self.personalListChangeSignal.emit(True)
 
     def returnToPreviousPage(self):
         self.instructionLabel.setText("Please select the game you would like to replace: ")
