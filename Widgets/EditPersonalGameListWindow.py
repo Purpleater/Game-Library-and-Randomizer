@@ -27,6 +27,7 @@ class EditPersonalGameListWindow(QWidget):
 
         self.submissionButton = QPushButton("Submit Game")
         self.submissionButton.clicked.connect(self.selectGameToReplace)
+        print(self.submissionButton.palette())
 
         self.goBackButton = QPushButton("Back")
         self.goBackButton.clicked.connect(self.returnToPreviousPage)
@@ -53,6 +54,8 @@ class EditPersonalGameListWindow(QWidget):
         self.listSearch.textChanged.connect(self.updateList)
         self.populateList()
 
+        # set the stylesheet because I can't do that in main apparently
+        self.setColorPalette()
         # set main layout
         self.setLayout(self.mainLayout)
 
@@ -105,6 +108,7 @@ class EditPersonalGameListWindow(QWidget):
             self.selectionList.clear()
             self.populateList()
             self.instructionLabel.setText("Please select the game you would like to replace: ")
+            self.selectedGames.clear()
             self.clickCount = 1
 
     def showGameEditConfirmationWindow(self, selectedGames):
@@ -139,3 +143,12 @@ class EditPersonalGameListWindow(QWidget):
         self.goBackButton.hide()
         self.listSearch.hide()
         self.findGameLabel.hide()
+
+    def setColorPalette(self):
+        data = loadJSONData()
+        colorPalette = data["savedColorPalette"]
+        print(self.submissionButton.styleSheet())
+        with open(f'Color Palettes/{colorPalette}.css') as stylesheet:
+            style = stylesheet.read()
+        self.setStyleSheet(style)
+

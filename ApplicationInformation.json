@@ -1,7 +1,7 @@
 {
     "savedColorPalette": "contrast",
-    "savedDate": "2024,01,21",
-    "gameOfTheWeek": "Civilization V",
+    "savedDate": "2024,01,28",
+    "gameOfTheWeek": "Metroid Prime Remastered",
     "weeklyListSelection": [
         "Card Draw",
         "Want To Continue Playing",
@@ -12,46 +12,46 @@
         "Free Day"
     ],
     "rollGameList": [
-        "Lego Bricktales",
-        "Tangledeep",
+        "Grim Dawn",
+        "The End is Nigh",
         "The Legend of Zelda: Breath of the Wild",
-        "Library of Ruina",
-        "Airborne Kingdom",
-        "Pokemon Reborn",
-        "Ultrakill",
-        "Half Life",
-        "Mana Spark",
-        "Flowscape",
-        "Terraria",
-        "Monster Train",
-        "Lobotomy Corporation",
-        "Dissembler",
-        "Stacklands",
+        "Apico",
+        "Opus Magnum",
+        "Lego Star Wars (Complete Saga)",
+        "Opus Magnum",
+        "Half Life: Opposing Force",
+        "Lego Star Wars (Complete Saga)",
+        "Evil Genius 2",
         "Crypt of the Necrodancer",
-        "The Legend of Zelda: Tears of the Kingdom",
-        "Monster Train",
-        "Rain World",
+        "Touhou 11 - Subterranean Animism",
+        "Satisfactory",
+        "Risk of Rain 2",
+        "Koi Farm",
+        "Stacklands",
+        "Iron Oath",
+        "The Riftbreaker",
+        "Tangledeep",
         "Free Space (Pick Any Game)"
     ],
     "cardDrawList": [
-        "Pan'orama",
-        "Pokemon Reborn",
-        "Moonlighter",
-        "Satisfactory",
-        "Yankai's Peak",
-        "Lego Star Wars (Skywalker Saga)",
-        "Kasi",
-        "Garden Galaxy",
-        "Oxygen Not Included",
-        "Achromatic",
-        "Darkest Dungeon",
-        "Animal Crossing: New Horizons",
-        "Metroid Prime Remastered",
+        "Lobotomy Corporation",
+        "Stardew Valley",
+        "Flowscape",
+        "Megaquarium",
+        "Prehistoric Kingdom",
+        "Half Life 2",
+        "Besiege",
+        "Firewatch",
+        "Valheim",
+        "Moon Hunters",
+        "Black Book",
+        "Astroneer",
+        "Ultrakill",
         "Free Space (Pick Any Game)"
     ],
     "personalGameList": [
         "Deep Rock Galactic",
-        "Metroid Prime Remastered",
+        "A Dance of Fire and Ice",
         "Monster Train",
         "Valheim",
         "Dead Cells",
@@ -63,8 +63,8 @@
         "The Binding of Issac",
         "Against The Storm"
     ],
-    "numberOfPoints": 696,
-    "lastGameId": 150,
+    "numberOfPoints": 543,
+    "lastGameId": 151,
     "fullGameList": [
         {
             "name": "A Hat In Time",
@@ -703,7 +703,7 @@
             "replayabilityFactor": "Very High"
         },
         {
-            "name": "Iron Oath",
+            "name": "Hidden Folks",
             "id": 107,
             "completed": "Incomplete",
             "replayabilityFactor": "Moderate"
@@ -959,6 +959,12 @@
             "id": 149,
             "completed": "Incomplete",
             "replayabilityFactor": "Low"
+        },
+        {
+            "name": "A Dance of Fire and Ice",
+            "id": 150,
+            "completed": "Incomplete",
+            "replayabilityFactor": "Moderate"
         }
     ]
 }

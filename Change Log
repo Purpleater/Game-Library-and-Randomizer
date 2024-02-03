@@ -1,5 +1,8 @@
 This text document is used to keep track of all of the changes that I make to this program. The top-most updates are the most recent.
 
+______2/2/2024______
+- Solved the issue where the "swap games" option in the personal game list would only do so once per application load. The solution came to me in a dream.
+
 ______1/27/2024______
 - Gave up on trying to resolve the ugly scroll bar background color. At this point I begrudgingly admit that its hideousness has grown on me.
 - Still working on implementing the remaining aspects of the "Contrast" style sheet option

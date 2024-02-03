@@ -200,4 +200,3 @@ class TablesWidget(QWidget):
     def refreshWindow(self, confirmation):
         if confirmation:
             self.loadPersonalList()
-

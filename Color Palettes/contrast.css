@@ -17,6 +17,12 @@ QPushButton:hover{
     color: black;
 }
 
+/* EDIT PERSONAL GAME LIST WINDOW */
+
+#editPersonalGamesListWindow{
+    background-color: black;
+}
+
 /* TABLE WIDGET */
 #tableWidget QTableWidget{
  background-color: black;
@@ -77,6 +83,7 @@ QPushButton:hover{
     border: 1px solid light-grey;
 }
 
+
 /* TIME SENSITIVE INFO WIDGET */
 #timeSensitiveInfoWidget QLabel{
     color: white;
@@ -84,3 +91,7 @@ QPushButton:hover{
     font-size: 16px;
 }
 
+#editPersonalGamesListWindow QTableWidget{
+ background-color: black;
+ margin: 5px
+}
