@@ -1,12 +1,16 @@
 This text document is used to keep track of all of the changes that I make to this program. The top-most updates are the most recent.
 
+______2/4/2024______
+- Made it so that the user cannot activate the "View/Edit Game Information" button until a list item is selected in "EditGamesWindow"
+
 ______2/2/2024______
 - Solved the issue where the "swap games" option in the personal game list would only do so once per application load. The solution came to me in a dream.
+    + (Known Issue) Games already present on the "Personal Game List" show up as games that can be swapped in.
 
 ______1/27/2024______
 - Gave up on trying to resolve the ugly scroll bar background color. At this point I begrudgingly admit that its hideousness has grown on me.
 - Still working on implementing the remaining aspects of the "Contrast" style sheet option
-    + (Known Issue) The "Edit Personal Games List" Window and "Color Palette Selection" Window both lack the "Contrast" styling. This is once again because I am lazy.
+    + (Known Issue) The "Edit Personal Games List" Window and "Color Palette Selection" Window both lack the "Contrast" styling.
     + (Known Issue) It doesn't matter how hard I try to throw myself against the task, the stupid white square on the tables refuses to leave me. One must imagine Sisyphus happy.
 - Added a method that refreshes the "Personal Game Table" whenever an entry is swapped out
     + (Known Issue) It will properly swap a game once while the application is running. If you want to switch out another set of games, you are required to reload the application

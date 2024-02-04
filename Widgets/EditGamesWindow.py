@@ -47,6 +47,9 @@ class EditGameWindow(QWidget):
         self.populateList()
         self.selectGameToEditButton = QPushButton("Select Game to Edit/View")
         self.selectGameToEditButton.clicked.connect(self.getGameInformation)
+        self.selectGameToEditButton.setEnabled(False)
+
+        self.editGameSelectionList.itemSelectionChanged.connect(self.checkIfGameIsSelected)
 
         self.searchGameRow.addWidget(self.findGameLabel)
         self.searchGameRow.addWidget(self.findGameInput)
@@ -156,6 +159,13 @@ class EditGameWindow(QWidget):
                                   "already exists within the "
                                   "full game list.")
                 self.resetPage()
+
+    def checkIfGameIsSelected(self):
+        selectedItem = self.editGameSelectionList.selectedItems()
+        if selectedItem:
+            self.selectGameToEditButton.setEnabled(True)
+
+
 
 
 
