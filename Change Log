@@ -1,5 +1,11 @@
 This text document is used to keep track of all of the changes that I make to this program. The top-most updates are the most recent.
 
+______2/6/2024______
+- Resolved the issue where games already present in the "Personal Games List" would show up as games that can be swapped into said list.
+- An unmentioned issue that has prevented me from progressing on the applying the 'Contrast' stylesheet to the Edit Personal Games List Window
+    + (Known Issue) The select/listSelects present in the Edit/Add Games Window lack a border and are (therefore) difficult to perceive
+    + (Known Issue) The "Add Custom Point Value" window doesn't exist, nor does it have a stylesheet applied. Ask again later.
+
 ______2/4/2024______
 - Made it so that the user cannot activate the "View/Edit Game Information" button until a list item is selected in "EditGamesWindow"
 

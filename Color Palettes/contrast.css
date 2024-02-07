@@ -4,6 +4,11 @@ QMainWindow{
     color: white;
 }
 
+QWidget{
+    background-color: black;
+    color: white;
+}
+
 QPushButton{
     background-color: black;
     color: white;
@@ -15,6 +20,20 @@ QPushButton{
 QPushButton:hover{
     background-color: #b4b4b4;
     color: black;
+}
+
+QListWidget{
+    background-color: black;
+    color: white;
+}
+QListWidget::item:selected{
+    background-color: #b4b4b4;
+    color: black;
+}
+
+QLabel{
+    background-color: black;
+    color: white;
 }
 
 /* EDIT PERSONAL GAME LIST WINDOW */
@@ -83,15 +102,9 @@ QPushButton:hover{
     border: 1px solid light-grey;
 }
 
-
 /* TIME SENSITIVE INFO WIDGET */
 #timeSensitiveInfoWidget QLabel{
     color: white;
     padding: 5px;
     font-size: 16px;
-}
-
-#editPersonalGamesListWindow QTableWidget{
- background-color: black;
- margin: 5px
 }

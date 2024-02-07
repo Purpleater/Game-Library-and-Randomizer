@@ -78,7 +78,7 @@ class EditPersonalGameListWindow(QWidget):
 
             self.instructionLabel.setText("Please select the game you would like to add to the list: ")
             for game in loadSortedList():
-                if game["name"] != selectedGame:
+                if game["name"] != selectedGame and game["name"] not in loadPersonalList():
                     self.selectionList.addItem(game["name"])
             self.clickCount += 1
 
