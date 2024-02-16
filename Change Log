@@ -1,5 +1,8 @@
 This text document is used to keep track of all of the changes that I make to this program. The top-most updates are the most recent.
 
+______2/16/2024______
+- Added method that reshuffles the list selection every week
+
 ______2/6/2024______
 - Resolved the issue where games already present in the "Personal Games List" would show up as games that can be swapped into said list.
 - An unmentioned issue that has prevented me from progressing on the applying the 'Contrast' stylesheet to the Edit Personal Games List Window

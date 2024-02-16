@@ -23,6 +23,7 @@ class TimeSensitiveInfoWidget(QWidget):
 
         if detectIfEnoughTimeHasPassed() is True:
             self.setGameOfTheWeek()
+            self.generateNewListSelection()
 
         else:
             self.loadGameOfTheWeek()
@@ -47,4 +48,15 @@ class TimeSensitiveInfoWidget(QWidget):
         day = datetime.today().weekday()
         self.dailyListLabel.setText(f"__Daily List__\n\n{weeklyListSelection[day]}")
 
+    def generateNewListSelection(self):
+        # load the weekly list and clear it
+        data = loadJSONData()
+        weeklyListSelection = data['weeklyListSelection']
+        weeklyListSelection.clear()
+        # shuffle the base selection pool
+        random.shuffle(weeklySelectionPool)
+        weeklyListSelection = weeklySelectionPool
+
+        data['weeklyListSelection'] = weeklyListSelection
+        updateJSONData(data)
 
