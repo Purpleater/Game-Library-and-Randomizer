@@ -31,6 +31,7 @@ class EditPersonalGameListWindow(QWidget):
 
         self.goBackButton = QPushButton("Back")
         self.goBackButton.clicked.connect(self.returnToPreviousPage)
+
         # add widgets to list search layout
         self.listSearchLayout.addWidget(self.findGameLabel)
         self.listSearchLayout.addWidget(self.listSearch)
@@ -147,7 +148,6 @@ class EditPersonalGameListWindow(QWidget):
     def setColorPalette(self):
         data = loadJSONData()
         colorPalette = data["savedColorPalette"]
-        print(self.submissionButton.styleSheet())
         with open(f'Color Palettes/{colorPalette}.css') as stylesheet:
             style = stylesheet.read()
         self.setStyleSheet(style)

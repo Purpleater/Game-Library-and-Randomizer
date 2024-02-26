@@ -1,4 +1,5 @@
 from common import *
+from Widgets.CustomPointsValueWindow import CustomPointsValueWidget
 
 
 class PointsAdjustmentWidget(QWidget):
@@ -21,6 +22,7 @@ class PointsAdjustmentWidget(QWidget):
         self.addTwoPointsButton.clicked.connect(self.addTwoPoints)
 
         self.addCustomValue = QPushButton("Custom Value")
+        self.addCustomValue.clicked.connect(self.showCustomPointsValueWindow)
 
         # add widgets to layout
 
@@ -40,7 +42,7 @@ class PointsAdjustmentWidget(QWidget):
         updateJSONData(data)
 
         self.pointsLabel.setText((f"# of Points: \n\n"
-                                 f"__{getNumberOfPointsFromFile()}__"))
+                                  f"__{getNumberOfPointsFromFile()}__"))
 
     def addTwoPoints(self):
         with open('ApplicationInformation.json', 'r') as file:
@@ -50,4 +52,14 @@ class PointsAdjustmentWidget(QWidget):
         updateJSONData(data)
 
         self.pointsLabel.setText((f"# of Points: \n\n"
-                                 f"__{getNumberOfPointsFromFile()}__"))
+                                  f"__{getNumberOfPointsFromFile()}__"))
+
+    def showCustomPointsValueWindow(self):
+        # generate the object
+        self.customPointsValueWindow = CustomPointsValueWidget()
+        self.customPointsValueWindow.setObjectName("customPointValueWindow")
+
+        # create and show the window itself
+        self.customPointsValueWindow.setWindowTitle("Add Custom Points Value")
+        self.customPointsValueWindow.setGeometry(200, 200, 200, 150)
+        self.customPointsValueWindow.show()

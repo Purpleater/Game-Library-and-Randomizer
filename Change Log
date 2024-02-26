@@ -1,5 +1,10 @@
 This text document is used to keep track of all of the changes that I make to this program. The top-most updates are the most recent.
 
+______2/26/2024______
+- Good news! The "Add Custom Point Value" button finally has a use! AND THE WINDOW IT OPENS HAS STYLING APPLIED. YOU'RE WELCOME.
+    + (Known Issue) While the form components in the add a custom points value window do exist, they don't have any variables or methods attached to them.
+    + (Known Issue) For some reason the combo boxes aren't recognized by the styling methods and therefore they don't have a border.
+
 ______2/16/2024______
 - Added method that reshuffles the list selection every week
 

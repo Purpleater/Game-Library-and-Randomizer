@@ -76,7 +76,7 @@ class MainApplication(QMainWindow):
 
         # set preferred color palette on load
         self.loadPreferredColorPalette()
-        ''''''
+
         # set main layout
         centralWidget = QWidget()
         centralWidget.setLayout(self.mainLayout)
@@ -106,7 +106,6 @@ class MainApplication(QMainWindow):
 
     def quitApplication(self):
         QApplication.quit()
-
 
 
 
