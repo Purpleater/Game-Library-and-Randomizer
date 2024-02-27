@@ -31,6 +31,13 @@ class PointsAdjustmentWidget(QWidget):
         self.mainLayout.addWidget(self.addTwoPointsButton)
         self.mainLayout.addWidget(self.addCustomValue)
 
+        # create class instance of the custom points value window for signal connection
+
+        self.customPointsValueWindow = CustomPointsValueWidget()
+
+        # set the signal slot
+        self.customPointsValueWindow.pointsChanged.connect(self.updatePoints)
+
         # set main layout
         self.setLayout(self.mainLayout)
 
@@ -40,7 +47,6 @@ class PointsAdjustmentWidget(QWidget):
             data['numberOfPoints'] += 1
 
         updateJSONData(data)
-
         self.pointsLabel.setText((f"# of Points: \n\n"
                                   f"__{getNumberOfPointsFromFile()}__"))
 
@@ -63,3 +69,7 @@ class PointsAdjustmentWidget(QWidget):
         self.customPointsValueWindow.setWindowTitle("Add Custom Points Value")
         self.customPointsValueWindow.setGeometry(200, 200, 200, 150)
         self.customPointsValueWindow.show()
+
+    def updatePoints(self, pointsSignal):
+        self.pointsLabel.setText(f"# of Points:\n\n"
+                                 f"__{pointsSignal}__")

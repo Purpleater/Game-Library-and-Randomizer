@@ -3,7 +3,7 @@ import random
 from PyQt5.QtWidgets import *
 import json
 from json import JSONEncoder
-from PyQt5.QtCore import Qt
+from PyQt5.QtCore import Qt, pyqtSignal, QObject
 from PyQt5.QtGui import QColor
 from datetime import *
 
