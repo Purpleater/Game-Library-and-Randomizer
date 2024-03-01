@@ -15,6 +15,7 @@ class CustomPointsValueWidget(QWidget):
         self.inputLabel = QLineEdit()
         self.plusMinus = QComboBox()
         self.plusMinus.addItems(["+", "-"])
+        self.plusMinus.setStyleSheet(("QComboBox { border: 1px solid white; }"))
         self.numberLabel = QLabel("Please provide the amount of points you would like to add/subtract: ")
         self.submitButton = QPushButton("Add/Subtract Points")
 

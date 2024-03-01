@@ -1,3 +1,4 @@
+
 /* GENERAL APPLICATION */
 QMainWindow{
     background-color: black;
@@ -34,6 +35,10 @@ QListWidget::item:selected{
 QLabel{
     background-color: black;
     color: white;
+}
+
+QComboBox{
+    border: white;
 }
 
 /* EDIT PERSONAL GAME LIST WINDOW */

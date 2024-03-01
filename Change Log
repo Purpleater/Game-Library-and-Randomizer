@@ -1,5 +1,8 @@
 This text document is used to keep track of all of the changes that I make to this program. The top-most updates are the most recent.
 
+______3/01/2024______
+- I haven't slept in over 24 hours (I blame Avatar: The Last Airbender). At least I have white bordered combo boxes to compensate.
+
 ______2/27/2024______
 - The "Add Custom Point Value" function works now alongside the +/- function.
     + (Known Issue) The UI doesn't automatically update upon the function successfully occurring. The signal method is busted and I don't know why.
