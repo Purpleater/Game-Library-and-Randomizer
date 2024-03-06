@@ -6,6 +6,7 @@ class ColorSelectionWindow(QWidget):
     paletteList = ["Contrast"]
     colorSelection = pyqtSignal(str)
 
+
     def __init__(self):
         super().__init__()
         self.widgetUI()
@@ -25,8 +26,9 @@ class ColorSelectionWindow(QWidget):
             self.palettelistSelection.addItem(self.paletteList[i])
 
         self.mainLayout.addWidget(self.clickButton)
-
+        self.setColorPalette()
         self.setLayout(self.mainLayout)
+
 
     def showColorDialog(self):
 
@@ -37,3 +39,10 @@ class ColorSelectionWindow(QWidget):
 
     def getColorFromList(self):
         return self.palettelistSelection.selectedItems()[0].text()
+
+    def setColorPalette(self):
+        data = loadJSONData()
+        colorPalette = data["savedColorPalette"]
+        with open(f'Color Palettes/{colorPalette}.css') as stylesheet:
+            style = stylesheet.read()
+        self.setStyleSheet(style)

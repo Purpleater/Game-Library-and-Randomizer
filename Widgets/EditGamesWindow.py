@@ -21,10 +21,10 @@ class EditGameWindow(QWidget):
 
         self.completionStatus = QComboBox()
         self.completionStatus.addItems(["Incomplete", "Complete", "No Ending"])
-        self.completionStatus.setStyleSheet("QComboBox { border: 1px solid white; }")
+        self.completionStatus.setStyleSheet(setColorPalletForComboBox())
         self.replayabilityFactor = QComboBox()
         self.replayabilityFactor.addItems(["Low", "Moderate", "High", "Very High"])
-        self.replayabilityFactor.setStyleSheet("QComboBox { border: 1px solid white; }")
+        self.replayabilityFactor.setStyleSheet(setColorPalletForComboBox())
         self.submitInformation = QPushButton("Submit Game Information")
         self.checkForDuplicateButton = QPushButton("Duplicate Game Check")
 

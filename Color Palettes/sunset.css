@@ -1,0 +1,118 @@
+/* GENERAL APPLICATION */
+QMainWindow{
+    background-color: #ff8c61;
+    color: white;
+}
+
+QWidget{
+    background-color: #ff8c61;
+    color: white;
+}
+
+QPushButton{
+    background-color: #5c374c;
+    color: #faa275;
+    border: 1px solid #985277;
+    padding: 5px;
+    font-size: 15px;
+}
+
+QPushButton:hover{
+    background-color: #ce6a85;
+    color: #5c374c;
+}
+
+QListWidget{
+    background-color: #faa275;
+    color: #5c374c;
+}
+QListWidget::item:selected{
+    background-color: #5c374c;
+    color: #faa275;
+}
+
+QLabel{
+    background-color: #ff8c61;
+    color: #5c374c;
+    font-weight: bold;
+}
+
+QComboBox{
+    border: white;
+}
+
+/* EDIT PERSONAL GAME LIST WINDOW */
+
+#editPersonalGamesListWindow{
+    background-color: black;
+}
+
+/* TABLE WIDGET */
+#tableWidget QTableWidget{
+ background-color: #ff8c61;
+ margin: 5px;
+ border-color: #985277;
+}
+
+#tableWidget QTableWidget::item{
+    color: #faa275;
+    border: 1px solid #985277;
+}
+
+#tableWidget QHeaderView::section{
+    background-color: #ff8c61;
+    color: #5c374c;
+}
+
+#tableWidget QWidget{
+    background-color: #5c374c;
+}
+
+#tableWidget QPushButton:hover{
+    background-color: #ce6a85;
+    color: #5c374c;
+}
+
+#tableWidget QScrollBar{
+    background: black;
+    background-color: #ce6a85;
+    border: 1px solid light-grey;
+}
+#pointInfoWidget QLabel{
+    color:  #5c374c;
+    padding: 5px;
+    font-size: 17px;
+    font-weight: bold;
+}
+
+/* EDIT GAMES LIST WINDOW */
+#editGameListWindow{
+    background-color: #ff8c61;
+    color: white;
+}
+#editGameListWindow QLabel{
+    color: white;
+    font-size: 12px
+}
+#editGameListWindow QListWidget {
+    background-color: #faa275;
+    color: #5c374c;
+}
+#editGameListWindow QListWidget::item:selected{
+    background-color: #5c374c;
+    color: #faa275;
+}
+
+#editGameListWindow QScrollBar{
+    background: black;
+    background-color: grey;
+    border: 1px solid light-grey;
+}
+
+/* TIME SENSITIVE INFO WIDGET */
+#timeSensitiveInfoWidget QLabel{
+    color: #5c374c;
+    padding: 5px;
+    font-size: 16px;
+    font-weight: bold;
+}

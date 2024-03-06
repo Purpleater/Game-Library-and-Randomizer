@@ -161,5 +161,25 @@ def replaceDate():
     todaysDate = datetime.now()
     newDate = todaysDate.strftime("%Y,%m,%d")
     data["savedDate"] = newDate
-
     updateJSONData(data)
+
+
+def loadColorPallet():
+    data = loadJSONData()
+    colorPalette = data["savedColorPalette"]
+    return colorPalette
+
+
+def setColorPalletForComboBox():
+    colorPallet = loadColorPallet()
+
+    borderColorDictionary = {
+        "contrast": "white",
+        "sunset": "#985277"
+    }
+    textColorDictionary = {
+        "contrast": "white",
+        "sunset": "#5c374c"
+    }
+    borderColor = borderColorDictionary[colorPallet]
+    return f"QComboBox {{ border: 1px solid {borderColor}; color: {textColorDictionary[colorPallet]};}}"
