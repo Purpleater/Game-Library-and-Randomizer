@@ -41,6 +41,9 @@ class PointsAdjustmentWidget(QWidget):
         # set main layout
         self.setLayout(self.mainLayout)
 
+        # set stylesheet
+        setStyle(self, loadColorPallet())
+
     def addOnePoint(self):
         with open('ApplicationInformation.json', 'r') as file:
             data = json.load(file)

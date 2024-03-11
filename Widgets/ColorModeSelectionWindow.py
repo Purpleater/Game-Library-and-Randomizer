@@ -1,9 +1,10 @@
+import Widgets.CustomPointsValueWindow
 from common import *
 from PyQt5.QtCore import pyqtSignal
 
 
 class ColorSelectionWindow(QWidget):
-    paletteList = ["Contrast"]
+    paletteList = ["Contrast", "Sunset"]
     colorSelection = pyqtSignal(str)
 
 
@@ -26,7 +27,7 @@ class ColorSelectionWindow(QWidget):
             self.palettelistSelection.addItem(self.paletteList[i])
 
         self.mainLayout.addWidget(self.clickButton)
-        self.setColorPalette()
+        setStyle(self, loadColorPallet())
         self.setLayout(self.mainLayout)
 
 
@@ -36,13 +37,13 @@ class ColorSelectionWindow(QWidget):
 
         if selectedPalette:
             self.colorSelection.emit(selectedPalette)
+        with open(f'Color Palettes/{selectedPalette}.css') as stylesheet:
+            style = stylesheet.read()
+            self.setStyleSheet(style)
+            Widgets.CustomPointsValueWindow.CustomPointsValueWidget().setStyleSheet(style)
+
 
     def getColorFromList(self):
         return self.palettelistSelection.selectedItems()[0].text()
 
-    def setColorPalette(self):
-        data = loadJSONData()
-        colorPalette = data["savedColorPalette"]
-        with open(f'Color Palettes/{colorPalette}.css') as stylesheet:
-            style = stylesheet.read()
-        self.setStyleSheet(style)
+

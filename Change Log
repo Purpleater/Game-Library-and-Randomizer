@@ -1,10 +1,20 @@
 This text document is used to keep track of all of the changes that I make to this program. The top-most updates are the most recent.
 
+______3/11/2024______
+- * crawls out of burning wreckage and falls over * the table corners are now styled
+- Implemented a standard method that applies styling a particular widget
+- Fixed the issue where personal games table sections wouldn't stretch to the end of the page
+- Removed the CustomValuesWindow Module since it wasn't doing anything important (just like several people I know)
+
++ (Known Issue) Dynamic application of styling is very difficult while the application is running. I am currently workshopping ways to alleviate this issue.
++ (Known Issue) After switching out one game with another while the application is running, the EditPersonalGameListWindow will load the incorrect list.
++ (Known Issue) I still need to add a button that allows a user to save a stylesheet choice after testing it while the application is running.
+
 ______3/06/2024______
 - Started implementing new style called "sunset", it can be viewed instantly upon opening the map.
  + (Known Issue) Not all portions of the application have styling applied.
 - Added common function that allows for QComboboxes (list select widgets) to dynamically apply styling. This function is not the cleanest so I'll likely redo this one later.
- + (Known Issue???) Pretty sure not all combo boxes have this function applied. Or maybe they do. I cannot remember anymore and I'm too lazy to check.
+ + (Known Issue???) Pretty sure not all combo boxes have this function applied. Or maybe they do. I cannot remember anymore and I'm too lazy to check. Additionally it is difficult to apply said styling while application is running.
 
 ______3/03/2024______
 - The color selection window now will have styling applied.

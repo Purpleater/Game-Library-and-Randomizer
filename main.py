@@ -75,8 +75,7 @@ class MainApplication(QMainWindow):
         self.mainLayout.addLayout(self.extraSettingsBar, 2, 0)
 
         # set preferred color palette on load
-        self.loadPreferredColorPalette()
-
+        setStyle(self, loadColorPallet())
         # set main layout
         centralWidget = QWidget()
         centralWidget.setLayout(self.mainLayout)

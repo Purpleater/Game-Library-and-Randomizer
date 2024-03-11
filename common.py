@@ -169,6 +169,11 @@ def loadColorPallet():
     colorPalette = data["savedColorPalette"]
     return colorPalette
 
+def setStyle(widget, colorPalette):
+    with open(f'Color Palettes/{colorPalette}.css') as stylesheet:
+        style = stylesheet.read()
+    widget.setStyleSheet(style)
+    print(f'Applied style to: {widget}')
 
 def setColorPalletForComboBox():
     colorPallet = loadColorPallet()
@@ -183,3 +188,12 @@ def setColorPalletForComboBox():
     }
     borderColor = borderColorDictionary[colorPallet]
     return f"QComboBox {{ border: 1px solid {borderColor}; color: {textColorDictionary[colorPallet]};}}"
+
+def setColorofTableCorner():
+    colorPallet = loadColorPallet()
+
+    cornerColorDictionary = {
+        "contrast": "black",
+        "sunset": "#ff8c61"
+    }
+    return f"QTableView QTableCornerButton::section{{ background: {cornerColorDictionary[colorPallet]}; }}"

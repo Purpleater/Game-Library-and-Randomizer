@@ -56,7 +56,7 @@ class EditPersonalGameListWindow(QWidget):
         self.populateList()
 
         # set the stylesheet because I can't do that in main apparently
-        self.setColorPalette()
+        setStyle(self, loadColorPallet())
         # set main layout
         self.setLayout(self.mainLayout)
 
@@ -144,11 +144,4 @@ class EditPersonalGameListWindow(QWidget):
         self.goBackButton.hide()
         self.listSearch.hide()
         self.findGameLabel.hide()
-
-    def setColorPalette(self):
-        data = loadJSONData()
-        colorPalette = data["savedColorPalette"]
-        with open(f'Color Palettes/{colorPalette}.css') as stylesheet:
-            style = stylesheet.read()
-        self.setStyleSheet(style)
 

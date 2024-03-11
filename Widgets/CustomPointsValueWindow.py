@@ -30,14 +30,8 @@ class CustomPointsValueWidget(QWidget):
         self.mainLayout.addWidget(self.submitButton)
 
         self.setLayout(self.mainLayout)
-        self.setColorPalette()
+        setStyle(self, loadColorPallet())
 
-    def setColorPalette(self):
-        data = loadJSONData()
-        colorPalette = data["savedColorPalette"]
-        with open(f'Color Palettes/{colorPalette}.css') as stylesheet:
-            style = stylesheet.read()
-        self.setStyleSheet(style)
 
     def adjustPointValue(self):
         data = loadJSONData()

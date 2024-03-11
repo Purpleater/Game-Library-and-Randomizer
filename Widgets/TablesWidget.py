@@ -27,12 +27,14 @@ class TablesWidget(QWidget):
         self.rollTable = QTableWidget(20, 1, self)
         self.rollTable.setHorizontalHeaderLabels(["Game"])
         self.rollTable.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
+        self.rollTable.setStyleSheet(setColorofTableCorner())
 
         # Card Draw Table
         self.cardTable = QTableWidget(14, 2, self)
         self.cardTable.setHorizontalHeaderLabels(["Card", "Game"])
         self.cardTable.horizontalHeader().setSectionResizeMode(0, QHeaderView.Fixed)
         self.cardTable.horizontalHeader().setSectionResizeMode(1, QHeaderView.Stretch)
+        self.cardTable.setStyleSheet(setColorofTableCorner())
 
         # load the card names for the card-draw table
         for i in range(14):
@@ -45,6 +47,8 @@ class TablesWidget(QWidget):
         self.personalTable = QTableWidget(12, 1, self)
         self.personalTable.setHorizontalHeaderLabels(["Game"])
         self.personalTable.setColumnWidth(0, 275)
+        self.personalTable.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
+        self.personalTable.setStyleSheet(setColorofTableCorner())
 
         self.loadPersonalList()
 
@@ -91,6 +95,7 @@ class TablesWidget(QWidget):
         # table refresh signal
         self.editPersonalGameListWindow.personalListChangeSignal.connect(self.refreshWindow)
 
+        setStyle(self, loadColorPallet())
         # set main layout
         self.setLayout(self.mainLayout)
 

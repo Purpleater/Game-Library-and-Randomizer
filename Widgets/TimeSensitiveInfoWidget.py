@@ -20,6 +20,7 @@ class TimeSensitiveInfoWidget(QWidget):
         self.mainLayout.addWidget(self.gameOfTheWeekLabel)
         self.mainLayout.addWidget(self.dailyListLabel)
         self.setLayout(self.mainLayout)
+        setStyle(self, loadColorPallet())
 
         if detectIfEnoughTimeHasPassed() is True:
             self.setGameOfTheWeek()
