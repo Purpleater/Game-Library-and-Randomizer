@@ -95,14 +95,12 @@ class TablesWidget(QWidget):
         # table refresh signal
         self.editPersonalGameListWindow.personalListChangeSignal.connect(self.refreshWindow)
 
-        setStyle(self, loadColorPallet())
         # set main layout
         self.setLayout(self.mainLayout)
 
     def showEditPersonalGamesWindow(self):
         self.editPersonalGameListWindow.setWindowTitle("Edit Personal Games List")
         self.editPersonalGameListWindow.setGeometry(200, 200, 350, 350)
-        self.editPersonalGameListWindow.setObjectName("editPersonalGamesListWindow")
         self.editPersonalGameListWindow.show()
 
     def loadStoredTables(self, diceList, cardList):

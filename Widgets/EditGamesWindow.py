@@ -67,7 +67,6 @@ class EditGameWindow(QWidget):
         self.mainLayout.addWidget(self.editGameSelectionList)
         self.mainLayout.addWidget(self.selectGameToEditButton)
         self.setLayout(self.mainLayout)
-        setStyle(self, loadColorPallet())
 
         # the method that loads all of the games and adds them to the list
 

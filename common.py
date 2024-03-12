@@ -173,7 +173,7 @@ def setStyle(widget, colorPalette):
     with open(f'Color Palettes/{colorPalette}.css') as stylesheet:
         style = stylesheet.read()
     widget.setStyleSheet(style)
-    print(f'Applied style to: {widget}')
+    print(f'Applied ({colorPalette}) style to: {widget}')
 
 def setColorPalletForComboBox():
     colorPallet = loadColorPallet()

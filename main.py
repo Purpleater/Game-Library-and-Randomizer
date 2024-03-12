@@ -1,8 +1,8 @@
 import os
-
 from PyQt5.QtCore import QCoreApplication
-
 from common import *
+from Widgets.StyleSheetSetter import *
+
 
 # import Widgets
 from Widgets.TablesWidget import TablesWidget
@@ -10,13 +10,19 @@ from Widgets.PointsAdjustmentWidget import PointsAdjustmentWidget
 from Widgets.TimeSensitiveInfoWidget import TimeSensitiveInfoWidget
 from Widgets.EditGamesWindow import EditGameWindow
 from Widgets.ColorModeSelectionWindow import ColorSelectionWindow
+from Widgets.CustomPointsValueWindow import CustomPointsValueWidget
+from Widgets.EditPersonalGameListWindow import EditPersonalGameListWindow
 
 
 class MainApplication(QMainWindow):
+
     def __init__(self):
         super().__init__()
         self.init_ui()
 
+
+    def getWidgetList(self):
+        return self.widgetList
     def init_ui(self):
         self.setWindowTitle("Main Application")
         self.setGeometry(100, 100, 800, 855)
@@ -46,19 +52,33 @@ class MainApplication(QMainWindow):
 
         # initialize the windows within the scope of the main application
         self.tableWidget = TablesWidget()
-        self.tableWidget.setObjectName("tableWidget")
-
         self.pointInfoWidget = PointsAdjustmentWidget()
-        self.pointInfoWidget.setObjectName("pointInfoWidget")
-
         self.timeSensitiveInfoWidget = TimeSensitiveInfoWidget()
-        self.timeSensitiveInfoWidget.setObjectName("timeSensitiveInfoWidget")
-
         self.editGameListWindow = EditGameWindow()
-        self.editGameListWindow.setObjectName("editGameListWindow")
-
         self.colorSelectionWindow = ColorSelectionWindow()
+        self.customPointsValueWidget = CustomPointsValueWidget()
+        self.editPersonalGamesListInfo = EditPersonalGameListWindow()
+
+        # set object names for the stylesheet to reference
+
+        self.tableWidget.setObjectName("tableWidget")
+        self.pointInfoWidget.setObjectName("pointInfoWidget")
+        self.timeSensitiveInfoWidget.setObjectName("timeSensitiveInfoWidget")
+        self.editGameListWindow.setObjectName("editGameListWindow")
         self.colorSelectionWindow.setObjectName("colorSelectionWindow")
+        self.customPointsValueWidget.setObjectName("customPointsValueWidget")
+        self.editPersonalGamesListInfo.setObjectName("editPersonalGamesListInfo")
+
+        self.widgetList = []
+
+        self.widgetList.append(self.tableWidget)
+        self.widgetList.append(self.pointInfoWidget)
+        self.widgetList.append(self.timeSensitiveInfoWidget)
+        self.widgetList.append(self.editGameListWindow)
+        self.widgetList.append(self.colorSelectionWindow)
+        self.widgetList.append(self.customPointsValueWidget)
+        self.widgetList.append(self.editPersonalGamesListInfo)
+
 
         # color selected signal
         self.colorSelectionWindow.colorSelection.connect(self.updateColorPalette)
@@ -74,12 +94,11 @@ class MainApplication(QMainWindow):
         self.mainLayout.addLayout(self.informationButtonLayout, 1, 0)
         self.mainLayout.addLayout(self.extraSettingsBar, 2, 0)
 
-        # set preferred color palette on load
-        setStyle(self, loadColorPallet())
         # set main layout
         centralWidget = QWidget()
         centralWidget.setLayout(self.mainLayout)
         self.setCentralWidget(centralWidget)
+
 
     def showGameListWindow(self):
         self.editGameListWindow.setWindowTitle("View/Edit/Add Games")
@@ -99,9 +118,6 @@ class MainApplication(QMainWindow):
         with open(f'Color Palettes/{colorPalette}.css') as stylesheet:
             style = stylesheet.read()
             self.setStyleSheet(style)
-            self.editGameListWindow.setStyleSheet(style)
-            self.timeSensitiveInfoWidget.setStyleSheet(style)
-
 
     def quitApplication(self):
         QApplication.quit()
@@ -111,9 +127,10 @@ class MainApplication(QMainWindow):
 def main():
     app = QApplication(sys.argv)
     mainApplication = MainApplication()
+    mainApplication.loadPreferredColorPalette()
+    massApplyStyles(mainApplication.getWidgetList(), loadColorPallet())
     mainApplication.show()
     sys.exit((app.exec_()))
-
 
 if __name__ == "__main__":
     main()

@@ -1,7 +1,12 @@
 This text document is used to keep track of all of the changes that I make to this program. The top-most updates are the most recent.
 
+
+______3/11/2024 (Again)______
+- Removed a function that had literally no importance whatsoever
+- Adjusted the styling process so that now it (technically) takes place in the StyleSheetSetter.py file.
+
 ______3/11/2024______
-- * crawls out of burning wreckage and falls over * the table corners are now styled
+- * crawls out of burning wreckage and falls over dead * the table corners are now styled
 - Implemented a standard method that applies styling a particular widget
 - Fixed the issue where personal games table sections wouldn't stretch to the end of the page
 - Removed the CustomValuesWindow Module since it wasn't doing anything important (just like several people I know)

@@ -55,8 +55,6 @@ class EditPersonalGameListWindow(QWidget):
         self.listSearch.textChanged.connect(self.updateList)
         self.populateList()
 
-        # set the stylesheet because I can't do that in main apparently
-        setStyle(self, loadColorPallet())
         # set main layout
         self.setLayout(self.mainLayout)
 

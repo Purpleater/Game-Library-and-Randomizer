@@ -30,7 +30,6 @@ class CustomPointsValueWidget(QWidget):
         self.mainLayout.addWidget(self.submitButton)
 
         self.setLayout(self.mainLayout)
-        setStyle(self, loadColorPallet())
 
 
     def adjustPointValue(self):

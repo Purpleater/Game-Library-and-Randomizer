@@ -27,13 +27,12 @@ class ColorSelectionWindow(QWidget):
             self.palettelistSelection.addItem(self.paletteList[i])
 
         self.mainLayout.addWidget(self.clickButton)
-        setStyle(self, loadColorPallet())
         self.setLayout(self.mainLayout)
 
 
     def showColorDialog(self):
 
-        selectedPalette = self.getColorFromList()
+        selectedPalette = self.palettelistSelection.selectedItems()[0].text()
 
         if selectedPalette:
             self.colorSelection.emit(selectedPalette)
@@ -41,9 +40,5 @@ class ColorSelectionWindow(QWidget):
             style = stylesheet.read()
             self.setStyleSheet(style)
             Widgets.CustomPointsValueWindow.CustomPointsValueWidget().setStyleSheet(style)
-
-
-    def getColorFromList(self):
-        return self.palettelistSelection.selectedItems()[0].text()
 
 
