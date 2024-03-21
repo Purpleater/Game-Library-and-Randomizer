@@ -6,6 +6,7 @@ from json import JSONEncoder
 from PyQt5.QtCore import Qt, pyqtSignal, QObject
 from PyQt5.QtGui import QColor
 from datetime import *
+from PyQt5.QtCore import pyqtSignal
 
 completionStatusReference = {
     "Incomplete": 0,

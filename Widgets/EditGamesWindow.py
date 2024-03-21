@@ -130,7 +130,6 @@ class EditGameWindow(QWidget):
                     self.nameValue.clear()
                     return False
 
-
     def showGameEditConfirmationWindow(self):
 
         editGameConfirmationWindow = QMessageBox()

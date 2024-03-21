@@ -2,7 +2,7 @@ from common import *
 
 
 class CustomPointsValueWidget(QWidget):
-    pointsChanged = pyqtSignal(int)
+    pointsChangedSignal = pyqtSignal(int)
 
     def __init__(self):
         super().__init__()
@@ -40,8 +40,6 @@ class CustomPointsValueWidget(QWidget):
         totalPointsNumber += int(completeNumber)
         data['numberOfPoints'] = totalPointsNumber
         updateJSONData(data)
-        self.pointsChanged.emit(totalPointsNumber)
-
-
+        self.pointsChangedSignal.emit(totalPointsNumber)
 
 

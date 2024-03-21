@@ -3,6 +3,7 @@ from Widgets.CustomPointsValueWindow import CustomPointsValueWidget
 
 
 class PointsAdjustmentWidget(QWidget):
+    pointsAdjustmentSignal = pyqtSignal()
     def __init__(self):
         super().__init__()
         self.widgetUI()
@@ -36,7 +37,7 @@ class PointsAdjustmentWidget(QWidget):
         self.customPointsValueWindow = CustomPointsValueWidget()
 
         # set the signal slot
-        self.customPointsValueWindow.pointsChanged.connect(self.updatePoints)
+        self.customPointsValueWindow.pointsChangedSignal.connect(self.updatePoints)
 
         # set main layout
         self.setLayout(self.mainLayout)
@@ -62,14 +63,7 @@ class PointsAdjustmentWidget(QWidget):
                                   f"__{getNumberOfPointsFromFile()}__"))
 
     def showCustomPointsValueWindow(self):
-        # generate the object
-        self.customPointsValueWindow = CustomPointsValueWidget()
-        self.customPointsValueWindow.setObjectName("customPointValueWindow")
-
-        # create and show the window itself
-        self.customPointsValueWindow.setWindowTitle("Add Custom Points Value")
-        self.customPointsValueWindow.setGeometry(200, 200, 200, 150)
-        self.customPointsValueWindow.show()
+        self.pointsAdjustmentSignal.emit()
 
     def updatePoints(self, pointsSignal):
         self.pointsLabel.setText(f"# of Points:\n\n"

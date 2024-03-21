@@ -3,10 +3,10 @@ from Widgets.EditPersonalGameListWindow import EditPersonalGameListWindow
 
 
 class TablesWidget(QWidget):
+    personalGamesButtonSignal = pyqtSignal()
     def __init__(self):
         super().__init__()
         # initialize time-sensitive info Widget
-
         self.widgetUI()
 
     def widgetUI(self):
@@ -99,9 +99,7 @@ class TablesWidget(QWidget):
         self.setLayout(self.mainLayout)
 
     def showEditPersonalGamesWindow(self):
-        self.editPersonalGameListWindow.setWindowTitle("Edit Personal Games List")
-        self.editPersonalGameListWindow.setGeometry(200, 200, 350, 350)
-        self.editPersonalGameListWindow.show()
+        self.personalGamesButtonSignal.emit()
 
     def loadStoredTables(self, diceList, cardList):
 

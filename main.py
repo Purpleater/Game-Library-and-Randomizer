@@ -14,6 +14,7 @@ from Widgets.CustomPointsValueWindow import CustomPointsValueWidget
 from Widgets.EditPersonalGameListWindow import EditPersonalGameListWindow
 
 
+
 class MainApplication(QMainWindow):
 
     def __init__(self):
@@ -59,6 +60,7 @@ class MainApplication(QMainWindow):
         self.customPointsValueWidget = CustomPointsValueWidget()
         self.editPersonalGamesListInfo = EditPersonalGameListWindow()
 
+
         # set object names for the stylesheet to reference
 
         self.tableWidget.setObjectName("tableWidget")
@@ -81,8 +83,14 @@ class MainApplication(QMainWindow):
 
 
         # color selected signal
-        self.colorSelectionWindow.colorSelection.connect(self.updateColorPalette)
+        self.colorSelectionWindow.colorSelection.connect(self.applyAllStyles)
 
+        # signal to show personal games list window
+        self.tableWidget.personalGamesButtonSignal.connect(self.showEditPersonalGamesWindow)
+
+        # show custom points value window signal
+
+        self.pointInfoWidget.pointsAdjustmentSignal.connect(self.showCustomPointsWindow)
 
         # because I wanted to have both the points widget and weekly information widget below the tables
         # I combined these two widgets into the same layout
@@ -118,6 +126,21 @@ class MainApplication(QMainWindow):
         with open(f'Color Palettes/{colorPalette}.css') as stylesheet:
             style = stylesheet.read()
             self.setStyleSheet(style)
+
+    def applyAllStyles(self, palette):
+        massApplyStyles(self.widgetList, palette)
+        self.setStyleSheet(palette)
+
+    def showEditPersonalGamesWindow(self):
+        self.editPersonalGamesListInfo.setWindowTitle("Edit Personal Games List")
+        self.editPersonalGamesListInfo.setGeometry(200, 200, 350, 350)
+        self.editPersonalGamesListInfo.show()
+
+    def showCustomPointsWindow(self):
+        # create and show the window itself
+        self.customPointsValueWidget.setWindowTitle("Add Custom Points Value")
+        self.customPointsValueWidget.setGeometry(200, 200, 200, 150)
+        self.customPointsValueWidget.show()
 
     def quitApplication(self):
         QApplication.quit()

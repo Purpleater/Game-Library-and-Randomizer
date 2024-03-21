@@ -1,5 +1,10 @@
 This text document is used to keep track of all of the changes that I make to this program. The top-most updates are the most recent.
 
+______3/21/2024______
+- Re-arranged certain portions of the application so that all windows are initialized upon the application loading, with the methods initially present in other widgets now sending signals instead of showing the window outright
+- Lost my goddamn mind in the process.
+- Created a method called "ApplyAllStyles" that is *Supposed* to automatically re-apply all styling whenever the sheet is changed mid-application
+    + (Known Issue) "ApplyAllStyles" does not automatically re-apply all styling whenever the sheet is changed mid-application.
 
 ______3/11/2024 (Again)______
 - Removed a function that had literally no importance whatsoever
