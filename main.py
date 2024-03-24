@@ -92,6 +92,7 @@ class MainApplication(QMainWindow):
 
         self.pointInfoWidget.pointsAdjustmentSignal.connect(self.showCustomPointsWindow)
 
+
         # because I wanted to have both the points widget and weekly information widget below the tables
         # I combined these two widgets into the same layout
         self.informationButtonLayout.addWidget(self.pointInfoWidget)
@@ -142,9 +143,9 @@ class MainApplication(QMainWindow):
         self.customPointsValueWidget.setGeometry(200, 200, 200, 150)
         self.customPointsValueWidget.show()
 
+
     def quitApplication(self):
         QApplication.quit()
-
 
 
 def main():
