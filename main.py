@@ -92,6 +92,8 @@ class MainApplication(QMainWindow):
 
         self.pointInfoWidget.pointsAdjustmentSignal.connect(self.showCustomPointsWindow)
 
+        # Connect the custom points value widget's pointsChangedSignal to point info widget's update points function
+        self.customPointsValueWidget.pointsChangedSignal.connect(self.pointInfoWidget.updatePoints)
 
         # because I wanted to have both the points widget and weekly information widget below the tables
         # I combined these two widgets into the same layout
