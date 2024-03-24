@@ -33,13 +33,6 @@ class PointsAdjustmentWidget(QWidget):
         self.mainLayout.addWidget(self.addTwoPointsButton)
         self.mainLayout.addWidget(self.addCustomValue)
 
-        # create class instance of the custom points value window for signal connection
-        self.customPointsValueWindow = CustomPointsValueWidget()
-
-        # set the signal slot
-        self.customPointsValueWindow.pointsChangedSignal.connect(self.updatePoints)
-        # print(self.customPointsValueWindow.pointsChangedSignal.connect(self.updatePoints))
-
         # set main layout
         self.setLayout(self.mainLayout)
 
