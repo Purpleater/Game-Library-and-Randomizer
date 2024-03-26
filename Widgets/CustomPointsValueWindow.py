@@ -1,7 +1,7 @@
 from common import *
 
 class CustomPointsValueWidget(QWidget):
-    pointsChangedSignal = pyqtSignal(str)
+    pointsChangedSignal = pyqtSignal()
 
     def __init__(self):
         super().__init__()
@@ -41,7 +41,35 @@ class CustomPointsValueWidget(QWidget):
         data['numberOfPoints'] = totalPointsNumber
         updateJSONData(data)
 
-        self.pointsChangedSignal.emit("Meese")
+        if self.confirmPointAdjustment(completeNumber):
+            self.pointsChangedSignal.emit()
+            showProcessConfirmationWindow("Point adjustment")
+
+    def confirmPointAdjustment(self, numberOfPoints):
+        integerValue = ''
+        toOrFrom = ''
+        if int(numberOfPoints) < 0:
+            integerValue = "subtract"
+            toOrFrom = "from"
+        else:
+            integerValue = "add"
+            toOrFrom = "to"
+
+        splitList = list(numberOfPoints)
+        removedSign = splitList.pop(1)
+
+        confirmPointAdjustmentWindow = QMessageBox()
+        confirmPointAdjustmentWindow.setText(
+            f"Would you like to {integerValue} {removedSign} points {toOrFrom} your total score?")
+        confirmPointAdjustmentWindow.setWindowTitle("Confirm Point Adjustment")
+        confirmPointAdjustmentWindow.setStandardButtons(QMessageBox.Yes | QMessageBox.No)
+
+        returnValue = confirmPointAdjustmentWindow.exec_()
+
+        if returnValue == QMessageBox.Yes:
+            return True
+        if returnValue == QMessageBox.No:
+            return False
 
 
 

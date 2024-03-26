@@ -59,5 +59,6 @@ class PointsAdjustmentWidget(QWidget):
     def showCustomPointsValueWindow(self):
         self.pointsAdjustmentSignal.emit()
 
-    def updatePoints(self, string):
-        print(string)
+    def updatePoints(self):
+        self.pointsLabel.setText((f"# of Points: \n\n"
+                                  f"__{getNumberOfPointsFromFile()}__"))

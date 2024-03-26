@@ -1,5 +1,14 @@
 This text document is used to keep track of all of the changes that I make to this program. The top-most updates are the most recent.
 
+______3/26/2024______
+- Managed to get the point counter refresh upon submitting custom value working. This was thanks to a friend (if you ever read this, thank you for your help again <3)
+- Added a confirmation window that occurs before the user submits a point value
+- Also added a process confirmation window that pops up upon a successful alteration.
+
++ (Known Issue) The search for the button that allows one to save a stylesheet after testing it out remains futile.
++ (Known Issue) After switching out one game with another while the application is running, the EditPersonalGameListWindow will load the incorrect list.
++ (Known Issue) Dynamic styling has decided to shit itself. Currently trying to resolve the issue.
+
 ______3/21/2024______
 - Re-arranged certain portions of the application so that all windows are initialized upon the application loading, with the methods initially present in other widgets now sending signals instead of showing the window outright
 - Lost my goddamn mind in the process.
@@ -14,7 +23,7 @@ ______3/11/2024______
 - * crawls out of burning wreckage and falls over dead * the table corners are now styled
 - Implemented a standard method that applies styling a particular widget
 - Fixed the issue where personal games table sections wouldn't stretch to the end of the page
-- Removed the CustomValuesWindow Module since it wasn't doing anything important (just like several people I know)
+- Removed the CustomValuesWindow module since it wasn't doing anything important (just like several people I know)
 
 + (Known Issue) Dynamic application of styling is very difficult while the application is running. I am currently workshopping ways to alleviate this issue.
 + (Known Issue) After switching out one game with another while the application is running, the EditPersonalGameListWindow will load the incorrect list.
@@ -22,9 +31,9 @@ ______3/11/2024______
 
 ______3/06/2024______
 - Started implementing new style called "sunset", it can be viewed instantly upon opening the map.
- + (Known Issue) Not all portions of the application have styling applied.
+    + (Known Issue) Not all portions of the application have styling applied.
 - Added common function that allows for QComboboxes (list select widgets) to dynamically apply styling. This function is not the cleanest so I'll likely redo this one later.
- + (Known Issue???) Pretty sure not all combo boxes have this function applied. Or maybe they do. I cannot remember anymore and I'm too lazy to check. Additionally it is difficult to apply said styling while application is running.
+    + (Known Issue???) Pretty sure not all combo boxes have this function applied. Or maybe they do. I cannot remember anymore and I'm too lazy to check. Additionally it is difficult to apply said styling while application is running.
 
 ______3/03/2024______
 - The color selection window now will have styling applied.
