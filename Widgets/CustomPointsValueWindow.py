@@ -67,6 +67,8 @@ class CustomPointsValueWidget(QWidget):
         returnValue = confirmPointAdjustmentWindow.exec_()
 
         if returnValue == QMessageBox.Yes:
+            logProcess(f"Adjusted point total value by {numberOfPoints}")
+            self.inputLabel.clear()
             return True
         if returnValue == QMessageBox.No:
             return False

@@ -27,7 +27,7 @@ class EditPersonalGameListWindow(QWidget):
 
         self.submissionButton = QPushButton("Submit Game")
         self.submissionButton.clicked.connect(self.selectGameToReplace)
-        print(self.submissionButton.palette())
+
 
         self.goBackButton = QPushButton("Back")
         self.goBackButton.clicked.connect(self.returnToPreviousPage)

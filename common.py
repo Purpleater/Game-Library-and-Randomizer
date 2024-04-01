@@ -198,3 +198,7 @@ def setColorofTableCorner():
         "sunset": "#ff8c61"
     }
     return f"QTableView QTableCornerButton::section{{ background: {cornerColorDictionary[colorPallet]}; }}"
+
+def logProcess(process):
+    currentTime = datetime.now().strftime('%H:%M:%S')
+    print(f'{currentTime} - {process}')

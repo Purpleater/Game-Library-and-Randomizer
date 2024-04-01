@@ -1,5 +1,10 @@
 This text document is used to keep track of all of the changes that I make to this program. The top-most updates are the most recent.
 
+______4/1/2024______
+- Made it so that the custom point value input field automatically clears after a point adjustment occurs successfully
+- Added the logProcess() function that applied timestamps to certain functions that print to console.
+    + (Known Issue) Not all of the processes I want logged have this function attached currently. This is because I'm currently exhausted and don't want to add them all in one go.
+
 ______3/26/2024______
 - Managed to get the point counter refresh upon submitting custom value working. This was thanks to a friend (if you ever read this, thank you for your help again <3)
 - Added a confirmation window that occurs before the user submits a point value
