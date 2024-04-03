@@ -176,8 +176,7 @@ def setStyle(widget, colorPalette):
     widget.setStyleSheet(style)
     print(f'Applied ({colorPalette}) style to: {widget}')
 
-def setColorPalletForComboBox():
-    colorPallet = loadColorPallet()
+def setColorPalletForComboBox(colorPalette):
 
     borderColorDictionary = {
         "contrast": "white",
@@ -187,8 +186,8 @@ def setColorPalletForComboBox():
         "contrast": "white",
         "sunset": "#5c374c"
     }
-    borderColor = borderColorDictionary[colorPallet]
-    return f"QComboBox {{ border: 1px solid {borderColor}; color: {textColorDictionary[colorPallet]};}}"
+    borderColor = borderColorDictionary[colorPalette]
+    return f"QComboBox {{ border: 1px solid {borderColor}; color: {textColorDictionary[colorPalette]};}}"
 
 def setColorofTableCorner():
     colorPallet = loadColorPallet()

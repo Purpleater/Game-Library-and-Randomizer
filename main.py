@@ -132,7 +132,7 @@ class MainApplication(QMainWindow):
 
     def applyAllStyles(self, palette):
         massApplyStyles(self.widgetList, palette)
-        self.setStyleSheet(palette)
+        self.updateColorPalette(palette)
 
     def showEditPersonalGamesWindow(self):
         self.editPersonalGamesListInfo.setWindowTitle("Edit Personal Games List")
