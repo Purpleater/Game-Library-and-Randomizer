@@ -45,6 +45,7 @@ class PointsAdjustmentWidget(QWidget):
         updateJSONData(data)
         self.pointsLabel.setText((f"# of Points: \n\n"
                                   f"__{getNumberOfPointsFromFile()}__"))
+        logProcess("Added (1) point to total")
 
     def addTwoPoints(self):
         with open('ApplicationInformation.json', 'r') as file:
@@ -55,6 +56,7 @@ class PointsAdjustmentWidget(QWidget):
 
         self.pointsLabel.setText((f"# of Points: \n\n"
                                   f"__{getNumberOfPointsFromFile()}__"))
+        logProcess("Added (2) points to total")
 
     def showCustomPointsValueWindow(self):
         self.pointsAdjustmentSignal.emit()

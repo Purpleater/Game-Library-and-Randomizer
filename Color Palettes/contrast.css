@@ -39,6 +39,9 @@ QComboBox{
  margin: 5px
 }
 
+QScrollBar{
+    background-color: grey;
+}
 /* Table Widget */
 
 #tableWidget QTableWidget::item{

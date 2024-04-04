@@ -25,7 +25,7 @@ cardDeckNames = ["Ace", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight",
 
 weeklySelectionPool = ["Roll", "Roll", "Card Draw", "Card Draw", "Want To Continue Playing", "Want To Continue Playing",
                        "Free Day"]
-
+currentlyAppliedColorScheme = ""
 
 class Game:
     def __init__(self, name, completed, replayabilityFactor):
@@ -186,8 +186,13 @@ def setColorPalletForComboBox(colorPalette):
         "contrast": "white",
         "sunset": "#5c374c"
     }
+
+    fontWeight = {
+        "contrast": "",
+        "sunset": "font-weight: bold;"
+    }
     borderColor = borderColorDictionary[colorPalette]
-    return f"QComboBox {{ border: 1px solid {borderColor}; color: {textColorDictionary[colorPalette]};}}"
+    return f"QComboBox {{ border: 1px solid {borderColor}; color: {textColorDictionary[colorPalette]}; {fontWeight[colorPalette]};}}"
 
 def setColorofTableCorner():
     colorPallet = loadColorPallet()
@@ -201,3 +206,4 @@ def setColorofTableCorner():
 def logProcess(process):
     currentTime = datetime.now().strftime('%H:%M:%S')
     print(f'{currentTime} - {process}')
+

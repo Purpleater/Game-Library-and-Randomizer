@@ -55,8 +55,8 @@ class CustomPointsValueWidget(QWidget):
             integerValue = "add"
             toOrFrom = "to"
 
-        splitList = list(numberOfPoints)
-        removedSign = splitList.pop(1)
+
+        removedSign = abs(int(numberOfPoints))
 
         confirmPointAdjustmentWindow = QMessageBox()
         confirmPointAdjustmentWindow.setText(
@@ -72,6 +72,7 @@ class CustomPointsValueWidget(QWidget):
             return True
         if returnValue == QMessageBox.No:
             return False
+
 
 
 

@@ -94,7 +94,7 @@ QScrollBar{
     color: white;
 }
 #editGameListWindow QLabel{
-    color: white;
+    color: #5c374c;
     font-size: 12px
 }
 #editGameListWindow QListWidget {

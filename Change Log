@@ -1,4 +1,13 @@
 This text document is used to keep track of all of the changes that I make to this program. The top-most updates are the most recent.
+
+______4/4/2024______
+- The button to save an applied color palette finally exists!
+- Created a global variable that stores the presently applied color palette
+- Created a function that utilizes the before-mentioned global variable to save a currently applied palette to JSON.
+- Touched up both stylesheets a bit
+- Added functions to log more user event procedures
+- Fixed an issue where the "confirm custom point value addition" window would only showcase the first integer of a number value and nothing else
+
 ______4/3/2024______
 - After spending a week on the QWidget styling issue, you can imagine my rage when my solution came in the form of adding a single line to main.
 - Adjusted the styling of the 'sunset' sheet to color application scrollbars correctly.

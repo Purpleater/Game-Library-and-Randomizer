@@ -1,5 +1,7 @@
 import os
 from PyQt5.QtCore import QCoreApplication
+
+import common
 from common import *
 from Widgets.StyleSheetSetter import *
 
@@ -124,6 +126,7 @@ class MainApplication(QMainWindow):
     def loadPreferredColorPalette(self):
         data = loadJSONData()
         self.updateColorPalette(data['savedColorPalette'])
+        common.currentlyAppliedColorScheme = data['savedColorPalette']
 
     def updateColorPalette(self, colorPalette):
         with open(f'Color Palettes/{colorPalette}.css') as stylesheet:
