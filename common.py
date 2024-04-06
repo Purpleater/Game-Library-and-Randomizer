@@ -186,22 +186,25 @@ def setColorPalletForComboBox(colorPalette):
         "contrast": "white",
         "sunset": "#5c374c"
     }
-
     fontWeight = {
         "contrast": "",
         "sunset": "font-weight: bold;"
     }
+
+    editableTextColor = {
+        "contrast": "white",
+        "sunset": "#5c374c"
+    }
     borderColor = borderColorDictionary[colorPalette]
-    return f"QComboBox {{ border: 1px solid {borderColor}; color: {textColorDictionary[colorPalette]}; {fontWeight[colorPalette]};}}"
+    return f"QComboBox {{ border: 1px solid {borderColor}; color: {textColorDictionary[colorPalette]}; {fontWeight[colorPalette]};}}" \
+           f"QComboBox::drop-down {{ color: {editableTextColor} }}"
 
-def setColorofTableCorner():
-    colorPallet = loadColorPallet()
-
+def setColorofTableCorner(palette):
     cornerColorDictionary = {
         "contrast": "black",
         "sunset": "#ff8c61"
     }
-    return f"QTableView QTableCornerButton::section{{ background: {cornerColorDictionary[colorPallet]}; }}"
+    return f"QTableView QTableCornerButton::section{{ background: {cornerColorDictionary[palette]}; }}"
 
 def logProcess(process):
     currentTime = datetime.now().strftime('%H:%M:%S')

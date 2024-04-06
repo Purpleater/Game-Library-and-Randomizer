@@ -4,6 +4,7 @@ from Widgets.EditPersonalGameListWindow import EditPersonalGameListWindow
 
 class TablesWidget(QWidget):
     personalGamesButtonSignal = pyqtSignal()
+
     def __init__(self):
         super().__init__()
         # initialize time-sensitive info Widget
@@ -27,14 +28,14 @@ class TablesWidget(QWidget):
         self.rollTable = QTableWidget(20, 1, self)
         self.rollTable.setHorizontalHeaderLabels(["Game"])
         self.rollTable.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
-        self.rollTable.setStyleSheet(setColorofTableCorner())
+        self.rollTable.setStyleSheet(setColorofTableCorner(loadColorPallet()))
 
         # Card Draw Table
         self.cardTable = QTableWidget(14, 2, self)
         self.cardTable.setHorizontalHeaderLabels(["Card", "Game"])
         self.cardTable.horizontalHeader().setSectionResizeMode(0, QHeaderView.Fixed)
         self.cardTable.horizontalHeader().setSectionResizeMode(1, QHeaderView.Stretch)
-        self.cardTable.setStyleSheet(setColorofTableCorner())
+        self.cardTable.setStyleSheet(setColorofTableCorner(loadColorPallet()))
 
         # load the card names for the card-draw table
         for i in range(14):
@@ -48,7 +49,7 @@ class TablesWidget(QWidget):
         self.personalTable.setHorizontalHeaderLabels(["Game"])
         self.personalTable.setColumnWidth(0, 275)
         self.personalTable.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
-        self.personalTable.setStyleSheet(setColorofTableCorner())
+        self.personalTable.setStyleSheet(setColorofTableCorner(loadColorPallet()))
 
         self.loadPersonalList()
 
@@ -166,6 +167,8 @@ class TablesWidget(QWidget):
             item.setForeground((QColor(Qt.black)))
             self.cardTable.setItem(i, 1, item)
 
+        logProcess("Table contents generated")
+
     def loadPersonalList(self):
         data = loadJSONData()
         loadedPersonalList = data['personalGameList']
@@ -201,3 +204,8 @@ class TablesWidget(QWidget):
     def refreshWindow(self, confirmation):
         if confirmation:
             self.loadPersonalList()
+
+    def applyIndividualStyling(self, palette):
+        self.rollTable.setStyleSheet(setColorofTableCorner(palette))
+        self.cardTable.setStyleSheet(setColorofTableCorner(palette))
+        self.personalTable.setStyleSheet(setColorofTableCorner(palette))

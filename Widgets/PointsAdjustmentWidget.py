@@ -1,6 +1,4 @@
 from common import *
-from Widgets.CustomPointsValueWindow import CustomPointsValueWidget
-
 
 class PointsAdjustmentWidget(QWidget):
     pointsAdjustmentSignal = pyqtSignal()

@@ -28,7 +28,7 @@ class MainApplication(QMainWindow):
         return self.widgetList
     def init_ui(self):
         self.setWindowTitle("Main Application")
-        self.setGeometry(100, 100, 800, 855)
+        self.setGeometry(100, 100, 1200, 855)
 
         # create layout
         self.mainLayout = QGridLayout()
@@ -136,6 +136,9 @@ class MainApplication(QMainWindow):
     def applyAllStyles(self, palette):
         massApplyStyles(self.widgetList, palette)
         self.updateColorPalette(palette)
+        self.tableWidget.applyIndividualStyling(palette.lower())
+        self.editGameListWindow.applyIndividualStyling(palette.lower())
+        logProcess(f"Applied ({palette}) to program")
 
     def showEditPersonalGamesWindow(self):
         self.editPersonalGamesListInfo.setWindowTitle("Edit Personal Games List")

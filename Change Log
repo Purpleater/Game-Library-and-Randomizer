@@ -1,5 +1,12 @@
 This text document is used to keep track of all of the changes that I make to this program. The top-most updates are the most recent.
 
+______4/6/2024______
+- Adjusted main window size
+- Removed some stuff from ColorModeSelectionWindow that was no longer required due to altered styling methods
+- Added logging to more user events
+- Altered the specific styling (for things such as comboboxes and table widget corners) to be dynamic
+    + (Known Issue?) I have a hunch that a couple of styling instances have flown under the radar.
+
 ______4/4/2024______
 - The button to save an applied color palette finally exists!
 - Created a global variable that stores the presently applied color palette

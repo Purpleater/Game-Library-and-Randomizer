@@ -1,4 +1,3 @@
-import Widgets.CustomPointsValueWindow
 import common
 from common import *
 from PyQt5.QtCore import pyqtSignal
@@ -40,10 +39,8 @@ class ColorSelectionWindow(QWidget):
         common.currentlyAppliedColorScheme = selectedPalette
         if selectedPalette:
             self.colorSelection.emit(selectedPalette)
-        with open(f'Color Palettes/{selectedPalette}.css') as stylesheet:
-            style = stylesheet.read()
-            self.setStyleSheet(style)
-            Widgets.CustomPointsValueWindow.CustomPointsValueWidget().setStyleSheet(style)
+        logProcess(f"Temporarily applied the ({selectedPalette}) palette")
+
 
     def saveAppliedPalette(self):
         data = loadJSONData()

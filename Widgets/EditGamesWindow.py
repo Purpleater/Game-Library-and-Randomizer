@@ -165,6 +165,10 @@ class EditGameWindow(QWidget):
         if selectedItem:
             self.selectGameToEditButton.setEnabled(True)
 
+    def applyIndividualStyling(self, palette):
+        self.completionStatus.setStyleSheet(setColorPalletForComboBox(palette))
+        self.replayabilityFactor.setStyleSheet(setColorPalletForComboBox(palette))
+
 
 
 

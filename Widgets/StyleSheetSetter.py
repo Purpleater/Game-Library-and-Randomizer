@@ -13,11 +13,8 @@ def setStyle(widget, colorPalette):
     with open(f'Color Palettes/{colorPalette}.css') as stylesheet:
         style = stylesheet.read()
     widget.setStyleSheet(style)
-    colorPaletteLog = f'Applied ({colorPalette}) style to: {widget}'
-    logProcess(colorPaletteLog)
-
-
 
 def massApplyStyles(moduleList, colorPalette):
     for item in moduleList:
         setStyle(item, colorPalette)
+    logProcess(f"Applied ({colorPalette}) to program")
