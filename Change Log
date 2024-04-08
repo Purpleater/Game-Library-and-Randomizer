@@ -1,5 +1,16 @@
 This text document is used to keep track of all of the changes that I make to this program. The top-most updates are the most recent.
 
+______4/8/2024______
+- Bolded the table headers in the "sunset" color scheme to make them more visible.
+- Fully applied specific styling to all widgets that need it for now.
+    + (Known Issue) Currently trying to apply styling to input fields to make text more visible. This has only been partially successful.
+- Adjusted the "Duplicate Game Check" window to display a more accurate message.
+- Added a "Delete Game" button to the EditGamesWindow.
+    + (Known Issue) This button doesn't do anything yet.
+- Added a "Black-Space" style.
+    + (Known Issue) Don't look at it yet it looks like shit and very similar to "Contrast"
+
+
 ______4/6/2024______
 - Adjusted main window size
 - Removed some stuff from ColorModeSelectionWindow that was no longer required due to altered styling methods

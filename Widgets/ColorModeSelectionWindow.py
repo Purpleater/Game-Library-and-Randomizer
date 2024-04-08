@@ -4,7 +4,7 @@ from PyQt5.QtCore import pyqtSignal
 
 
 class ColorSelectionWindow(QWidget):
-    paletteList = ["Contrast", "Sunset"]
+    paletteList = ["Contrast", "Sunset", "Black-Space"]
     colorSelection = pyqtSignal(str)
 
 

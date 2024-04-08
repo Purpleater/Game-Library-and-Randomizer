@@ -138,6 +138,7 @@ class MainApplication(QMainWindow):
         self.updateColorPalette(palette)
         self.tableWidget.applyIndividualStyling(palette.lower())
         self.editGameListWindow.applyIndividualStyling(palette.lower())
+        self.customPointsValueWidget.applyIndividualStyling(palette.lower())
         logProcess(f"Applied ({palette}) to program")
 
     def showEditPersonalGamesWindow(self):

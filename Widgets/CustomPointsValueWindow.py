@@ -73,7 +73,6 @@ class CustomPointsValueWidget(QWidget):
         if returnValue == QMessageBox.No:
             return False
 
-
-
-
+    def applyIndividualStyling(self, palette):
+        self.plusMinus.setStyleSheet(setColorPalletForComboBox(palette))
 

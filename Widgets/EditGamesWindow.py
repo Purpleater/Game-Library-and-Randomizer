@@ -49,6 +49,8 @@ class EditGameWindow(QWidget):
         self.selectGameToEditButton = QPushButton("Select Game to Edit/View")
         self.selectGameToEditButton.clicked.connect(self.getGameInformation)
         self.selectGameToEditButton.setEnabled(False)
+        self.deleteGameButton = QPushButton("Delete Game")
+        self.deleteGameButton.setEnabled(False)
 
         self.editGameSelectionList.itemSelectionChanged.connect(self.checkIfGameIsSelected)
 
@@ -66,6 +68,7 @@ class EditGameWindow(QWidget):
         self.mainLayout.addLayout(self.searchGameRow)
         self.mainLayout.addWidget(self.editGameSelectionList)
         self.mainLayout.addWidget(self.selectGameToEditButton)
+        self.mainLayout.addWidget(self.deleteGameButton)
         self.setLayout(self.mainLayout)
 
         # the method that loads all of the games and adds them to the list
@@ -154,20 +157,20 @@ class EditGameWindow(QWidget):
 
         for game in loadSortedList():
             if gameName.lower() == game["name"].lower():
-                QMessageBox.about(self, "Duplicate Entry Warning",
-                                  "The game you have provided "
-                                  "already exists within the "
-                                  "full game list.")
+                QMessageBox.about(self, "Entry Already Present",
+                                  "This game already exists within the program's files.")
                 self.resetPage()
 
     def checkIfGameIsSelected(self):
         selectedItem = self.editGameSelectionList.selectedItems()
         if selectedItem:
             self.selectGameToEditButton.setEnabled(True)
+            self.deleteGameButton.setEnabled(True)
 
     def applyIndividualStyling(self, palette):
         self.completionStatus.setStyleSheet(setColorPalletForComboBox(palette))
         self.replayabilityFactor.setStyleSheet(setColorPalletForComboBox(palette))
+        self.nameValue.setStyleSheet(setColorForInputLines(palette))
 
 
 
