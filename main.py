@@ -97,6 +97,9 @@ class MainApplication(QMainWindow):
         # Connect the custom points value widget's pointsChangedSignal to point info widget's update points function
         self.customPointsValueWidget.pointsChangedSignal.connect(self.pointInfoWidget.updatePoints)
 
+        # Connect signal that updates the personal game list after a game has been switched out
+        self.editPersonalGamesListInfo.pListChangeSignal.connect(self.refreshPersonalListTable)
+
         # because I wanted to have both the points widget and weekly information widget below the tables
         # I combined these two widgets into the same layout
         self.informationButtonLayout.addWidget(self.pointInfoWidget)
@@ -152,6 +155,8 @@ class MainApplication(QMainWindow):
         self.customPointsValueWidget.setGeometry(200, 200, 200, 150)
         self.customPointsValueWidget.show()
 
+    def refreshPersonalListTable(self):
+        self.tableWidget.loadPersonalList()
 
     def quitApplication(self):
         QApplication.quit()

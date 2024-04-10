@@ -102,7 +102,7 @@ QScrollBar{
 }
 #editGameListWindow QListWidget::item:selected{
     background-color: #5c374c;
-    color: #faa275;
+    color: #5c374c;
 }
 
 #editGameListWindow QScrollBar{

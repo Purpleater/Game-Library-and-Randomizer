@@ -1,5 +1,5 @@
 {
-    "savedColorPalette": "sunset",
+    "savedColorPalette": "black-space",
     "savedDate": "2024,04,07",
     "gameOfTheWeek": "Flowscape",
     "weeklyListSelection": [
@@ -55,7 +55,7 @@
         "Monster Train",
         "Valheim",
         "Dead Cells",
-        "Ultrakill",
+        "Cultist Simulator",
         "Rain World",
         "Black Book",
         "Pokemon Legends Arceus",
@@ -63,7 +63,7 @@
         "The End is Nigh",
         "Against The Storm"
     ],
-    "numberOfPoints": 405,
+    "numberOfPoints": 406,
     "lastGameId": 151,
     "fullGameList": [
         {

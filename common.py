@@ -181,21 +181,20 @@ def setColorPalletForComboBox(colorPalette):
     borderColorDictionary = {
         "contrast": "white",
         "sunset": "#985277",
-        "black-space": "yellow"
+        "black-space": "#D4D4D4"
     }
     textColorDictionary = {
         "contrast": "white",
         "sunset": "#5c374c",
-        "black-space": "yellow"
+        "black-space": "#D4D4D4"
 
     }
     fontWeight = {
         "contrast": "",
         "sunset": "font-weight: bold;",
-        "black-space": "yellow"
+        "black-space": ""
 
     }
-
     editableTextColor = {
         "contrast": "white",
         "sunset": "#5c374c",
@@ -208,7 +207,7 @@ def setColorofTableCorner(palette):
     cornerColorDictionary = {
         "contrast": "black",
         "sunset": "#ff8c61",
-        "black-space": "yellow"
+        "black-space": "#c79c00"
     }
     return f"QTableView QTableCornerButton::section{{ background: {cornerColorDictionary[palette]}; }}"
 
@@ -230,3 +229,5 @@ def logProcess(process):
     currentTime = datetime.now().strftime('%H:%M:%S')
     print(f'{currentTime} - {process}')
 
+def printMeese():
+    print("Meese")

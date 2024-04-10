@@ -1,5 +1,12 @@
 This text document is used to keep track of all of the changes that I make to this program. The top-most updates are the most recent.
 
+______4/9/2024______
+- Altered most components of the Black-Space styling
+    + (Known Issue) Not really a known issue but I kinda hate the yellow scrollbar. Might update later.
+- Apparently the personal games table stopped updating when I switched out games :eyeroll: I fixed this.
+- Stole the function from the EditGamesWindow that disables the submit button until an item is selected from the list and added it to EditPersonalGamesList submission button
+- Added more log points
+
 ______4/8/2024______
 - Bolded the table headers in the "sunset" color scheme to make them more visible.
 - Fully applied specific styling to all widgets that need it for now.
@@ -9,7 +16,6 @@ ______4/8/2024______
     + (Known Issue) This button doesn't do anything yet.
 - Added a "Black-Space" style.
     + (Known Issue) Don't look at it yet it looks like shit and very similar to "Contrast"
-
 
 ______4/6/2024______
 - Adjusted main window size
@@ -122,7 +128,6 @@ ______1/26/2024______
 - Created the list widget that lists color palette options and allows one to select a pallet to test
 
 ______1/25/2024______
-
 - Implemented the "loadJSONData" and "updateJSONData" methods to common.py, significantly improving my sanity in the process
 - Replaced all instances of .JSON file access with either "loadJSONData" or "updateJSONData" depending on if the file was being read or written to.
 - Started working on the ability to change the UI color palette feature

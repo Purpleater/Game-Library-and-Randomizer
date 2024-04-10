@@ -1,83 +1,75 @@
 QMainWindow{
-    background-color: #ff8c61;
-    color: white;
+    background-color: #1a1a1a;
+    color: #A1A1A1;
 }
 
 QWidget{
-    background-color: #ff8c61;
+    background-color: #1a1a1a;
     color: white;
 }
 
 QPushButton{
-    background-color: #5c374c;
-    color: #faa275;
-    border: 1px solid #985277;
+    background-color: #343434;
+    color: #D4D4D4;
+    border: 1px solid #A1A1A1;
     padding: 5px;
     font-size: 15px;
 }
 
 QPushButton:hover{
-    background-color: #ce6a85;
-    color: #5c374c;
+    background-color: #AD8800;
+    color: #1a1a1a;
 }
 
 QListWidget{
-    background-color: #faa275;
-    color: #5c374c;
+    background-color: #1a1a1a;
+    color: #D4D4D4;
 }
 QListWidget::item:selected{
-    background-color: #5c374c;
-    color: #faa275;
+    background-color: #AD8800;
+    color: #1a1a1a;
 }
 
 QLabel{
-    background-color: #ff8c61;
-    color: #5c374c;
+    background-color: #1a1a1a;
+    color: #D4D4D4;
     font-weight: bold;
 }
-
 QScrollBar{
-    background-color: #ce6a85;
-    border: 1px solid #985277;
-}
-
-
-/* EDIT PERSONAL GAME LIST WINDOW */
-
-#editPersonalGamesListWindow{
-    background-color: black;
+    background-color: #AD8800;
 }
 
 /* TABLE WIDGET */
 #tableWidget QTableWidget{
- background-color: #ff8c61;
+ background-color: #1a1a1a;
  margin: 5px;
- border: 1px solid #985277;
+ border: 1px solid #A1A1A1;
 }
 
 #tableWidget QTableWidget::item{
-    color: #faa275;
-    border: 1px solid #985277;
+    color: #D4D4D4;
+    border: 1px solid #A1A1A1;
+    background-color: #343434
 }
 
 #tableWidget QHeaderView::section{
-    background-color: #ff8c61;
-    color: #5c374c;
+    background-color: #1a1a1a;
+    color: #c79c00;
     font-weight: bold
 }
 
 #tableWidget QWidget{
-    background-color: #5c374c;
+    background-color: #1a1a1a;
 }
 
 #tableWidget QPushButton:hover{
-    background-color: #ce6a85;
-    color: #5c374c;
+    background-color: #AD8800;
+    color: #1a1a1a;
 }
 
 #tableWidget QScrollBar{
-    background-color: #ce6a85;
-    border: 1px solid #985277;
+    background-color: #AD8800;
+    border: 1px solid #A1A1A1;
 }
 #pointInfoWidget QLabel{
     color:  #5c374c;
@@ -86,34 +78,26 @@ QScrollBar{
     font-weight: bold;
 }
 
-/* EDIT GAMES LIST WINDOW */
-#editGameListWindow{
-    background-color: #ff8c61;
-    color: white;
+#tableWidget QPushButton{
+    background-color: #343434;
+    color: #D4D4D4;
+    border: 1px solid #A1A1A1;
+    padding: 5px;
+    font-size: 15px;
 }
-#editGameListWindow QLabel{
-    color: #5c374c;
-    font-size: 12px
-}
-#editGameListWindow QListWidget {
-    background-color: #faa275;
-    color: #5c374c;
-}
-#editGameListWindow QListWidget::item:selected{
-    background-color: #5c374c;
-    color: #faa275;
-}
-
-#editGameListWindow QScrollBar{
-    background-color: #ce6a85;
-    border: 1px solid #985277;
-}
-
 /* TIME SENSITIVE INFO WIDGET */
 #timeSensitiveInfoWidget QLabel{
-    color: #5c374c;
+    color: #AD8800;
     padding: 5px;
     font-size: 16px;
     font-weight: bold;
 }
 
+/* POINT INFO WIDGET */
+
+#pointInfoWidget QLabel{
+    color: #AD8800;
+    padding: 5px;
+    font-size: 16px;
+    font-weight: bold;
+}

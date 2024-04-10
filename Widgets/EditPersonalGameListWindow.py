@@ -1,15 +1,14 @@
 from common import *
 from PyQt5.QtCore import pyqtSignal
 
+
 class EditPersonalGameListWindow(QWidget):
     # this notifies the tables widget to refresh itself whenever the list is adjusted
-    personalListChangeSignal = pyqtSignal(bool)
-
+    pListChangeSignal = pyqtSignal()
 
     def __init__(self):
         super().__init__()
         self.widgetUI()
-
 
     def widgetUI(self):
 
@@ -27,7 +26,6 @@ class EditPersonalGameListWindow(QWidget):
 
         self.submissionButton = QPushButton("Submit Game")
         self.submissionButton.clicked.connect(self.selectGameToReplace)
-
 
         self.goBackButton = QPushButton("Back")
         self.goBackButton.clicked.connect(self.returnToPreviousPage)
@@ -55,6 +53,12 @@ class EditPersonalGameListWindow(QWidget):
         self.listSearch.textChanged.connect(self.updateList)
         self.populateList()
 
+        # disable submission button until a game is selected in the selection list
+        self.submissionButton.setEnabled(False)
+
+        # this checks to see if an item has been selected in the list or not
+        self.selectionList.itemSelectionChanged.connect(self.checkIfGameIsSelected)
+
         # set main layout
         self.setLayout(self.mainLayout)
 
@@ -68,6 +72,7 @@ class EditPersonalGameListWindow(QWidget):
         if self.clickCount == 1:
             selectedGame = self.selectionList.selectedItems()[0].text()
             self.selectedGames.append(selectedGame)
+            logProcess(f"Preparing to swap {selectedGame} out of personal games list")
             self.selectionList.clear()
 
             # reveal hidden input field and label
@@ -75,12 +80,14 @@ class EditPersonalGameListWindow(QWidget):
             self.listSearch.show()
             self.goBackButton.show()
 
+            # set the submission button back to false until another item is selected
+            self.submissionButton.setEnabled(False)
+
             self.instructionLabel.setText("Please select the game you would like to add to the list: ")
             for game in loadSortedList():
                 if game["name"] != selectedGame and game["name"] not in loadPersonalList():
                     self.selectionList.addItem(game["name"])
             self.clickCount += 1
-
 
         elif self.clickCount == 2:
             selectedGame = self.selectionList.selectedItems()[0].text()
@@ -120,8 +127,10 @@ class EditPersonalGameListWindow(QWidget):
         returnValue = editGameConfirmationWindow.exec_()
 
         if returnValue == QMessageBox.Yes:
+            logProcess(f"[{selectedGames[0]}] swapped for [{selectedGames[1]}] in personal games list")
             return True
         if returnValue == QMessageBox.No:
+            logProcess(f"Cancelled a game swap in the personal list")
             return False
 
     def updateList(self):
@@ -132,7 +141,7 @@ class EditPersonalGameListWindow(QWidget):
 
     def listChangeConfirmationPing(self, confirmationBool):
         if confirmationBool:
-            self.personalListChangeSignal.emit(True)
+            self.pListChangeSignal.emit()
 
     def returnToPreviousPage(self):
         self.instructionLabel.setText("Please select the game you would like to replace: ")
@@ -143,3 +152,7 @@ class EditPersonalGameListWindow(QWidget):
         self.listSearch.hide()
         self.findGameLabel.hide()
 
+    def checkIfGameIsSelected(self):
+        selectedItem = self.selectionList.selectedItems()
+        if selectedItem:
+            self.submissionButton.setEnabled(True)

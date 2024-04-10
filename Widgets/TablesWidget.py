@@ -93,9 +93,6 @@ class TablesWidget(QWidget):
             print("Data load successful")
             printNumberOfDaysLeft()
 
-        # table refresh signal
-        self.editPersonalGameListWindow.personalListChangeSignal.connect(self.refreshWindow)
-
         # set main layout
         self.setLayout(self.mainLayout)
 
@@ -204,6 +201,7 @@ class TablesWidget(QWidget):
     def refreshWindow(self, confirmation):
         if confirmation:
             self.loadPersonalList()
+            print("meese")
 
     def applyIndividualStyling(self, palette):
         self.rollTable.setStyleSheet(setColorofTableCorner(palette))
