@@ -63,6 +63,7 @@ class EditGameWindow(QWidget):
         # connect buttons
         self.submitInformation.clicked.connect(self.submitFormInformation)
         self.checkForDuplicateButton.clicked.connect(self.duplicateGameCheck)
+        self.deleteGameButton.clicked.connect(self.deleteGame)
         # set layouts
         self.mainLayout.addLayout(self.inputForm)
         self.mainLayout.addLayout(self.searchGameRow)
@@ -114,6 +115,8 @@ class EditGameWindow(QWidget):
         self.nameValue.clear()
         self.completionStatus.setCurrentIndex(0)
         self.replayabilityFactor.setCurrentIndex(0)
+        self.findGameInput.clear()
+        self.populateList()
 
     def inputValidation(self):
         inputFieldValue = self.nameValue.text()
@@ -150,6 +153,19 @@ class EditGameWindow(QWidget):
         if returnValue == QMessageBox.No:
             return False
 
+    def showGameDeletionConfirmationWindow(self, gameName):
+        gameDeletionConfirmation = QMessageBox()
+        gameDeletionConfirmation.setText(f"Would you like to delete {gameName}?")
+        gameDeletionConfirmation.setWindowTitle("Game Deletion Confirmation")
+        gameDeletionConfirmation.setStandardButtons(QMessageBox.Yes | QMessageBox.No)
+
+        returnValue = gameDeletionConfirmation.exec_()
+
+        if returnValue == QMessageBox.Yes:
+            return True
+        if returnValue == QMessageBox.No:
+            return False
+
     def duplicateGameCheck(self):
         gameName = self.nameValue.text().strip()
         if len(gameName) == 0:
@@ -171,6 +187,19 @@ class EditGameWindow(QWidget):
         self.completionStatus.setStyleSheet(setColorPalletForComboBox(palette))
         self.replayabilityFactor.setStyleSheet(setColorPalletForComboBox(palette))
         self.nameValue.setStyleSheet(setColorForInputLines(palette))
+
+    def deleteGame(self):
+        selectedItem = self.editGameSelectionList.selectedItems()[0].text()
+        data = loadJSONData()
+        fullGameList = data["fullGameList"]
+        for game in fullGameList:
+            if game["name"] == selectedItem:
+                if self.showGameDeletionConfirmationWindow(game["name"]):
+                    fullGameList.remove(game)
+                    updateJSONData(data)
+                    showProcessConfirmationWindow("Game deletion")
+                    self.resetPage()
+
 
 
 

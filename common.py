@@ -229,5 +229,19 @@ def logProcess(process):
     currentTime = datetime.now().strftime('%H:%M:%S')
     print(f'{currentTime} - {process}')
 
+def closeWindowRequest(process, window):
+    closeRequestWindow = QMessageBox()
+    closeRequestWindow.setText(f"{process} successful, would you like to close this window?")
+    closeRequestWindow.setWindowTitle("Process Successful")
+    closeRequestWindow.setStandardButtons(QMessageBox.Yes | QMessageBox.No)
+
+    returnValue = closeRequestWindow.exec_()
+
+    if returnValue == QMessageBox.Yes:
+        window.hide()
+    if returnValue == QMessageBox.No:
+        return
+
+# this is just a debug method
 def printMeese():
     print("Meese")

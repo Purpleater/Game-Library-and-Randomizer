@@ -1,5 +1,11 @@
 This text document is used to keep track of all of the changes that I make to this program. The top-most updates are the most recent.
 
+______4/12/2024______
+- Created a function that prompts the user if they want to close the window after certain functions (i.e a UI color change)
+- Applied the before-mentioned function to several processes in the application
+- I really hated that yellow scroll bar in the black-space stylesheet so I got rid of it
+- The game deletion function now works and resets the page upon a game being deleted
+
 ______4/9/2024______
 - Altered most components of the Black-Space styling
     + (Known Issue) Not really a known issue but I kinda hate the yellow scrollbar. Might update later.

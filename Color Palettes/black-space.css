@@ -36,7 +36,7 @@ QLabel{
     font-weight: bold;
 }
 QScrollBar{
-    background-color: #AD8800;
+    background-color: #A1A1A1;
 }
 
 /* TABLE WIDGET */
@@ -68,7 +68,7 @@ QScrollBar{
 }
 
 #tableWidget QScrollBar{
-    background-color: #AD8800;
+    background-color: #A1A1A1;
     border: 1px solid #A1A1A1;
 }
 #pointInfoWidget QLabel{

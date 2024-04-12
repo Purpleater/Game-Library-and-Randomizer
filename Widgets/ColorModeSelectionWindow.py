@@ -47,3 +47,4 @@ class ColorSelectionWindow(QWidget):
         data['savedColorPalette'] = common.currentlyAppliedColorScheme.lower()
         updateJSONData(data)
         logProcess("Saved currently applied palette")
+        closeWindowRequest("Color palette save", self)

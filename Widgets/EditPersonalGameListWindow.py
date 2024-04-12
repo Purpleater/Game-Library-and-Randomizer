@@ -107,9 +107,11 @@ class EditPersonalGameListWindow(QWidget):
                 for i in range(len(personalList)):
                     personalList[i] = list[i]
                 updateJSONData(data)
-                showProcessConfirmationWindow("Game swap")
                 self.listChangeConfirmationPing(gameEditConfirmationValue)
                 self.populateList()
+
+                # prompt the user to close the window
+                closeWindowRequest("Game swap", self)
 
             self.selectionList.clear()
             self.populateList()
