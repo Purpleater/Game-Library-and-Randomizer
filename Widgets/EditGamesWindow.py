@@ -64,6 +64,7 @@ class EditGameWindow(QWidget):
         self.submitInformation.clicked.connect(self.submitFormInformation)
         self.checkForDuplicateButton.clicked.connect(self.duplicateGameCheck)
         self.deleteGameButton.clicked.connect(self.deleteGame)
+
         # set layouts
         self.mainLayout.addLayout(self.inputForm)
         self.mainLayout.addLayout(self.searchGameRow)
@@ -86,7 +87,6 @@ class EditGameWindow(QWidget):
         gameName = self.nameValue.text().strip()
         completionStatus = findDictionaryKey(completionStatusReference, self.completionStatus.currentIndex())
         replayabilityStatus = findDictionaryKey(replayabilityStatusReference, self.replayabilityFactor.currentIndex())
-
 
         if self.inputValidation() is not False:
             newGame = Game(gameName, completionStatus, replayabilityStatus)

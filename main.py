@@ -120,16 +120,19 @@ class MainApplication(QMainWindow):
         self.editGameListWindow.setWindowTitle("View/Edit/Add Games")
         self.editGameListWindow.setGeometry(200, 200, 550, 550)
         self.editGameListWindow.show()
+        logProcess("Opened games list window")
 
     def showColorChangeWindow(self):
         self.colorSelectionWindow.setWindowTitle("Select UI Color Palette")
         self.colorSelectionWindow.setGeometry(200, 200, 550, 550)
         self.colorSelectionWindow.show()
+        logProcess("Opened color change UI selection screen")
 
     def loadPreferredColorPalette(self):
         data = loadJSONData()
         self.updateColorPalette(data['savedColorPalette'])
         common.currentlyAppliedColorScheme = data['savedColorPalette']
+        logProcess("Loaded saved color scheme")
 
     def updateColorPalette(self, colorPalette):
         with open(f'Color Palettes/{colorPalette}.css') as stylesheet:
@@ -146,7 +149,7 @@ class MainApplication(QMainWindow):
 
     def showEditPersonalGamesWindow(self):
         self.editPersonalGamesListInfo.setWindowTitle("Edit Personal Games List")
-        self.editPersonalGamesListInfo.setGeometry(200, 200, 350, 350)
+        self.editPersonalGamesListInfo.setGeometry(200, 200, 350, 290)
         self.editPersonalGamesListInfo.show()
 
     def showCustomPointsWindow(self):
@@ -157,9 +160,12 @@ class MainApplication(QMainWindow):
 
     def refreshPersonalListTable(self):
         self.tableWidget.loadPersonalList()
+        logProcess("Refreshed personal games list")
 
     def quitApplication(self):
+        logProcess("Closing application")
         QApplication.quit()
+
 
 
 def main():

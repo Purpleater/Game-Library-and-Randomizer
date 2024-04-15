@@ -1,7 +1,7 @@
 {
     "savedColorPalette": "black-space",
-    "savedDate": "2024,04,07",
-    "gameOfTheWeek": "Flowscape",
+    "savedDate": "2024,04,14",
+    "gameOfTheWeek": "Crypt of the Necrodancer",
     "weeklyListSelection": [
         "Card Draw",
         "Want To Continue Playing",
@@ -12,41 +12,41 @@
         "Roll"
     ],
     "rollGameList": [
-        "No Man's Sky",
-        "The Binding of Issac",
-        "Noita",
-        "Darkest Dungeon",
-        "Cultist Simulator",
-        "Dissembler",
-        "Dorfromantik",
-        "The Textorcist: The Story of Ray Bibbia",
-        "Touhou 13 - Ten Desires",
-        "Ultrakill",
-        "Mewnbase",
-        "Satisfactory",
-        "Prehistoric Kingdom",
-        "Stardew Valley",
-        "Pan'orama",
-        "Half Life: Blue Shift",
-        "Nova Drift",
-        "The Univerism",
         "Dead Cells",
+        "Necesse",
+        "Duskers",
+        "Shapez.io",
+        "Stacklands",
+        "Tangledeep",
+        "Mewnbase",
+        "Mindustry",
+        "Crypt of the Necrodancer",
+        "Lobotomy Corporation",
+        "Against The Storm",
+        "Rain World",
+        "Dome Keeper",
+        "Satisfactory",
+        "The Univerism",
+        "Koi Farm",
+        "The Tenants",
+        "Frozenheim",
+        "Terraria",
         "Free Space (Pick Any Game)"
     ],
     "cardDrawList": [
-        "Lego Star Wars (Complete Saga)",
-        "Cult of the Lamb",
-        "Pan'orama",
-        "The End is Nigh",
-        "Hades",
-        "Ultrakill",
-        "Risk of Rain 2",
-        "Divinity: Original Sin 2",
-        "Achromatic",
-        "Crypt of the Necrodancer",
-        "Satisfactory",
-        "Touhou 13 - Ten Desires",
-        "Chants of Sennaar",
+        "Brutal Orchestra",
+        "Deep Rock Galactic",
+        "Hidden Folks",
+        "Induction",
+        "Duskers",
+        "No Man's Sky",
+        "Cosmic Express",
+        "English Country Tune",
+        "Rain World",
+        "Firewatch",
+        "Civilization V",
+        "Cultist Simulator",
+        "Townscaper",
         "Free Space (Pick Any Game)"
     ],
     "personalGameList": [
@@ -63,7 +63,7 @@
         "The End is Nigh",
         "Against The Storm"
     ],
-    "numberOfPoints": 411,
+    "numberOfPoints": 414,
     "lastGameId": 152,
     "fullGameList": [
         {
@@ -965,6 +965,12 @@
             "id": 150,
             "completed": "Incomplete",
             "replayabilityFactor": "Moderate"
+        },
+        {
+            "name": "TEST",
+            "id": 151,
+            "completed": "No Ending",
+            "replayabilityFactor": "Low"
         }
     ]
 }

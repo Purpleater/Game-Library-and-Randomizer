@@ -1,5 +1,10 @@
 This text document is used to keep track of all of the changes that I make to this program. The top-most updates are the most recent.
 
+______4/14/2024______
+- Added more logs to specific processes. I don't think I'll ever be using them, but it's still better safe than sorry
+- Got rid of some more unneeded code (other functions elsewhere rendered it obsolete)
+- Implemented confirmation window that asks if the user wants to save the currently present table information
+
 ______4/12/2024______
 - Created a function that prompts the user if they want to close the window after certain functions (i.e a UI color change)
 - Applied the before-mentioned function to several processes in the application
