@@ -63,8 +63,8 @@
         "The End is Nigh",
         "Against The Storm"
     ],
-    "numberOfPoints": 414,
-    "lastGameId": 152,
+    "numberOfPoints": 417,
+    "lastGameId": 153,
     "fullGameList": [
         {
             "name": "A Hat In Time",
@@ -967,10 +967,10 @@
             "replayabilityFactor": "Moderate"
         },
         {
-            "name": "TEST",
-            "id": 151,
-            "completed": "No Ending",
-            "replayabilityFactor": "Low"
+            "name": "GNOG",
+            "id": 152,
+            "completed": "Incomplete",
+            "replayabilityFactor": "Moderate"
         }
     ]
 }

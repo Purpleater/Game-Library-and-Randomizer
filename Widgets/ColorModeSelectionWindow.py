@@ -22,6 +22,8 @@ class ColorSelectionWindow(QWidget):
         self.clickButton.clicked.connect(self.showColorDialog)
         self.savePaletteButton = QPushButton("Save Applied Palette")
         self.savePaletteButton.clicked.connect(self.saveAppliedPalette)
+        self.addCustomFile = QPushButton("Add custom stylesheet")
+        self.addCustomFile.clicked.connect(self.addCustomStyleSheet)
 
         # set widgets into layout
         self.mainLayout.addWidget(self.palettelistSelection)
@@ -30,6 +32,8 @@ class ColorSelectionWindow(QWidget):
 
         self.mainLayout.addWidget(self.clickButton)
         self.mainLayout.addWidget(self.savePaletteButton)
+        self.mainLayout.addWidget(self.addCustomFile)
+
         self.setLayout(self.mainLayout)
 
 
@@ -41,10 +45,32 @@ class ColorSelectionWindow(QWidget):
             self.colorSelection.emit(selectedPalette)
         logProcess(f"Temporarily applied the ({selectedPalette}) palette")
 
-
     def saveAppliedPalette(self):
         data = loadJSONData()
         data['savedColorPalette'] = common.currentlyAppliedColorScheme.lower()
         updateJSONData(data)
         logProcess("Saved currently applied palette")
         closeWindowRequest("Color palette save", self)
+
+    def addCustomStyleSheet(self):
+        options = QFileDialog.Options()
+        options |= QFileDialog.DontUseNativeDialog
+        fileName, _ = QFileDialog.getOpenFileName(self, "Select File", "", "All Files (*)", options=options)
+        if fileName.endswith(".css"):
+            self.addCustomStylesheetConfirmationWindow(fileName.split("/")[-1])
+            printMeese()
+        else:
+            print("Booo, this isn't a css file")
+
+    def addCustomStylesheetConfirmationWindow(self, selectedFile):
+        stylesheetConfirmationWindow = QMessageBox()
+        stylesheetConfirmationWindow.setText(f"Would you like to add [{selectedFile}]")
+        stylesheetConfirmationWindow.setWindowTitle("Custom stylesheet submission confirmation")
+        stylesheetConfirmationWindow.setStandardButtons(QMessageBox.Yes | QMessageBox.No)
+
+        returnValue = stylesheetConfirmationWindow.exec_()
+
+        if returnValue == QMessageBox.Yes:
+            printMeese()
+        if returnValue == QMessageBox.No:
+            return

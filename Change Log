@@ -1,5 +1,8 @@
 This text document is used to keep track of all of the changes that I make to this program. The top-most updates are the most recent.
 
+______4/19/2024______
+- Created half of a feature that allows one to add their own custom stylesheets
+
 ______4/14/2024______
 - Added more logs to specific processes. I don't think I'll ever be using them, but it's still better safe than sorry
 - Got rid of some more unneeded code (other functions elsewhere rendered it obsolete)

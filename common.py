@@ -27,6 +27,7 @@ weeklySelectionPool = ["Roll", "Roll", "Card Draw", "Card Draw", "Want To Contin
                        "Free Day"]
 currentlyAppliedColorScheme = ""
 
+
 class Game:
     def __init__(self, name, completed, replayabilityFactor):
         self.name = name
@@ -108,7 +109,6 @@ def showProcessConfirmationWindow(specificProcess):
 
     returnValue = processConfirmationWindow.exec_()
 
-
 def editExistingGameInformation(gameId, gameCompletion, gameReplayability):
     data = loadJSONData()
 
@@ -119,7 +119,6 @@ def editExistingGameInformation(gameId, gameCompletion, gameReplayability):
             print(f"Updated Entry: {game}")
 
     updateJSONData(data)
-
 
 def convertGameIDListIntoNames(gameList):
     for i in range(len(gameList)):
@@ -170,14 +169,15 @@ def loadColorPallet():
     colorPalette = data["savedColorPalette"]
     return colorPalette
 
+
 def setStyle(widget, colorPalette):
     with open(f'Color Palettes/{colorPalette}.css') as stylesheet:
         style = stylesheet.read()
     widget.setStyleSheet(style)
     print(f'Applied ({colorPalette}) style to: {widget}')
 
-def setColorPalletForComboBox(colorPalette):
 
+def setColorPalletForComboBox(colorPalette):
     borderColorDictionary = {
         "contrast": "white",
         "sunset": "#985277",
@@ -203,6 +203,7 @@ def setColorPalletForComboBox(colorPalette):
     borderColor = borderColorDictionary[colorPalette]
     return f"QComboBox {{ border: 1px solid {borderColor}; color: {textColorDictionary[colorPalette]}; {fontWeight[colorPalette]};}}"
 
+
 def setColorofTableCorner(palette):
     cornerColorDictionary = {
         "contrast": "black",
@@ -210,6 +211,7 @@ def setColorofTableCorner(palette):
         "black-space": "#c79c00"
     }
     return f"QTableView QTableCornerButton::section{{ background: {cornerColorDictionary[palette]}; }}"
+
 
 def setColorForInputLines(palette):
     inputLineDictionary = {
@@ -225,9 +227,11 @@ def setColorForInputLines(palette):
     print("applying to input lines")
     return f"QLineEdit:focus{{color:{inputLineDictionary[palette]};}}"
 
+
 def logProcess(process):
     currentTime = datetime.now().strftime('%H:%M:%S')
     print(f'{currentTime} - {process}')
+
 
 def closeWindowRequest(process, window):
     closeRequestWindow = QMessageBox()
@@ -241,6 +245,7 @@ def closeWindowRequest(process, window):
         window.hide()
     if returnValue == QMessageBox.No:
         return
+
 
 # this is just a debug method
 def printMeese():
