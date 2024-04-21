@@ -75,7 +75,7 @@ class TablesWidget(QWidget):
 
         # connect buttons
         self.rerollTables.clicked.connect(self.generateTableContents)
-        self.saveTables.clicked.connect(self.saveAllInformation)
+        self.saveTables.clicked.connect(self.otherSaveAllInformationFunction)
 
         # add widgets to button layout
         self.buttonLayout.addWidget(self.rerollTables)
@@ -178,46 +178,46 @@ class TablesWidget(QWidget):
             self.personalTable.setItem(i, 0, item)
 
     def saveAllInformation(self):
+        data = loadJSONData()
 
+        savedRollTable = data['rollGameList']
+        savedDrawTable = data['cardDrawList']
+
+        savedRollTable.clear()
+        savedDrawTable.clear()
+
+        data["gameOfTheWeek"] = random.choice(loadSortedList())['name']
+
+        for row in range(20):
+            savedRollTable.append(self.rollTable.item(row, 0).text())
+
+        for row in range(14):
+            savedDrawTable.append(self.cardTable.item(row, 1).text())
+
+        updateJSONData(data)
+
+        data = loadJSONData()
+
+        savedRollTable = data['rollGameList']
+        savedDrawTable = data['cardDrawList']
+
+        savedRollTable.clear()
+        savedDrawTable.clear()
+
+        data["gameOfTheWeek"] = random.choice(loadSortedList())['name']
+
+        for row in range(20):
+            savedRollTable.append(self.rollTable.item(row, 0).text())
+
+        for row in range(14):
+            savedDrawTable.append(self.cardTable.item(row, 1).text())
+
+        updateJSONData(data)
+        replaceDate()
+
+    def otherSaveAllInformationFunction(self):
         if self.saveTableInformationConfirmationWindow():
-            data = loadJSONData()
-
-            savedRollTable = data['rollGameList']
-            savedDrawTable = data['cardDrawList']
-
-            savedRollTable.clear()
-            savedDrawTable.clear()
-
-            data["gameOfTheWeek"] = random.choice(loadSortedList())['name']
-
-            for row in range(20):
-                savedRollTable.append(self.rollTable.item(row, 0).text())
-
-            for row in range(14):
-                savedDrawTable.append(self.cardTable.item(row, 1).text())
-
-            updateJSONData(data)
-
-            data = loadJSONData()
-
-            savedRollTable = data['rollGameList']
-            savedDrawTable = data['cardDrawList']
-
-            savedRollTable.clear()
-            savedDrawTable.clear()
-
-            data["gameOfTheWeek"] = random.choice(loadSortedList())['name']
-
-            for row in range(20):
-                savedRollTable.append(self.rollTable.item(row, 0).text())
-
-            for row in range(14):
-                savedDrawTable.append(self.cardTable.item(row, 1).text())
-
-            updateJSONData(data)
-            replaceDate()
-
-
+            self.saveAllInformation()
 
     def saveTableInformationConfirmationWindow(self):
         saveTableInformationConfirmationWindow = QMessageBox()

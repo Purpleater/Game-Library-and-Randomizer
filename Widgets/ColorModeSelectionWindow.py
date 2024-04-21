@@ -4,8 +4,8 @@ from PyQt5.QtCore import pyqtSignal
 
 
 class ColorSelectionWindow(QWidget):
-    paletteList = ["Contrast", "Sunset", "Black-Space"]
     colorSelection = pyqtSignal(str)
+    addStyleSheetWindowSignal = pyqtSignal()
 
 
     def __init__(self):
@@ -13,6 +13,8 @@ class ColorSelectionWindow(QWidget):
         self.widgetUI()
 
     def widgetUI(self):
+
+        self.paletteList = self.loadPaletteList()
         # layout creation
         self.mainLayout = QVBoxLayout()
 
@@ -62,6 +64,9 @@ class ColorSelectionWindow(QWidget):
         else:
             print("Booo, this isn't a css file")
 
+    def showCustomStyleSheetNameInputWindow(self):
+        self.addStyleSheetWindowSignal.emit()
+
     def addCustomStylesheetConfirmationWindow(self, selectedFile):
         stylesheetConfirmationWindow = QMessageBox()
         stylesheetConfirmationWindow.setText(f"Would you like to add [{selectedFile}]")
@@ -71,6 +76,11 @@ class ColorSelectionWindow(QWidget):
         returnValue = stylesheetConfirmationWindow.exec_()
 
         if returnValue == QMessageBox.Yes:
-            printMeese()
+            self.showCustomStyleSheetNameInputWindow()
         if returnValue == QMessageBox.No:
-            return
+            printMeese()
+
+    def loadPaletteList(self):
+        data = loadJSONData()
+        paletteList = data["colorPaletteList"]
+        return paletteList

@@ -1,5 +1,10 @@
 This text document is used to keep track of all of the changes that I make to this program. The top-most updates are the most recent.
 
+______4/21/2024______
+- Created an entirely different kind of save information function because it caused the program to shit itself upon an automatic reroll
+- Created a form that allows the user to manually input a name for a custom stylesheet
+- Altered the color palette list to be dynamic (and therefore allows a user to eventually add custom stylesheets)
+
 ______4/19/2024______
 - Created half of a feature that allows one to add their own custom stylesheets
 

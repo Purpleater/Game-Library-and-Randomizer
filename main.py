@@ -14,6 +14,7 @@ from Widgets.EditGamesWindow import EditGameWindow
 from Widgets.ColorModeSelectionWindow import ColorSelectionWindow
 from Widgets.CustomPointsValueWindow import CustomPointsValueWidget
 from Widgets.EditPersonalGameListWindow import EditPersonalGameListWindow
+from Widgets.CustomStyleSheetNamingWindow import CustomStyleSheetNamingWindow
 
 
 
@@ -61,7 +62,7 @@ class MainApplication(QMainWindow):
         self.colorSelectionWindow = ColorSelectionWindow()
         self.customPointsValueWidget = CustomPointsValueWidget()
         self.editPersonalGamesListInfo = EditPersonalGameListWindow()
-
+        self.customStyleSheetNamingWindow = CustomStyleSheetNamingWindow()
 
         # set object names for the stylesheet to reference
 
@@ -72,6 +73,7 @@ class MainApplication(QMainWindow):
         self.colorSelectionWindow.setObjectName("colorSelectionWindow")
         self.customPointsValueWidget.setObjectName("customPointsValueWidget")
         self.editPersonalGamesListInfo.setObjectName("editPersonalGamesListInfo")
+        self.customStyleSheetNamingWindow.setObjectName("customStyleSheetNamingWindow")
 
         self.widgetList = []
 
@@ -99,6 +101,9 @@ class MainApplication(QMainWindow):
 
         # Connect signal that updates the personal game list after a game has been switched out
         self.editPersonalGamesListInfo.pListChangeSignal.connect(self.refreshPersonalListTable)
+
+        # Connect signal that shows the Custom Style sheet naming window
+        self.colorSelectionWindow.addStyleSheetWindowSignal.connect(self.showCustomStylingNameWindow)
 
         # because I wanted to have both the points widget and weekly information widget below the tables
         # I combined these two widgets into the same layout
@@ -161,6 +166,9 @@ class MainApplication(QMainWindow):
     def refreshPersonalListTable(self):
         self.tableWidget.loadPersonalList()
         logProcess("Refreshed personal games list")
+
+    def showCustomStylingNameWindow(self):
+        self.customStyleSheetNamingWindow.show()
 
     def quitApplication(self):
         logProcess("Closing application")
