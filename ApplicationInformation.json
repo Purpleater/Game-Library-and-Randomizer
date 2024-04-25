@@ -1,6 +1,10 @@
 {
     "savedColorPalette": "black-space",
-    "colorPaletteList": ["Contrast", "Sunset", "Black-Space"],
+    "colorPaletteList": [
+        "Contrast",
+        "Sunset",
+        "Black-Space"
+    ],
     "savedDate": "2024,04,21",
     "gameOfTheWeek": "Mana Spark",
     "weeklyListSelection": [
@@ -64,8 +68,8 @@
         "The End is Nigh",
         "Against The Storm"
     ],
-    "numberOfPoints": 419,
-    "lastGameId": 153,
+    "numberOfPoints": 421,
+    "lastGameId": 156,
     "fullGameList": [
         {
             "name": "A Hat In Time",
@@ -972,6 +976,24 @@
             "id": 152,
             "completed": "Incomplete",
             "replayabilityFactor": "Moderate"
+        },
+        {
+            "name": "Halo: The Master Chief Collection",
+            "id": 153,
+            "completed": "Complete",
+            "replayabilityFactor": "Moderate"
+        },
+        {
+            "name": "Rip Them Off",
+            "id": 154,
+            "completed": "Incomplete",
+            "replayabilityFactor": "Low"
+        },
+        {
+            "name": "Back To Bed",
+            "id": 155,
+            "completed": "Incomplete",
+            "replayabilityFactor": "Low"
         }
     ]
 }

@@ -1,5 +1,13 @@
 This text document is used to keep track of all of the changes that I make to this program. The top-most updates are the most recent.
 
+______4/25/2024______
+- Finished working on the system mentioned in yesterday's log. It might still be a bit janky but it's there.
+- Added logProccess() functions to the new implementation because I think I'm gonna need to keep a close watch on this thing for the time being.
+- Added a closeWindowRequest() function that occurs upon a new game being added.
+
+______4/24/2024______
+- Started working on having the system store the id of a selected game so that the game's name can be edited as well. I have a headache so this didn't go too far.
+
 ______4/21/2024______
 - Created an entirely different kind of save information function because it caused the program to shit itself upon an automatic reroll
 - Created a form that allows the user to manually input a name for a custom stylesheet

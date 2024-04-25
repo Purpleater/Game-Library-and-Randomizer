@@ -5,6 +5,7 @@ class EditGameWindow(QWidget):
     def __init__(self):
         super().__init__()
         self.widgetUI()
+        self.currentGameID = -1
 
     def widgetUI(self):
 
@@ -88,22 +89,37 @@ class EditGameWindow(QWidget):
         completionStatus = findDictionaryKey(completionStatusReference, self.completionStatus.currentIndex())
         replayabilityStatus = findDictionaryKey(replayabilityStatusReference, self.replayabilityFactor.currentIndex())
 
-        if self.inputValidation() is not False:
-            newGame = Game(gameName, completionStatus, replayabilityStatus)
-            updateFullGameList(newGame.toJSON())
-            showProcessConfirmationWindow("Game submission")
+        validation = self.inputValidation()
+
+        if validation == 1:
+            completionStatus = findDictionaryKey(completionStatusReference, self.completionStatus.currentIndex())
+            replayabilityStatus = findDictionaryKey(replayabilityStatusReference, self.replayabilityFactor.currentIndex())
+            editExistingGameInformation(self.currentGameID, gameName, completionStatus, replayabilityStatus)
             self.populateList()
             self.resetPage()
+
+        if validation == 2:
+            newGame = Game(gameName, completionStatus, replayabilityStatus)
+            updateFullGameList(newGame.toJSON())
+            closeWindowRequest("Game submission", self)
+            self.populateList()
+            self.resetPage()
+        if validation == 0:
+            logProcess("Edit of pre-existing entry cancelled")
+            return
 
     def getGameInformation(self):
 
         selectedItem = self.editGameSelectionList.selectedItems()[0].text()
+        gameId = self.getGameID(loadSortedList(), selectedItem)
 
         for game in loadSortedList():
-            if selectedItem.lower() == game["name"].lower():
+            if gameId == game["id"]:
                 self.nameValue.setText(selectedItem)
                 self.completionStatus.setCurrentIndex(completionStatusReference[game["completed"]])
                 self.replayabilityFactor.setCurrentIndex(replayabilityStatusReference[game["replayabilityFactor"]])
+                self.currentGameID = gameId
+                logProcess(f"The ID of the currently stored game is ({self.currentGameID})")
 
     def updateSearchedList(self):
         self.editGameSelectionList.clear()
@@ -117,24 +133,26 @@ class EditGameWindow(QWidget):
         self.replayabilityFactor.setCurrentIndex(0)
         self.findGameInput.clear()
         self.populateList()
+        self.currentGameID = -1
+        logProcess("Reset EditGamesWindow form")
 
     def inputValidation(self):
         inputFieldValue = self.nameValue.text()
         if len(inputFieldValue.strip()) == 0:
             QMessageBox.about(self, "Name Value Absent", "The Game Name field needs to be filled out.")
             return False
-        for game in loadSortedList():
-            if inputFieldValue.lower() == game["name"].lower():
-                if self.showGameEditConfirmationWindow():
-                    gameId = game["id"]
-                    completionStatus = findDictionaryKey(completionStatusReference, self.completionStatus.currentIndex())
-                    replayabilityStatus = findDictionaryKey(replayabilityStatusReference, self.replayabilityFactor.currentIndex())
 
-                    editExistingGameInformation(gameId, completionStatus, replayabilityStatus)
-                    return False
-                else:
-                    self.nameValue.clear()
-                    return False
+        # returning 1 means that the the game of the currently-stored id is to be edited
+        # returning 2 means that the application should create an entirely new entry
+        # returning 0 means that the function was cancelled
+        if self.currentGameID != -1:
+            if self.showGameEditConfirmationWindow():
+                return 1
+            else:
+                return 0
+        else:
+            return 2
+
 
     def showGameEditConfirmationWindow(self):
 
@@ -199,6 +217,14 @@ class EditGameWindow(QWidget):
                     updateJSONData(data)
                     showProcessConfirmationWindow("Game deletion")
                     self.resetPage()
+
+    def getGameID(self, list, gameName):
+        gameId = 0
+        for game in loadSortedList():
+            if gameName == game["name"]:
+                logProcess(f"Located Game (Name: {game['name']}, ID: {game['id']})")
+                gameId = int(game['id'])
+        return gameId
 
 
 

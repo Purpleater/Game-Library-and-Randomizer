@@ -109,14 +109,15 @@ def showProcessConfirmationWindow(specificProcess):
 
     returnValue = processConfirmationWindow.exec_()
 
-def editExistingGameInformation(gameId, gameCompletion, gameReplayability):
+def editExistingGameInformation(gameId, gameName, gameCompletion, gameReplayability):
     data = loadJSONData()
 
     for game in data['fullGameList']:
         if game["id"] == gameId:
+            game["name"] = gameName
             game["completed"] = gameCompletion
             game["replayabilityFactor"] = gameReplayability
-            print(f"Updated Entry: {game}")
+            logProcess(f"Updated Entry: {game}")
 
     updateJSONData(data)
 
