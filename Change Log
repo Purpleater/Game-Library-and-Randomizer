@@ -1,5 +1,10 @@
 This text document is used to keep track of all of the changes that I make to this program. The top-most updates are the most recent.
 
+______4/26/2024______
+- Created an options menu and hooked up said menu to the main application (allowing the window to show itself and loading styling, etc.).
+- Begun the migration of the "Change UI Color Palette" to the options menu
+- Started listing out what features I want to be present inside of the options menu.
+
 ______4/25/2024______
 - Finished working on the system mentioned in yesterday's log. It might still be a bit janky but it's there.
 - Added logProccess() functions to the new implementation because I think I'm gonna need to keep a close watch on this thing for the time being.

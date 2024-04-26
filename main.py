@@ -15,6 +15,7 @@ from Widgets.ColorModeSelectionWindow import ColorSelectionWindow
 from Widgets.CustomPointsValueWindow import CustomPointsValueWidget
 from Widgets.EditPersonalGameListWindow import EditPersonalGameListWindow
 from Widgets.CustomStyleSheetNamingWindow import CustomStyleSheetNamingWindow
+from Widgets.OptionsMenuWindow import OptionsMenu
 
 
 
@@ -41,6 +42,7 @@ class MainApplication(QMainWindow):
         self.editGameListInformationButton = QPushButton("Edit/Add To Game List")
         self.paletteSettingsButton = QPushButton("Change UI Color Palette")
         self.exitButton = QPushButton("Exit Program")
+        self.optionsButton = QPushButton("Options")
 
         # connect buttons to methods
         self.editGameListInformationButton.clicked.connect(self.showGameListWindow)
@@ -52,7 +54,9 @@ class MainApplication(QMainWindow):
 
         self.extraSettingsBar.addWidget(self.editGameListInformationButton)
         self.extraSettingsBar.addWidget(self.paletteSettingsButton)
+        self.extraSettingsBar.addWidget(self.optionsButton)
         self.extraSettingsBar.addWidget(self.exitButton)
+
 
         # initialize the windows within the scope of the main application
         self.tableWidget = TablesWidget()
@@ -63,6 +67,7 @@ class MainApplication(QMainWindow):
         self.customPointsValueWidget = CustomPointsValueWidget()
         self.editPersonalGamesListInfo = EditPersonalGameListWindow()
         self.customStyleSheetNamingWindow = CustomStyleSheetNamingWindow()
+        self.optionsMenu = OptionsMenu()
 
         # set object names for the stylesheet to reference
 
@@ -74,6 +79,7 @@ class MainApplication(QMainWindow):
         self.customPointsValueWidget.setObjectName("customPointsValueWidget")
         self.editPersonalGamesListInfo.setObjectName("editPersonalGamesListInfo")
         self.customStyleSheetNamingWindow.setObjectName("customStyleSheetNamingWindow")
+        self.optionsMenu.setObjectName("optionsMenu")
 
         self.widgetList = []
 
@@ -84,6 +90,7 @@ class MainApplication(QMainWindow):
         self.widgetList.append(self.colorSelectionWindow)
         self.widgetList.append(self.customPointsValueWidget)
         self.widgetList.append(self.editPersonalGamesListInfo)
+        self.widgetList.append(self.optionsMenu)
 
 
         # color selected signal
@@ -104,6 +111,9 @@ class MainApplication(QMainWindow):
 
         # Connect signal that shows the Custom Style sheet naming window
         self.colorSelectionWindow.addStyleSheetWindowSignal.connect(self.showCustomStylingNameWindow)
+
+        # Connect options menu button to show the options menu
+        self.optionsButton.clicked.connect(self.showOptionsWindow)
 
         # because I wanted to have both the points widget and weekly information widget below the tables
         # I combined these two widgets into the same layout
@@ -169,6 +179,11 @@ class MainApplication(QMainWindow):
 
     def showCustomStylingNameWindow(self):
         self.customStyleSheetNamingWindow.show()
+
+    def showOptionsWindow(self):
+        self.optionsMenu.setWindowTitle("Options")
+        self.optionsMenu.setGeometry(200, 200, 200, 200)
+        self.optionsMenu.show()
 
     def quitApplication(self):
         logProcess("Closing application")
