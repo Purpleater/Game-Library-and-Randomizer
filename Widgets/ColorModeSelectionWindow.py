@@ -20,8 +20,8 @@ class ColorSelectionWindow(QWidget):
 
         # create widgets
         self.palettelistSelection = QListWidget()
-        self.clickButton = QPushButton("Test Color Palette")
-        self.clickButton.clicked.connect(self.showColorDialog)
+        self.testPaletteButton = QPushButton("Test Color Palette")
+        self.testPaletteButton.clicked.connect(self.showColorDialog)
         self.savePaletteButton = QPushButton("Save Applied Palette")
         self.savePaletteButton.clicked.connect(self.saveAppliedPalette)
         self.addCustomFile = QPushButton("Add custom stylesheet")
@@ -32,7 +32,7 @@ class ColorSelectionWindow(QWidget):
         for i in range(len(self.paletteList)):
             self.palettelistSelection.addItem(self.paletteList[i])
 
-        self.mainLayout.addWidget(self.clickButton)
+        self.mainLayout.addWidget(self.testPaletteButton)
         self.mainLayout.addWidget(self.savePaletteButton)
         self.mainLayout.addWidget(self.addCustomFile)
 

@@ -81,20 +81,19 @@ class MainApplication(QMainWindow):
         self.customStyleSheetNamingWindow.setObjectName("customStyleSheetNamingWindow")
         self.optionsMenu.setObjectName("optionsMenu")
 
-        self.widgetList = []
-
-        self.widgetList.append(self.tableWidget)
-        self.widgetList.append(self.pointInfoWidget)
-        self.widgetList.append(self.timeSensitiveInfoWidget)
-        self.widgetList.append(self.editGameListWindow)
-        self.widgetList.append(self.colorSelectionWindow)
-        self.widgetList.append(self.customPointsValueWidget)
-        self.widgetList.append(self.editPersonalGamesListInfo)
-        self.widgetList.append(self.optionsMenu)
-
+        self.widgetList = [
+            self.tableWidget,
+            self.pointInfoWidget,
+            self.timeSensitiveInfoWidget,
+            self.editGameListWindow,
+            self.colorSelectionWindow,
+            self.customPointsValueWidget,
+            self.editPersonalGamesListInfo,
+            self.optionsMenu
+        ]
 
         # color selected signal
-        self.colorSelectionWindow.colorSelection.connect(self.applyAllStyles)
+        self.optionsMenu.colorThemeMenu.testColorTheme.connect(self.applyAllStyles)
 
         # signal to show personal games list window
         self.tableWidget.personalGamesButtonSignal.connect(self.showEditPersonalGamesWindow)
@@ -182,7 +181,7 @@ class MainApplication(QMainWindow):
 
     def showOptionsWindow(self):
         self.optionsMenu.setWindowTitle("Options")
-        self.optionsMenu.setGeometry(200, 200, 200, 200)
+        self.optionsMenu.setGeometry(200, 200, 550, 550)
         self.optionsMenu.show()
 
     def quitApplication(self):

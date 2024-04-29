@@ -1,5 +1,11 @@
 This text document is used to keep track of all of the changes that I make to this program. The top-most updates are the most recent.
 
+______4/29/2024______
+- Adjusted the list of widgets so that all of the widgets load directly into the widget list in main instead of needing to be added during runtime. Don't ask me why I didn't do this earlier.
+- Changed the naming of a button to better indicate its intended purpose.
+- Started migrating the options of the color-selection menu into the allocated options menu panel
+    + (Known Issue) The migration isn't done yet.
+
 ______4/26/2024______
 - Created an options menu and hooked up said menu to the main application (allowing the window to show itself and loading styling, etc.).
 - Begun the migration of the "Change UI Color Palette" to the options menu
