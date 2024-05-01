@@ -1,5 +1,14 @@
 This text document is used to keep track of all of the changes that I make to this program. The top-most updates are the most recent.
 
+______5/1/2024______
+- Finished the migration if the color-selection window into the options menu
+- Created a specialized dynamic method that allows a user to return to the main menu regardless of where they are in the options menu.
+  The reason I could not simply use the standard CloseWindowRequest() method is because that hides the window instead of returning to the menu.
+- Removed the old theme selection button because it's not longer needed in its current state.
+    + (Known Issue) After switching out one game with another while the application is running, the EditPersonalGameListWindow still loads the incorrect widgets and info.
+                    I plan to alleviate this by switching the layout if the EditPersonalGameListWindow to a stacked layout
+                    now that I understand how to create one.
+
 ______4/29/2024______
 - Adjusted the list of widgets so that all of the widgets load directly into the widget list in main instead of needing to be added during runtime. Don't ask me why I didn't do this earlier.
 - Changed the naming of a button to better indicate its intended purpose.

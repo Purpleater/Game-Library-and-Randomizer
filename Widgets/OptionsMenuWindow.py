@@ -2,6 +2,19 @@ import common
 from common import *
 
 
+def returnToMainMenuRequest(process, returnMethod):
+    closeRequestWindow = QMessageBox()
+    closeRequestWindow.setText(f"{process} successful, would you like to return to the main menu?")
+    closeRequestWindow.setWindowTitle("Process Successful")
+    closeRequestWindow.setStandardButtons(QMessageBox.Yes | QMessageBox.No)
+
+    returnValue = closeRequestWindow.exec_()
+
+    if returnValue == QMessageBox.Yes:
+        returnMethod()
+    if returnValue == QMessageBox.No:
+        return
+
 # the only reason I'm adding multiple classes here is because I"m experimenting with stacked widgets
 # that and also these menus are going to be hidden within the main layout anyways so it makes sense that I would consolidate related components
 
@@ -19,11 +32,16 @@ class MainMenu(QWidget):
 
         # initialize buttons
         self.colorPaletteButton = QPushButton("Change UI Color Theme")
+        self.toggleWidgetsButton = QPushButton("Toggle Application Widgets")
+        self.closeWindowButton = QPushButton("Close Window")
 
         # connect buttons
         self.colorPaletteButton.clicked.connect(self.showColorPaletteMenu)
 
+        # add widgets to main layout
         self.mainLayout.addWidget(self.colorPaletteButton)
+        self.mainLayout.addWidget(self.toggleWidgetsButton)
+        self.mainLayout.addWidget(self.closeWindowButton)
 
         # set main layout
         self.setLayout(self.mainLayout)
@@ -46,9 +64,9 @@ class ColorWidgetMenu(QWidget):
 
         self.testColorPaletteButton = QPushButton("Test Color Palette")
         self.testColorPaletteButton.clicked.connect(self.testColorPalette)
-        self.savePaletteButton = QPushButton("Save Applied Palette")
-        # SAVE CURRENTLY APPLIED PALETTE CONNECTION
-        self.addCustomFile = QPushButton("Add custom stylesheet")
+        self.savePaletteButton = QPushButton("Save Currently-Applied Palette")
+        self.savePaletteButton.clicked.connect(self.saveAppliedPalette)
+        self.addCustomFile = QPushButton("Add Custom Stylesheet")
         # ADD CUSTOM STYLESHEET CONNECTION
         self.returnToMenuButton = QPushButton("Return To Main Menu")
         self.returnToMenuButton.clicked.connect(self.returnToMainMenu)
@@ -77,6 +95,13 @@ class ColorWidgetMenu(QWidget):
         self.mainLayout.addWidget(self.palettelistSelection)
         for i in range(len(paletteList)):
             self.palettelistSelection.addItem(paletteList[i])
+
+    def saveAppliedPalette(self):
+        data = loadJSONData()
+        data['savedColorPalette'] = common.currentlyAppliedColorScheme.lower()
+        updateJSONData(data)
+        logProcess("Saved currently applied palette")
+        returnToMainMenuRequest("Save", self.returnToMainMenu)
 
 
 class OptionsMenu(QWidget):

@@ -40,20 +40,17 @@ class MainApplication(QMainWindow):
         # create buttons for extras and settings
 
         self.editGameListInformationButton = QPushButton("Edit/Add To Game List")
-        self.paletteSettingsButton = QPushButton("Change UI Color Palette")
         self.exitButton = QPushButton("Exit Program")
         self.optionsButton = QPushButton("Options")
 
         # connect buttons to methods
         self.editGameListInformationButton.clicked.connect(self.showGameListWindow)
         self.exitButton.clicked.connect(self.quitApplication)
-        self.paletteSettingsButton.clicked.connect(self.showColorChangeWindow)
 
 
         # add extra settings buttons to layout
 
         self.extraSettingsBar.addWidget(self.editGameListInformationButton)
-        self.extraSettingsBar.addWidget(self.paletteSettingsButton)
         self.extraSettingsBar.addWidget(self.optionsButton)
         self.extraSettingsBar.addWidget(self.exitButton)
 
