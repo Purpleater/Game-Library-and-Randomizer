@@ -96,7 +96,6 @@ class MainApplication(QMainWindow):
         self.tableWidget.personalGamesButtonSignal.connect(self.showEditPersonalGamesWindow)
 
         # show custom points value window signal
-
         self.pointInfoWidget.pointsAdjustmentSignal.connect(self.showCustomPointsWindow)
 
         # Connect the custom points value widget's pointsChangedSignal to point info widget's update points function

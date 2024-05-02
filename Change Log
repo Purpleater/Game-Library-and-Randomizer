@@ -1,5 +1,9 @@
 This text document is used to keep track of all of the changes that I make to this program. The top-most updates are the most recent.
 
+______5/2/2024______
+- Started working on the new personal games list menu
+    + (Known Issue) currently encountering problems with signals. No, I don't want to talk about it.
+
 ______5/1/2024______
 - Finished the migration if the color-selection window into the options menu
 - Created a specialized dynamic method that allows a user to return to the main menu regardless of where they are in the options menu.
