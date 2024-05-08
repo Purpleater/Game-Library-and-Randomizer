@@ -1,5 +1,10 @@
 This text document is used to keep track of all of the changes that I make to this program. The top-most updates are the most recent.
 
+______5/8/2024______
+- Managed to solve an issue with signals relaying information in the new EPGLW (EditPersonalGamesListWindow) menu
+- Implemented complete (and not faulty) "return to previous menu" buttons (aka. back buttons) for the EPGLW.
+- Adapted old EPGLW functions (such as the actual swapping and updating functions) into the new class system.
+
 ______5/2/2024______
 - Started working on the new personal games list menu
     + (Known Issue) currently encountering problems with signals. No, I don't want to talk about it.
