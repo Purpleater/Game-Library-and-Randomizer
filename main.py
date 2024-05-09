@@ -66,6 +66,7 @@ class MainApplication(QMainWindow):
         self.customStyleSheetNamingWindow = CustomStyleSheetNamingWindow()
         self.optionsMenu = OptionsMenu()
 
+
         # set object names for the stylesheet to reference
 
         self.tableWidget.setObjectName("tableWidget")

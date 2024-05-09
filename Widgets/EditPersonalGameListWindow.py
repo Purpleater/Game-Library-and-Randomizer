@@ -6,7 +6,6 @@ from PyQt5.QtCore import pyqtSignal
 class EditPersonalGameListWindow(QWidget):
     # this notifies the tables widget to refresh itself whenever the list is adjusted
     pListChangeSignal = pyqtSignal()
-
     def __init__(self):
         super().__init__()
         self.widgetUI()
@@ -28,6 +27,8 @@ class EditPersonalGameListWindow(QWidget):
         self.swapOutMenu.continueSignal.connect(self.showSwapInMenu)
         self.swapOutMenu.selectedGameSignal.connect(self.getSelectedGame)
         self.swapInMenu.backSignal.connect(self.showSwapOutMenu)
+        self.swapInMenu.updatePersonalListSignal.connect(self.updatePersonalList)
+        self.swapInMenu.closeWindowRequestSignal.connect(self.hide)
 
         # set the main layout as, well, the main layout
         self.setLayout(self.mainLayout)
@@ -41,6 +42,9 @@ class EditPersonalGameListWindow(QWidget):
 
     def getSelectedGame(self, game):
         self.swapInMenu.getSelectedGame(game)
+    def updatePersonalList(self):
+        self.pListChangeSignal.emit()
+        logProcess("Personal Tables table refresh signal relayed to main widget")
 
 
 class SwapOutMenu(QWidget):
@@ -84,6 +88,8 @@ class SwapOutMenu(QWidget):
 
 class SwapInMenu(QWidget):
     backSignal = pyqtSignal()
+    updatePersonalListSignal = pyqtSignal()
+    closeWindowRequestSignal = pyqtSignal()
     def __init__(self):
         super().__init__()
         self.widgetUI()
@@ -169,8 +175,15 @@ class SwapInMenu(QWidget):
             personalList[i] = list[i]
         updateJSONData(data)
 
+        # ping main window
+        self.updatePersonalList()
+
         # prompt the user to close the window
-        closeWindowRequest("Game swap", self)
+        if self.closeWindowRequest():
+            self.closeWindowRequestSignal.emit()
+
+    def updatePersonalList(self):
+        self.updatePersonalListSignal.emit()
 
     def showGameEditConfirmationWindow(self, selectedGames):
 
@@ -186,4 +199,18 @@ class SwapInMenu(QWidget):
             return True
         if returnValue == QMessageBox.No:
             logProcess(f"Cancelled a game swap in the personal list")
+            return False
+
+    def closeWindowRequest(self):
+        editGameConfirmationWindow = QMessageBox()
+        editGameConfirmationWindow.setText(f"Game swap was successful, would you like to close the window?")
+        editGameConfirmationWindow.setWindowTitle("Game Swap Successful")
+        editGameConfirmationWindow.setStandardButtons(QMessageBox.Yes | QMessageBox.No)
+
+        returnValue = editGameConfirmationWindow.exec_()
+
+        if returnValue == QMessageBox.Yes:
+            logProcess(f"Closing personal games list window")
+            return True
+        if returnValue == QMessageBox.No:
             return False

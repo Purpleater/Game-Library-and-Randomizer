@@ -4,6 +4,7 @@ ______5/8/2024______
 - Managed to solve an issue with signals relaying information in the new EPGLW (EditPersonalGamesListWindow) menu
 - Implemented complete (and not faulty) "return to previous menu" buttons (aka. back buttons) for the EPGLW.
 - Adapted old EPGLW functions (such as the actual swapping and updating functions) into the new class system.
+- Added a "layover" signal that allows the menu to refresh the personal games list table (aka. migrating the old function over)
 
 ______5/2/2024______
 - Started working on the new personal games list menu
