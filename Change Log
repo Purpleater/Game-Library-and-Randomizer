@@ -1,5 +1,11 @@
 This text document is used to keep track of all of the changes that I make to this program. The top-most updates are the most recent.
 
+______5/11/2024______
+- Created the "strange-waters" stylesheet
+    + (Known Issue) Most of the styling is finished however not all of it
+- Removed the ColorModeSelectionWindow since all of its functions have been migrated to the options menu
+- Connected the signal that allows for the "Close Window" button in the options menu to actually do its job
+
 ______5/8/2024______
 - Managed to solve an issue with signals relaying information in the new EPGLW (EditPersonalGamesListWindow) menu
 - Implemented complete (and not faulty) "return to previous menu" buttons (aka. back buttons) for the EPGLW.

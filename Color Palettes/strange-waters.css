@@ -1,0 +1,106 @@
+QMainWindow{
+    background-color: #173535;
+    color: #A1A1A1;
+}
+
+QWidget{
+    background-color: #173535;
+    color: white;
+}
+
+QPushButton{
+    background-color: #107557;
+    color: #0a1818;
+    border: 1px solid #23AD8F;
+    padding: 5px;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+QPushButton:hover{
+    background-color: #65823C;
+    color: #0a1818;
+}
+
+QListWidget{
+    background-color: #15320F;
+    color: #5EA653;
+}
+QListWidget::item:selected{
+    background-color: #65823C;
+    color: #0a1818;
+}
+
+QLabel{
+    background-color: #173535;
+    color: #23AD8F;
+    font-weight: bold;
+}
+QScrollBar{
+    background-color: #65823C;
+}
+
+/* TABLE WIDGET */
+#tableWidget QTableWidget{
+ background-color: #173535;
+ margin: 5px;
+ border: 1px solid #296647;
+}
+
+#tableWidget QTableWidget::item{
+    color: #0a1818;
+    font-weight: bold;
+    border: 1px solid #15320F;
+    background-color: #107557;
+}
+
+#tableWidget QHeaderView::section{
+    background-color: #15320F;
+    color: #5EA653;
+    font-weight: bold;
+}
+
+#tableWidget QWidget{
+    background-color: #15320F;
+}
+
+#tableWidget QPushButton:hover{
+    background-color: #65823C;
+    color: #0a1818;
+}
+
+#tableWidget QScrollBar{
+    background-color: #65823C;
+    border: 1px solid #A1A1A1;
+}
+#pointInfoWidget QLabel{
+    color:  #5c374c;
+    padding: 5px;
+    font-size: 17px;
+    font-weight: bold;
+}
+
+#tableWidget QPushButton{
+    background-color: #107557;
+    color: #0a1818;
+    border: 1px solid #23AD8F;
+    padding: 5px;
+    font-size: 15px;
+    font-weight: bold
+}
+/* TIME SENSITIVE INFO WIDGET */
+#timeSensitiveInfoWidget QLabel{
+    color: #23AD8F;
+    padding: 5px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+/* POINT INFO WIDGET */
+
+#pointInfoWidget QLabel{
+    color: #23AD8F;
+    padding: 5px;
+    font-size: 16px;
+    font-weight: bold;
+}

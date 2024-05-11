@@ -11,7 +11,6 @@ from Widgets.TablesWidget import TablesWidget
 from Widgets.PointsAdjustmentWidget import PointsAdjustmentWidget
 from Widgets.TimeSensitiveInfoWidget import TimeSensitiveInfoWidget
 from Widgets.EditGamesWindow import EditGameWindow
-from Widgets.ColorModeSelectionWindow import ColorSelectionWindow
 from Widgets.CustomPointsValueWindow import CustomPointsValueWidget
 from Widgets.EditPersonalGameListWindow import EditPersonalGameListWindow
 from Widgets.CustomStyleSheetNamingWindow import CustomStyleSheetNamingWindow
@@ -60,7 +59,6 @@ class MainApplication(QMainWindow):
         self.pointInfoWidget = PointsAdjustmentWidget()
         self.timeSensitiveInfoWidget = TimeSensitiveInfoWidget()
         self.editGameListWindow = EditGameWindow()
-        self.colorSelectionWindow = ColorSelectionWindow()
         self.customPointsValueWidget = CustomPointsValueWidget()
         self.editPersonalGamesListInfo = EditPersonalGameListWindow()
         self.customStyleSheetNamingWindow = CustomStyleSheetNamingWindow()
@@ -73,7 +71,6 @@ class MainApplication(QMainWindow):
         self.pointInfoWidget.setObjectName("pointInfoWidget")
         self.timeSensitiveInfoWidget.setObjectName("timeSensitiveInfoWidget")
         self.editGameListWindow.setObjectName("editGameListWindow")
-        self.colorSelectionWindow.setObjectName("colorSelectionWindow")
         self.customPointsValueWidget.setObjectName("customPointsValueWidget")
         self.editPersonalGamesListInfo.setObjectName("editPersonalGamesListInfo")
         self.customStyleSheetNamingWindow.setObjectName("customStyleSheetNamingWindow")
@@ -84,7 +81,6 @@ class MainApplication(QMainWindow):
             self.pointInfoWidget,
             self.timeSensitiveInfoWidget,
             self.editGameListWindow,
-            self.colorSelectionWindow,
             self.customPointsValueWidget,
             self.editPersonalGamesListInfo,
             self.optionsMenu
@@ -105,11 +101,11 @@ class MainApplication(QMainWindow):
         # Connect signal that updates the personal game list after a game has been switched out
         self.editPersonalGamesListInfo.pListChangeSignal.connect(self.refreshPersonalListTable)
 
-        # Connect signal that shows the Custom Style sheet naming window
-        self.colorSelectionWindow.addStyleSheetWindowSignal.connect(self.showCustomStylingNameWindow)
-
         # Connect options menu button to show the options menu
         self.optionsButton.clicked.connect(self.showOptionsWindow)
+
+        # Connect signal that closes the options menu
+        self.optionsMenu.mainMenu.closeMenuSignal.connect(self.hideOptionsWindow)
 
         # because I wanted to have both the points widget and weekly information widget below the tables
         # I combined these two widgets into the same layout
@@ -132,12 +128,6 @@ class MainApplication(QMainWindow):
         self.editGameListWindow.setGeometry(200, 200, 550, 550)
         self.editGameListWindow.show()
         logProcess("Opened games list window")
-
-    def showColorChangeWindow(self):
-        self.colorSelectionWindow.setWindowTitle("Select UI Color Palette")
-        self.colorSelectionWindow.setGeometry(200, 200, 550, 550)
-        self.colorSelectionWindow.show()
-        logProcess("Opened color change UI selection screen")
 
     def loadPreferredColorPalette(self):
         data = loadJSONData()
@@ -180,6 +170,9 @@ class MainApplication(QMainWindow):
         self.optionsMenu.setWindowTitle("Options")
         self.optionsMenu.setGeometry(200, 200, 550, 550)
         self.optionsMenu.show()
+
+    def hideOptionsWindow(self):
+        self.optionsMenu.hide()
 
     def quitApplication(self):
         logProcess("Closing application")

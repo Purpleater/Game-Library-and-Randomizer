@@ -1,6 +1,5 @@
 from common import *
 
-from Widgets.ColorModeSelectionWindow import ColorSelectionWindow
 from Widgets.CustomPointsValueWindow import CustomPointsValueWidget
 from Widgets.EditGamesWindow import EditGameWindow
 from Widgets.EditPersonalGameListWindow import EditPersonalGameListWindow

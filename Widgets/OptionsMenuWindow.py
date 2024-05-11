@@ -21,6 +21,7 @@ def returnToMainMenuRequest(process, returnMethod):
 # __MAIN MENU LAYOUT__
 class MainMenu(QWidget):
     showColorPaletteButtonSignal = pyqtSignal()
+    closeMenuSignal = pyqtSignal()
 
     def __init__(self):
         super().__init__()
@@ -33,14 +34,18 @@ class MainMenu(QWidget):
         # initialize buttons
         self.colorPaletteButton = QPushButton("Change UI Color Theme")
         self.toggleWidgetsButton = QPushButton("Toggle Application Widgets")
+        self.resetAllDataButton = QPushButton("Reset All Save Data")
         self.closeWindowButton = QPushButton("Close Window")
 
         # connect buttons
         self.colorPaletteButton.clicked.connect(self.showColorPaletteMenu)
+        self.closeWindowButton.clicked.connect(self.closeWindow)
+        self.resetAllDataButton.clicked.connect(self.deleteDataProcess)
 
         # add widgets to main layout
         self.mainLayout.addWidget(self.colorPaletteButton)
         self.mainLayout.addWidget(self.toggleWidgetsButton)
+        self.mainLayout.addWidget(self.resetAllDataButton)
         self.mainLayout.addWidget(self.closeWindowButton)
 
         # set main layout
@@ -48,6 +53,27 @@ class MainMenu(QWidget):
 
     def showColorPaletteMenu(self):
         self.showColorPaletteButtonSignal.emit()
+
+    def closeWindow(self):
+        self.closeMenuSignal.emit()
+
+    def deleteDataProcess(self):
+        if self.showFirstResetValidation():
+            printMeese()
+
+    def showFirstResetValidation(self):
+        firstResetValidationWindow = QMessageBox()
+        firstResetValidationWindow.setText(f"Would you like to reset all of the application's data? This will include games, points, visual preferences, etc.")
+        firstResetValidationWindow.setWindowTitle("Reset Validation")
+        firstResetValidationWindow.setStandardButtons(QMessageBox.Yes | QMessageBox.No)
+
+        returnValue = firstResetValidationWindow.exec_()
+
+        if returnValue == QMessageBox.Yes:
+            return True
+        if returnValue == QMessageBox.No:
+            return False
+
 
 # __COLOR MENU LAYOUT__
 class ColorWidgetMenu(QWidget):
@@ -67,8 +93,8 @@ class ColorWidgetMenu(QWidget):
         self.savePaletteButton = QPushButton("Save Currently-Applied Palette")
         self.savePaletteButton.clicked.connect(self.saveAppliedPalette)
         self.addCustomFile = QPushButton("Add Custom Stylesheet")
-        # ADD CUSTOM STYLESHEET CONNECTION
         self.returnToMenuButton = QPushButton("Return To Main Menu")
+
         self.returnToMenuButton.clicked.connect(self.returnToMainMenu)
 
         self.mainLayout.addWidget(self.palettelistSelection)

@@ -182,24 +182,28 @@ def setColorPalletForComboBox(colorPalette):
     borderColorDictionary = {
         "contrast": "white",
         "sunset": "#985277",
-        "black-space": "#D4D4D4"
+        "black-space": "#D4D4D4",
+        "strange-waters": "#296647",
     }
     textColorDictionary = {
         "contrast": "white",
         "sunset": "#5c374c",
-        "black-space": "#D4D4D4"
+        "black-space": "#D4D4D4",
+        "strange-waters": "#23AD8F",
 
     }
     fontWeight = {
         "contrast": "",
         "sunset": "font-weight: bold;",
-        "black-space": ""
-
+        "black-space": "",
+        "strange-waters": "",
     }
     editableTextColor = {
         "contrast": "white",
         "sunset": "#5c374c",
-        "black-space": "yellow"
+        "black-space": "yellow",
+        "strange-waters": "#296647",
+
     }
     borderColor = borderColorDictionary[colorPalette]
     return f"QComboBox {{ border: 1px solid {borderColor}; color: {textColorDictionary[colorPalette]}; {fontWeight[colorPalette]};}}"
@@ -209,7 +213,8 @@ def setColorofTableCorner(palette):
     cornerColorDictionary = {
         "contrast": "black",
         "sunset": "#ff8c61",
-        "black-space": "#c79c00"
+        "black-space": "#c79c00",
+        "strange-waters": "#173535",
     }
     return f"QTableView QTableCornerButton::section{{ background: {cornerColorDictionary[palette]}; }}"
 
@@ -218,12 +223,15 @@ def setColorForInputLines(palette):
     inputLineDictionary = {
         "contrast": "white",
         "sunset": "#5c374c",
-        "black-space": "yellow"
+        "black-space": "yellow",
+        "strange-waters": "#296647",
+
     }
     fontWeight = {
         "contrast": "",
         "sunset": "font-weight: bold;",
-        "black-space": "yellow"
+        "black-space": "yellow",
+        "strange-waters": "",
     }
     print("applying to input lines")
     return f"QLineEdit:focus{{color:{inputLineDictionary[palette]};}}"
