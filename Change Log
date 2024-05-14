@@ -1,5 +1,9 @@
 This text document is used to keep track of all of the changes that I make to this program. The top-most updates are the most recent.
 
+______5/13/2024______
+- Added the second part of the confirmation to reset all of the application's save data. Will start on the actual function next time I pick this up.
+- Created the toggleWidgetsMenu and connected the allocated navigation buttons (the button that takes you to and from the menu)
+
 ______5/11/2024______
 - Created the "strange-waters" stylesheet
     + (Known Issue) Most of the styling is finished however not all of it

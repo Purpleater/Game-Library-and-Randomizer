@@ -15,6 +15,7 @@ def returnToMainMenuRequest(process, returnMethod):
     if returnValue == QMessageBox.No:
         return
 
+
 # the only reason I'm adding multiple classes here is because I"m experimenting with stacked widgets
 # that and also these menus are going to be hidden within the main layout anyways so it makes sense that I would consolidate related components
 
@@ -22,12 +23,16 @@ def returnToMainMenuRequest(process, returnMethod):
 class MainMenu(QWidget):
     showColorPaletteButtonSignal = pyqtSignal()
     closeMenuSignal = pyqtSignal()
-
+    showToggleWidgetsWindowSignal = pyqtSignal()
     def __init__(self):
         super().__init__()
         self.MenuInterface()
 
     def MenuInterface(self):
+
+        # import other classes
+        self.secondResetValidation = ResetAllDataConfirmationWindow()
+
         # initialize main layout
         self.mainLayout = QVBoxLayout()
 
@@ -41,6 +46,10 @@ class MainMenu(QWidget):
         self.colorPaletteButton.clicked.connect(self.showColorPaletteMenu)
         self.closeWindowButton.clicked.connect(self.closeWindow)
         self.resetAllDataButton.clicked.connect(self.deleteDataProcess)
+        self.toggleWidgetsButton.clicked.connect(self.showToggleWidgetMenu)
+
+        # connect signals
+        self.secondResetValidation.confirmationSignal.connect(self.resetAllData)
 
         # add widgets to main layout
         self.mainLayout.addWidget(self.colorPaletteButton)
@@ -54,16 +63,20 @@ class MainMenu(QWidget):
     def showColorPaletteMenu(self):
         self.showColorPaletteButtonSignal.emit()
 
+    def showToggleWidgetMenu(self):
+        self.showToggleWidgetsWindowSignal.emit()
+
     def closeWindow(self):
         self.closeMenuSignal.emit()
 
     def deleteDataProcess(self):
         if self.showFirstResetValidation():
-            printMeese()
+            self.showSecondResetValidation()
 
     def showFirstResetValidation(self):
         firstResetValidationWindow = QMessageBox()
-        firstResetValidationWindow.setText(f"Would you like to reset all of the application's data? This will include games, points, visual preferences, etc.")
+        firstResetValidationWindow.setText(
+            f"Would you like to reset all of the application's data? This will include games, points, visual preferences, etc.")
         firstResetValidationWindow.setWindowTitle("Reset Validation")
         firstResetValidationWindow.setStandardButtons(QMessageBox.Yes | QMessageBox.No)
 
@@ -74,11 +87,20 @@ class MainMenu(QWidget):
         if returnValue == QMessageBox.No:
             return False
 
+    def showSecondResetValidation(self):
+        self.secondResetValidation.setWindowTitle("Uber-Confirmation Window")
+        self.secondResetValidation.show()
+
+    def resetAllData(self):
+        printMeese()
+
+
 
 # __COLOR MENU LAYOUT__
 class ColorWidgetMenu(QWidget):
     returnToMainMenuSignal = pyqtSignal()
     testColorTheme = pyqtSignal(str)
+
     def __init__(self):
         super().__init__()
         self.MenuInterface()
@@ -129,6 +151,29 @@ class ColorWidgetMenu(QWidget):
         logProcess("Saved currently applied palette")
         returnToMainMenuRequest("Save", self.returnToMainMenu)
 
+class ToggleWidgetsMenu(QWidget):
+    returnToMainMenuSignal = pyqtSignal()
+
+    def __init__(self):
+        super().__init__()
+        self.widgetUI()
+
+    def widgetUI(self):
+        self.mainLayout = QVBoxLayout()
+
+        # create widgets
+        self.backButton = QPushButton("Return To Menu")
+
+        # connections
+        self.backButton.clicked.connect(self.returnToMainMenu)
+
+        # add widgets
+        self.mainLayout.addWidget(self.backButton)
+
+        self.setLayout(self.mainLayout)
+
+    def returnToMainMenu(self):
+        self.returnToMainMenuSignal.emit()
 
 class OptionsMenu(QWidget):
 
@@ -142,9 +187,13 @@ class OptionsMenu(QWidget):
         # import individual menus into class
         self.mainMenu = MainMenu()
         self.colorThemeMenu = ColorWidgetMenu()
+        self.toggleWidgetsMenu = ToggleWidgetsMenu()
+
 
         # set signal slots
         self.mainMenu.showColorPaletteButtonSignal.connect(self.showColorThemeMenu)
+        self.toggleWidgetsMenu.returnToMainMenuSignal.connect(self.showMainMenu)
+        self.mainMenu.showToggleWidgetsWindowSignal.connect(self.showToggleWidgetsMenu)
 
         # color options menu slots
         self.colorThemeMenu.returnToMainMenuSignal.connect(self.showMainMenu)
@@ -152,6 +201,7 @@ class OptionsMenu(QWidget):
         # stack menus
         self.mainLayout.addWidget(self.mainMenu)
         self.mainLayout.addWidget(self.colorThemeMenu)
+        self.mainLayout.addWidget(self.toggleWidgetsMenu)
 
         # set main layout
         self.setLayout(self.mainLayout)
@@ -164,3 +214,35 @@ class OptionsMenu(QWidget):
         self.mainLayout.setCurrentIndex(1)
         logProcess("Loaded UI-adjustment menu")
 
+    def showToggleWidgetsMenu(self):
+        self.mainLayout.setCurrentIndex(2)
+        logProcess("Loaded toggle widgets menu")
+
+
+
+class ResetAllDataConfirmationWindow(QWidget):
+    confirmationSignal = pyqtSignal()
+
+    def __init__(self):
+        super().__init__()
+        self.widgetUI()
+
+    def widgetUI(self):
+        self.mainLayout = QVBoxLayout()
+
+        self.promptLabel = QLabel("Are you sure you want to reset this application's save data? \nType the 'cheeseburger' to confirm your decision.")
+        self.decisionInput = QLineEdit()
+        self.submitButton = QPushButton("Submit")
+
+        self.mainLayout.addWidget(self.promptLabel)
+        self.mainLayout.addWidget(self.decisionInput)
+        self.mainLayout.addWidget(self.submitButton)
+
+        # connect button
+        self.submitButton.clicked.connect(self.checkInputValue)
+
+        self.setLayout(self.mainLayout)
+
+    def checkInputValue(self):
+        if self.decisionInput.text().lower() == 'cheeseburger':
+            self.confirmationSignal.emit()
