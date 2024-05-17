@@ -255,7 +255,6 @@ def closeWindowRequest(process, window):
     if returnValue == QMessageBox.No:
         return
 
-
 # this is just a debug method
 def printMeese():
     print("Meese")

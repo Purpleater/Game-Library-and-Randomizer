@@ -1,5 +1,10 @@
 This text document is used to keep track of all of the changes that I make to this program. The top-most updates are the most recent.
 
+______5/16/2024______
+- Created a back button for the window that makes you input the word 'cheeseburge' to check to see if you want to reset all of the application's data.
+- Started writing the code that will allow for the user to fully reset the application's data.
+    + (Known Issue) The code hasn't been fully implemented to link with the json files
+
 ______5/13/2024______
 - Added the second part of the confirmation to reset all of the application's save data. Will start on the actual function next time I pick this up.
 - Created the toggleWidgetsMenu and connected the allocated navigation buttons (the button that takes you to and from the menu)

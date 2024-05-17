@@ -92,7 +92,63 @@ class MainMenu(QWidget):
         self.secondResetValidation.show()
 
     def resetAllData(self):
-        printMeese()
+        data = loadJSONData()
+
+        '''
+        RESET THE FOLLOWING: 
+        - savedColorPalette (back to contrast, or some other bright styling) ✓
+        - savedDate ✓ 
+        - gameOfTheWeek ✓ (kinda)
+        - rollgameList ✓
+        - cardDrawList ✓
+        - personalGameList
+        - number of points
+        - lastGameID 
+        - fullGameList
+        '''
+        data["savedColorPalette"] = 'contrast'
+        data["savedDate"] = datetime.now().strftime("%Y,%m,%d")
+        data["fullGameList"] = []
+        data["cardDrawList"] = []
+        data["personalGameList"] = []
+
+        for i in range(15):
+            placeholderGame = {
+                'name': f"PLACEHOLDER NAME {i + 1}",
+                'id': i + 1,
+                'completed': 'Incomplete',
+                "replayabilityFactor": "Low"
+            }
+            data["fullGameList"].append(placeholderGame)
+        data["lastGameID"] = 16
+
+        # provide temporary placeholders for the roll game list
+        data["rollGameList"] = []
+
+        for i in range (20):
+            data["rollGameList"].append(random.choice(data["fullGameList"])["name"])
+
+        idList = []
+        while len(idList) < 13:
+            randomGame = random.choice(data["fullGameList"])
+
+            if randomGame["id"] in idList or randomGame["id"] == -1:
+                continue
+            if randomGame["completed"] == "Complete":
+                randomNum = random.randint(1, 4)
+                gameReplayValue = replayabilityStatusReference[randomGame["replayabilityFactor"]]
+                if gameReplayValue < randomNum:
+                    continue
+            idList.append(randomGame["id"])
+        print(idList)
+        for i in range(len(idList)):
+            for game in data["fullGameList"]:
+                if idList[i] == game["id"]:
+                    data["cardDrawList"].append(game["name"])
+        data["numberOfPoints"] = 0
+        data["gameOfTheWeek"] = "¯\_(ツ)_/¯"
+
+        print(data)
 
 
 
@@ -229,20 +285,33 @@ class ResetAllDataConfirmationWindow(QWidget):
 
     def widgetUI(self):
         self.mainLayout = QVBoxLayout()
+        self.buttonLayout = QHBoxLayout()
 
         self.promptLabel = QLabel("Are you sure you want to reset this application's save data? \nType the 'cheeseburger' to confirm your decision.")
         self.decisionInput = QLineEdit()
+        self.backButton = QPushButton("Back")
         self.submitButton = QPushButton("Submit")
+
+        self.buttonLayout.addWidget(self.backButton)
+        self.buttonLayout.addWidget(self.submitButton)
 
         self.mainLayout.addWidget(self.promptLabel)
         self.mainLayout.addWidget(self.decisionInput)
-        self.mainLayout.addWidget(self.submitButton)
+        self.mainLayout.addLayout(self.buttonLayout)
 
         # connect button
         self.submitButton.clicked.connect(self.checkInputValue)
+        self.backButton.clicked.connect(self.hideWindow)
 
         self.setLayout(self.mainLayout)
 
     def checkInputValue(self):
         if self.decisionInput.text().lower() == 'cheeseburger':
             self.confirmationSignal.emit()
+
+    def hideWindow(self):
+        self.decisionInput.clear()
+        self.hide()
+
+
+
