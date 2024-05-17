@@ -1,5 +1,11 @@
 This text document is used to keep track of all of the changes that I make to this program. The top-most updates are the most recent.
 
+______5/17/2024______
+- Adjusted how the game of the week is loaded. Instead of a name being statically saved it will use the game's id instead. This is done for the purpose of streamlining
+  the ability to reset application data so that the user won't have to wait a week to have a game of the week loaded.
+- ????Apparently removed an entire block of code that was duplicated at the time of implementation????
+  This is why you don't program past 3am kids.
+
 ______5/16/2024______
 - Created a back button for the window that makes you input the word 'cheeseburge' to check to see if you want to reset all of the application's data.
 - Started writing the code that will allow for the user to fully reset the application's data.

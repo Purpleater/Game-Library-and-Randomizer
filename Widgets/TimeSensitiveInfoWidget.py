@@ -31,7 +31,14 @@ class TimeSensitiveInfoWidget(QWidget):
     def loadGameOfTheWeek(self):
         with open('ApplicationInformation.json', 'r') as file:
             data = json.load(file)
-            gameOfTheWeek = data["gameOfTheWeek"]
+            loadedGameID = data["gameOfTheWeek"]
+            gameOfTheWeek = ''
+
+            for game in loadSortedList():
+                if game["id"] == loadedGameID:
+                    gameOfTheWeek = game["name"]
+                    logProcess(f"Loaded weekly game ({gameOfTheWeek})")
+
             self.gameOfTheWeekLabel.setText(f"__Game of the week__\n\n{gameOfTheWeek}")
 
     def setGameOfTheWeek(self):

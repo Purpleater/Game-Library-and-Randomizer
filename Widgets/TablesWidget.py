@@ -186,7 +186,7 @@ class TablesWidget(QWidget):
         savedRollTable.clear()
         savedDrawTable.clear()
 
-        data["gameOfTheWeek"] = random.choice(loadSortedList())['name']
+        data["gameOfTheWeek"] = random.choice(loadSortedList())['id']
 
         for row in range(20):
             savedRollTable.append(self.rollTable.item(row, 0).text())
@@ -196,23 +196,6 @@ class TablesWidget(QWidget):
 
         updateJSONData(data)
 
-        data = loadJSONData()
-
-        savedRollTable = data['rollGameList']
-        savedDrawTable = data['cardDrawList']
-
-        savedRollTable.clear()
-        savedDrawTable.clear()
-
-        data["gameOfTheWeek"] = random.choice(loadSortedList())['name']
-
-        for row in range(20):
-            savedRollTable.append(self.rollTable.item(row, 0).text())
-
-        for row in range(14):
-            savedDrawTable.append(self.cardTable.item(row, 1).text())
-
-        updateJSONData(data)
         replaceDate()
 
     def otherSaveAllInformationFunction(self):
