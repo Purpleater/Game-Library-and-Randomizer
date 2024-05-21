@@ -1,5 +1,11 @@
 This text document is used to keep track of all of the changes that I make to this program. The top-most updates are the most recent.
 
+______5/21/2024______
+- Adjusted the table information system to make it so that the contents of the tables will load based off of game IDs and not game names.
+- Made it so that the game lists in the JSON files store the IDs of games correctly upon a new list being generated.
+    + (Known Issue) I have yet to apply this to the personal games list
+- Added a confirmation window that helps to indicate when the saving of a game was successful
+
 ______5/17/2024______
 - Adjusted how the game of the week is loaded. Instead of a name being statically saved it will use the game's id instead. This is done for the purpose of streamlining
   the ability to reset application data so that the user won't have to wait a week to have a game of the week loaded.

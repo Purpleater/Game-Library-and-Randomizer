@@ -12,6 +12,7 @@ class TablesWidget(QWidget):
 
     def widgetUI(self):
 
+
         self.mainLayout = QVBoxLayout()
         self.tableLayout = QHBoxLayout()
         self.buttonLayout = QHBoxLayout()
@@ -103,13 +104,13 @@ class TablesWidget(QWidget):
     def loadStoredTables(self, diceList, cardList):
 
         for i in range(20):
-            item = QTableWidgetItem(diceList[i])
+            item = QTableWidgetItem(searchGameByID(diceList[i])["name"])
             item.setFlags(item.flags() & Qt.ItemIsEditable)
             item.setForeground((QColor(Qt.black)))
             self.rollTable.setItem(i, 0, item)
 
         for i in range(14):
-            item = QTableWidgetItem(cardList[i])
+            item = QTableWidgetItem(searchGameByID(cardList[i])["name"])
             item.setFlags(item.flags() & Qt.ItemIsEditable)
             item.setForeground((QColor(Qt.black)))
             self.cardTable.setItem(i, 1, item)
@@ -121,8 +122,11 @@ class TablesWidget(QWidget):
 
         # dice roll list
 
-        while len(self.diceRollList) < 19:
+        while len(self.diceRollList) < 20:
             randomGame = random.choice(fullGameList)
+            if len(self.diceRollList) == 19:
+                self.diceRollList.append(-1)
+                break
 
             if randomGame["completed"] == "Complete":
                 randomNum = random.randint(1, 4)
@@ -134,19 +138,20 @@ class TablesWidget(QWidget):
             else:
                 self.diceRollList.append(randomGame["id"])
 
-        convertGameIDListIntoNames(self.diceRollList)
-
         for i in range(20):
-            item = QTableWidgetItem(self.diceRollList[i])
+            item = QTableWidgetItem(searchGameByID(self.diceRollList[i])["name"])
             item.setFlags(item.flags() & Qt.ItemIsEditable)
             item.setForeground((QColor(Qt.black)))
             self.rollTable.setItem(i, 0, item)
 
+
         # card draw list
 
-        while len(self.cardDrawList) < 13:
+        while len(self.cardDrawList) < 14:
+            if len(self.cardDrawList) == 13:
+                self.cardDrawList.append(-1)
+                break
             randomGame = random.choice(fullGameList)
-
             if randomGame["id"] in self.cardDrawList or randomGame["id"] == -1:
                 continue
             if randomGame["completed"] == "Complete":
@@ -157,10 +162,8 @@ class TablesWidget(QWidget):
 
             self.cardDrawList.append(randomGame["id"])
 
-        convertGameIDListIntoNames(self.cardDrawList)
-
         for i in range(14):
-            item = QTableWidgetItem(self.cardDrawList[i])
+            item = QTableWidgetItem(searchGameByID(self.cardDrawList[i])["name"])
             item.setFlags(item.flags() & Qt.ItemIsEditable)
             item.setForeground((QColor(Qt.black)))
             self.cardTable.setItem(i, 1, item)
@@ -180,22 +183,12 @@ class TablesWidget(QWidget):
     def saveAllInformation(self):
         data = loadJSONData()
 
-        savedRollTable = data['rollGameList']
-        savedDrawTable = data['cardDrawList']
-
-        savedRollTable.clear()
-        savedDrawTable.clear()
+        data['rollGameList'] = self.diceRollList
+        data['cardDrawList'] = self.cardDrawList
 
         data["gameOfTheWeek"] = random.choice(loadSortedList())['id']
 
-        for row in range(20):
-            savedRollTable.append(self.rollTable.item(row, 0).text())
-
-        for row in range(14):
-            savedDrawTable.append(self.cardTable.item(row, 1).text())
-
         updateJSONData(data)
-
         replaceDate()
 
     def otherSaveAllInformationFunction(self):
@@ -212,6 +205,7 @@ class TablesWidget(QWidget):
 
         if returnValue == QMessageBox.Yes:
             logProcess("Table Information Saved")
+            showProcessConfirmationWindow("Saving of new table information")
             return True
         if returnValue == QMessageBox.No:
             logProcess(f"Cancelled cancelled saving table information")

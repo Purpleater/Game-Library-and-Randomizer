@@ -140,13 +140,15 @@ class MainMenu(QWidget):
                 if gameReplayValue < randomNum:
                     continue
             idList.append(randomGame["id"])
-        print(idList)
+
         for i in range(len(idList)):
+            searchGameByID(idList[i])
             for game in data["fullGameList"]:
                 if idList[i] == game["id"]:
                     data["cardDrawList"].append(game["name"])
+
         data["numberOfPoints"] = 0
-        data["gameOfTheWeek"] = "¯\_(ツ)_/¯"
+        data["gameOfTheWeek"] = int(random.choice(data["fullGameList"])["id"])
 
         print(data)
 

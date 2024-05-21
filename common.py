@@ -109,6 +109,7 @@ def showProcessConfirmationWindow(specificProcess):
 
     returnValue = processConfirmationWindow.exec_()
 
+
 def editExistingGameInformation(gameId, gameName, gameCompletion, gameReplayability):
     data = loadJSONData()
 
@@ -120,6 +121,7 @@ def editExistingGameInformation(gameId, gameName, gameCompletion, gameReplayabil
             logProcess(f"Updated Entry: {game}")
 
     updateJSONData(data)
+
 
 def convertGameIDListIntoNames(gameList):
     for i in range(len(gameList)):
@@ -255,6 +257,13 @@ def closeWindowRequest(process, window):
     if returnValue == QMessageBox.No:
         return
 
+
+def searchGameByID(gameID):
+    if gameID == -1:
+        return {"name": "Free Choice", "id": -1}
+    for game in loadSortedList():
+        if gameID == game['id']:
+            return game
 
 
 # this is just a debug method
