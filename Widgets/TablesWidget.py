@@ -174,8 +174,9 @@ class TablesWidget(QWidget):
         data = loadJSONData()
         loadedPersonalList = data['personalGameList']
 
+
         for i in range(len(loadedPersonalList)):
-            item = QTableWidgetItem(loadedPersonalList[i])
+            item = QTableWidgetItem(searchGameByID(loadedPersonalList[i])["name"])
             item.setFlags(item.flags() & Qt.ItemIsEditable)
             item.setForeground((QColor(Qt.black)))
             self.personalTable.setItem(i, 0, item)

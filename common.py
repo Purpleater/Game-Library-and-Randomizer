@@ -123,14 +123,6 @@ def editExistingGameInformation(gameId, gameName, gameCompletion, gameReplayabil
     updateJSONData(data)
 
 
-def convertGameIDListIntoNames(gameList):
-    for i in range(len(gameList)):
-        for game in loadSortedList():
-            if gameList[i] == game["id"]:
-                gameList[i] = game["name"]
-    gameList.append("Free Space (Pick Any Game)")
-
-
 def detectIfEnoughTimeHasPassed():
     todaysDate = datetime.now()
     data = loadJSONData()
@@ -264,6 +256,12 @@ def searchGameByID(gameID):
     for game in loadSortedList():
         if gameID == game['id']:
             return game
+
+
+def getIdByName(gameName):
+    for game in loadSortedList():
+        if gameName == game["name"]:
+            return game["id"]
 
 
 # this is just a debug method

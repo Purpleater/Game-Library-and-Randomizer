@@ -2,10 +2,10 @@ from common import *
 from PyQt5.QtCore import pyqtSignal
 
 
-
 class EditPersonalGameListWindow(QWidget):
     # this notifies the tables widget to refresh itself whenever the list is adjusted
     pListChangeSignal = pyqtSignal()
+
     def __init__(self):
         super().__init__()
         self.widgetUI()
@@ -42,6 +42,7 @@ class EditPersonalGameListWindow(QWidget):
 
     def getSelectedGame(self, game):
         self.swapInMenu.getSelectedGame(game)
+
     def updatePersonalList(self):
         self.pListChangeSignal.emit()
         logProcess("Personal Tables table refresh signal relayed to main widget")
@@ -49,7 +50,8 @@ class EditPersonalGameListWindow(QWidget):
 
 class SwapOutMenu(QWidget):
     continueSignal = pyqtSignal()
-    selectedGameSignal = pyqtSignal(str)
+    selectedGameSignal = pyqtSignal(int)
+
     def __init__(self):
         super().__init__()
         self.widgetUI()
@@ -79,23 +81,24 @@ class SwapOutMenu(QWidget):
     def populateList(self):
         self.selectionList.clear()
         for game in loadPersonalList():
-            self.selectionList.addItem(game)
-
+            self.selectionList.addItem(searchGameByID(game)["name"])
 
     def emitSignalToContinue(self):
         self.continueSignal.emit()
-        self.selectedGameSignal.emit(self.selectionList.selectedItems()[0].text())
+        self.selectedGameSignal.emit(getIdByName(self.selectionList.selectedItems()[0].text()))
+
 
 class SwapInMenu(QWidget):
     backSignal = pyqtSignal()
     updatePersonalListSignal = pyqtSignal()
     closeWindowRequestSignal = pyqtSignal()
+
     def __init__(self):
         super().__init__()
         self.widgetUI()
 
     def widgetUI(self):
-        self.selectedGame = ''
+        self.selectedSwapOutGame = ''
 
         # layouts
         self.mainLayout = QVBoxLayout()
@@ -128,37 +131,41 @@ class SwapInMenu(QWidget):
         self.mainLayout.addLayout(self.buttonRowLayout)
 
         self.setLayout(self.mainLayout)
-        self.loadFilteredList()
 
     # this method is used to set the corresponding value from the SwapInMenu class
     def getSelectedGame(self, game):
         self.selectedSwapOutGame = game
-        logProcess(f"Selected ({game}) to swap out of list")
+        logProcess(f"Selected ({searchGameByID(game)['name']}) to swap out of list")
+        self.loadFilteredList()
 
     def returnToPreviousPage(self):
         self.backSignal.emit()
         self.listSearch.clear()
-        self.loadFilteredList()
-
 
     def loadFilteredList(self):
+        personalList = loadPersonalList()
         self.selectionList.clear()
         for game in loadSortedList():
-            if game["name"] != game and game["name"] not in loadPersonalList():
+            filteredGame = False
+            if game['id'] == self.selectedSwapOutGame:
+                filteredGame = True
+            if game['id'] in personalList:
+                filteredGame = True
+            if not filteredGame:
                 self.selectionList.addItem(game["name"])
 
     def updateSearchList(self):
         searchValue = self.listSearch.text().lower()
         self.selectionList.clear()
         for game in loadSortedList():
-            if game["name"] == self.selectedSwapOutGame or game["name"] in loadPersonalList():
+            if game["id"] == self.selectedSwapOutGame or game["id"] in loadPersonalList():
                 continue
             else:
                 if searchValue in game["name"].lower():
                     self.selectionList.addItem(game["name"])
 
     def submitGame(self):
-        selectedSwapInGame = self.selectionList.selectedItems()[0].text()
+        selectedSwapInGame = getIdByName(self.selectionList.selectedItems()[0].text())
         selectedGames = [self.selectedSwapOutGame, selectedSwapInGame]
 
         gameSwapConfirmation = self.showGameEditConfirmationWindow(selectedGames)
@@ -188,14 +195,15 @@ class SwapInMenu(QWidget):
     def showGameEditConfirmationWindow(self, selectedGames):
 
         editGameConfirmationWindow = QMessageBox()
-        editGameConfirmationWindow.setText(f"Would you like to swap [{selectedGames[0]}] for [{selectedGames[1]}]?")
+        editGameConfirmationWindow.setText(f"Would you like to swap [{searchGameByID(selectedGames[0])['name']}] for [{searchGameByID(selectedGames[1])['name']}]?")
         editGameConfirmationWindow.setWindowTitle("Edit Game Confirmation")
         editGameConfirmationWindow.setStandardButtons(QMessageBox.Yes | QMessageBox.No)
 
         returnValue = editGameConfirmationWindow.exec_()
 
         if returnValue == QMessageBox.Yes:
-            logProcess(f"[{selectedGames[0]}] swapped for [{selectedGames[1]}] in personal games list")
+            logProcess(
+                f"[{searchGameByID(selectedGames[0])['name']}] swapped for [{searchGameByID(selectedGames[1])['name']}] in personal games list")
             return True
         if returnValue == QMessageBox.No:
             logProcess(f"Cancelled a game swap in the personal list")
@@ -211,6 +219,7 @@ class SwapInMenu(QWidget):
 
         if returnValue == QMessageBox.Yes:
             logProcess(f"Closing personal games list window")
+            self.returnToPreviousPage()
             return True
         if returnValue == QMessageBox.No:
             return False
