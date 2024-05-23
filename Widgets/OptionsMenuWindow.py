@@ -24,6 +24,7 @@ class MainMenu(QWidget):
     showColorPaletteButtonSignal = pyqtSignal()
     closeMenuSignal = pyqtSignal()
     showToggleWidgetsWindowSignal = pyqtSignal()
+
     def __init__(self):
         super().__init__()
         self.MenuInterface()
@@ -98,13 +99,13 @@ class MainMenu(QWidget):
         RESET THE FOLLOWING: 
         - savedColorPalette (back to contrast, or some other bright styling) ✓
         - savedDate ✓ 
-        - gameOfTheWeek ✓ (kinda)
+        - gameOfTheWeek ✓ 
         - rollgameList ✓
         - cardDrawList ✓
-        - personalGameList
-        - number of points
-        - lastGameID 
-        - fullGameList
+        - personalGameList ✓
+        - number of points ✓
+        - lastGameID ✓
+        - fullGameList ✓
         '''
         data["savedColorPalette"] = 'contrast'
         data["savedDate"] = datetime.now().strftime("%Y,%m,%d")
@@ -112,6 +113,7 @@ class MainMenu(QWidget):
         data["cardDrawList"] = []
         data["personalGameList"] = []
 
+        # adding substitute games into the game library
         for i in range(15):
             placeholderGame = {
                 'name': f"PLACEHOLDER NAME {i + 1}",
@@ -124,10 +126,11 @@ class MainMenu(QWidget):
 
         # provide temporary placeholders for the roll game list
         data["rollGameList"] = []
+        for i in range(19):
+            data["rollGameList"].append(random.choice(data["fullGameList"])["id"])
+        data["rollGameList"].append(-1)
 
-        for i in range (20):
-            data["rollGameList"].append(random.choice(data["fullGameList"])["name"])
-
+        # provide temporary placeholders for the card draw game list
         idList = []
         while len(idList) < 13:
             randomGame = random.choice(data["fullGameList"])
@@ -145,13 +148,26 @@ class MainMenu(QWidget):
             searchGameByID(idList[i])
             for game in data["fullGameList"]:
                 if idList[i] == game["id"]:
-                    data["cardDrawList"].append(game["name"])
-
+                    data["cardDrawList"].append(game["id"])
+        data["cardDrawList"].append(-1)
+        # reset the number of points
         data["numberOfPoints"] = 0
+
+        # generate a random game from the new placeholder library
         data["gameOfTheWeek"] = int(random.choice(data["fullGameList"])["id"])
 
-        print(data)
+        # fill out the personalGameList with substitutes
+        data["personalGameList"] = []
+        for i in range(12):
+            data["personalGameList"].append(i + 1)
 
+        # reset points number
+        data["numberOfPoints"] = 0
+
+        # reset the last game id
+        data["lastGameId"] = 16
+        updateJSONData(data)
+        logProcess("Fully reset saved application data")
 
 
 # __COLOR MENU LAYOUT__
@@ -209,6 +225,7 @@ class ColorWidgetMenu(QWidget):
         logProcess("Saved currently applied palette")
         returnToMainMenuRequest("Save", self.returnToMainMenu)
 
+
 class ToggleWidgetsMenu(QWidget):
     returnToMainMenuSignal = pyqtSignal()
 
@@ -233,6 +250,7 @@ class ToggleWidgetsMenu(QWidget):
     def returnToMainMenu(self):
         self.returnToMainMenuSignal.emit()
 
+
 class OptionsMenu(QWidget):
 
     def __init__(self):
@@ -246,7 +264,6 @@ class OptionsMenu(QWidget):
         self.mainMenu = MainMenu()
         self.colorThemeMenu = ColorWidgetMenu()
         self.toggleWidgetsMenu = ToggleWidgetsMenu()
-
 
         # set signal slots
         self.mainMenu.showColorPaletteButtonSignal.connect(self.showColorThemeMenu)
@@ -277,7 +294,6 @@ class OptionsMenu(QWidget):
         logProcess("Loaded toggle widgets menu")
 
 
-
 class ResetAllDataConfirmationWindow(QWidget):
     confirmationSignal = pyqtSignal()
 
@@ -289,7 +305,8 @@ class ResetAllDataConfirmationWindow(QWidget):
         self.mainLayout = QVBoxLayout()
         self.buttonLayout = QHBoxLayout()
 
-        self.promptLabel = QLabel("Are you sure you want to reset this application's save data? \nType the 'cheeseburger' to confirm your decision.")
+        self.promptLabel = QLabel(
+            "Are you sure you want to reset this application's save data? \nType the 'cheeseburger' to confirm your decision.")
         self.decisionInput = QLineEdit()
         self.backButton = QPushButton("Back")
         self.submitButton = QPushButton("Submit")
@@ -314,6 +331,3 @@ class ResetAllDataConfirmationWindow(QWidget):
     def hideWindow(self):
         self.decisionInput.clear()
         self.hide()
-
-
-

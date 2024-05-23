@@ -1,5 +1,8 @@
 This text document is used to keep track of all of the changes that I make to this program. The top-most updates are the most recent.
 
+______5/23/2024______
+- Completed the function that allows the user to completely reset the application data
+
 ______5/22/2024______
 - Deleted a function that is no longer necessary
 - Adapted the entire process of swapping out games in the personal games list to recognize the new id-based search system

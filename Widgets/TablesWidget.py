@@ -109,7 +109,7 @@ class TablesWidget(QWidget):
             item.setForeground((QColor(Qt.black)))
             self.rollTable.setItem(i, 0, item)
 
-        for i in range(14):
+        for i in range(len(cardList)):
             item = QTableWidgetItem(searchGameByID(cardList[i])["name"])
             item.setFlags(item.flags() & Qt.ItemIsEditable)
             item.setForeground((QColor(Qt.black)))
