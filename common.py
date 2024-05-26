@@ -103,11 +103,13 @@ def findDictionaryKey(dictionary, item):
 
 # this is here because there's tons of processes that I want to confirm are working lmao
 def showProcessConfirmationWindow(specificProcess):
-    processConfirmationWindow = QMessageBox()
-    processConfirmationWindow.setText(f"{specificProcess} was successful!")
-    processConfirmationWindow.setWindowTitle("Success")
+    def processConfirmation():
+        processConfirmationWindow = QMessageBox()
+        processConfirmationWindow.setText(f"{specificProcess} was successful!")
+        processConfirmationWindow.setWindowTitle("Success")
 
-    returnValue = processConfirmationWindow.exec_()
+        returnValue = processConfirmationWindow.exec_()
+    return processConfirmation()
 
 
 def editExistingGameInformation(gameId, gameName, gameCompletion, gameReplayability):
@@ -236,18 +238,37 @@ def logProcess(process):
     print(f'{currentTime} - {process}')
 
 
-def closeWindowRequest(process, window):
-    closeRequestWindow = QMessageBox()
-    closeRequestWindow.setText(f"{process} successful, would you like to close this window?")
-    closeRequestWindow.setWindowTitle("Process Successful")
-    closeRequestWindow.setStandardButtons(QMessageBox.Yes | QMessageBox.No)
+def windowLogProcess(process):
+    def log():
+        currentTime = datetime.now().strftime('%H:%M:%S')
+        print(f'{currentTime} - {process}')
 
-    returnValue = closeRequestWindow.exec_()
+    return log
+
+
+def createStandardConfirmationWindow(textString, windowTitle, trueProcessArray, falseProcessArray):
+    standardConfirmationWindow = QMessageBox()
+    standardConfirmationWindow.setText(textString)
+    standardConfirmationWindow.setWindowTitle(windowTitle)
+    standardConfirmationWindow.setStandardButtons(QMessageBox.Yes | QMessageBox.No)
+
+    returnValue = standardConfirmationWindow.exec_()
 
     if returnValue == QMessageBox.Yes:
-        window.hide()
+        if len(trueProcessArray) != 0:
+            for process in trueProcessArray:
+                process()
+        return True
     if returnValue == QMessageBox.No:
-        return
+        if len(falseProcessArray) != 0:
+            for process in falseProcessArray:
+                process()
+        return False
+
+
+def closeWindowRequest(process, window):
+    processString = f"{process} successful, would you like to close this window?"
+    createStandardConfirmationWindow(processString, "Process Successful", [window.hide], [])
 
 
 def searchGameByID(gameID):

@@ -196,21 +196,15 @@ class TablesWidget(QWidget):
         if self.saveTableInformationConfirmationWindow():
             self.saveAllInformation()
 
+
     def saveTableInformationConfirmationWindow(self):
-        saveTableInformationConfirmationWindow = QMessageBox()
-        saveTableInformationConfirmationWindow.setText(f"Would you like to save the information present on the tables?")
-        saveTableInformationConfirmationWindow.setWindowTitle("Save Information Confirmation")
-        saveTableInformationConfirmationWindow.setStandardButtons(QMessageBox.Yes | QMessageBox.No)
+        textPrompt = f"Would you like to save the information present on the tables?"
+        windowTitle = "Save Information Confirmation"
+        trueProcessArray = [windowLogProcess("Table information saved"), showProcessConfirmationWindow("Saving of new table information")]
+        falseProcessArray = [windowLogProcess("Cancelled saving table information")]
 
-        returnValue = saveTableInformationConfirmationWindow.exec_()
+        return createStandardConfirmationWindow(textPrompt, windowTitle, trueProcessArray, falseProcessArray)
 
-        if returnValue == QMessageBox.Yes:
-            logProcess("Table Information Saved")
-            showProcessConfirmationWindow("Saving of new table information")
-            return True
-        if returnValue == QMessageBox.No:
-            logProcess(f"Cancelled cancelled saving table information")
-            return False
 
     def applyIndividualStyling(self, palette):
         self.rollTable.setStyleSheet(setColorofTableCorner(palette))

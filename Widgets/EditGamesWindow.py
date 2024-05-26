@@ -1,6 +1,12 @@
 from common import *
 
 
+def showGameEditConfirmationWindow():
+    promptString = "The game that you are trying to submit is already present within the list. Would you like to re-submit this information?"
+    windowTitle = "Edit Game Confirmation"
+    return createStandardConfirmationWindow(promptString, windowTitle, [windowLogProcess("Edit of game information complete")], [])
+
+
 class EditGameWindow(QWidget):
     def __init__(self):
         super().__init__()
@@ -111,7 +117,7 @@ class EditGameWindow(QWidget):
     def getGameInformation(self):
 
         selectedItem = self.editGameSelectionList.selectedItems()[0].text()
-        gameId = self.getGameID(loadSortedList(), selectedItem)
+        gameId = getIdByName(selectedItem)
 
         for game in loadSortedList():
             if gameId == game["id"]:
@@ -120,6 +126,7 @@ class EditGameWindow(QWidget):
                 self.replayabilityFactor.setCurrentIndex(replayabilityStatusReference[game["replayabilityFactor"]])
                 self.currentGameID = gameId
                 logProcess(f"The ID of the currently stored game is ({self.currentGameID})")
+                break
 
     def updateSearchedList(self):
         self.editGameSelectionList.clear()
@@ -146,43 +153,17 @@ class EditGameWindow(QWidget):
         # returning 2 means that the application should create an entirely new entry
         # returning 0 means that the function was cancelled
         if self.currentGameID != -1:
-            if self.showGameEditConfirmationWindow():
+            if showGameEditConfirmationWindow():
                 return 1
             else:
                 return 0
         else:
             return 2
 
-
-    def showGameEditConfirmationWindow(self):
-
-        editGameConfirmationWindow = QMessageBox()
-        editGameConfirmationWindow.setText("The game that you are trying to "
-                                           "submit already is already present within the list. "
-                                           "Would you like to re-submit this "
-                                           "information?")
-        editGameConfirmationWindow.setWindowTitle("Edit Game Confirmation")
-        editGameConfirmationWindow.setStandardButtons(QMessageBox.Yes | QMessageBox.No)
-
-        returnValue = editGameConfirmationWindow.exec_()
-
-        if returnValue == QMessageBox.Yes:
-            return True
-        if returnValue == QMessageBox.No:
-            return False
-
     def showGameDeletionConfirmationWindow(self, gameName):
-        gameDeletionConfirmation = QMessageBox()
-        gameDeletionConfirmation.setText(f"Would you like to delete {gameName}?")
-        gameDeletionConfirmation.setWindowTitle("Game Deletion Confirmation")
-        gameDeletionConfirmation.setStandardButtons(QMessageBox.Yes | QMessageBox.No)
-
-        returnValue = gameDeletionConfirmation.exec_()
-
-        if returnValue == QMessageBox.Yes:
-            return True
-        if returnValue == QMessageBox.No:
-            return False
+        promptString = f"Would you like to delete {gameName}?"
+        windowTitle = "Game Deletion Confirmation"
+        return createStandardConfirmationWindow(promptString, windowTitle, [windowLogProcess(f"Deleted ({gameName})")], [])
 
     def duplicateGameCheck(self):
         gameName = self.nameValue.text().strip()
@@ -218,13 +199,6 @@ class EditGameWindow(QWidget):
                     showProcessConfirmationWindow("Game deletion")
                     self.resetPage()
 
-    def getGameID(self, list, gameName):
-        gameId = 0
-        for game in loadSortedList():
-            if gameName == game["name"]:
-                logProcess(f"Located Game (Name: {game['name']}, ID: {game['id']})")
-                gameId = int(game['id'])
-        return gameId
 
 
 

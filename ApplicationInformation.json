@@ -6,8 +6,8 @@
         "Black-Space",
         "Strange-Waters"
     ],
-    "savedDate": "2024,05,21",
-    "gameOfTheWeek": 141,
+    "savedDate": "2024,05,26",
+    "gameOfTheWeek": 131,
     "weeklyListSelection": [
         "Want To Continue Playing",
         "Roll",
@@ -18,48 +18,48 @@
         "Roll"
     ],
     "rollGameList": [
-        123,
-        77,
-        96,
-        51,
-        9,
-        133,
-        3,
-        128,
-        85,
-        33,
-        4,
-        8,
-        28,
-        54,
-        145,
-        104,
-        79,
-        56,
-        125,
+        27,
+        70,
+        132,
+        116,
+        149,
+        135,
+        126,
+        70,
+        74,
+        36,
+        135,
+        149,
+        146,
+        45,
+        35,
+        113,
+        46,
+        86,
+        43,
         -1
     ],
     "cardDrawList": [
-        67,
-        110,
-        78,
-        90,
-        74,
-        99,
-        96,
-        69,
-        117,
-        121,
-        147,
-        9,
-        80,
+        155,
+        25,
+        135,
+        84,
+        52,
+        44,
+        12,
+        68,
+        22,
+        146,
+        105,
+        11,
+        108,
         -1
     ],
     "personalGameList": [
         136,
         92,
         123,
-        137,
+        120,
         22,
         77,
         103,
@@ -69,8 +69,8 @@
         121,
         3
     ],
-    "numberOfPoints": 18,
-    "lastGameId": 156,
+    "numberOfPoints": 22,
+    "lastGameId": 165,
     "fullGameList": [
         {
             "name": "A Hat In Time",
@@ -993,6 +993,42 @@
         {
             "name": "Back To Bed",
             "id": 155,
+            "completed": "Incomplete",
+            "replayabilityFactor": "Low"
+        },
+        {
+            "name": "Astrea: Six-Sided Oracles",
+            "id": 156,
+            "completed": "Incomplete",
+            "replayabilityFactor": "Low"
+        },
+        {
+            "name": "Book of Hours",
+            "id": 157,
+            "completed": "Incomplete",
+            "replayabilityFactor": "Low"
+        },
+        {
+            "name": "Dungeon Drafters",
+            "id": 158,
+            "completed": "Incomplete",
+            "replayabilityFactor": "Low"
+        },
+        {
+            "name": "Floppy Knights",
+            "id": 159,
+            "completed": "Incomplete",
+            "replayabilityFactor": "Low"
+        },
+        {
+            "name": "Gordian Quest",
+            "id": 160,
+            "completed": "Incomplete",
+            "replayabilityFactor": "Low"
+        },
+        {
+            "name": "Mahokenshi",
+            "id": 161,
             "completed": "Incomplete",
             "replayabilityFactor": "Low"
         }

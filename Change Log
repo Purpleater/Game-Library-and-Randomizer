@@ -1,5 +1,11 @@
 This text document is used to keep track of all of the changes that I make to this program. The top-most updates are the most recent.
 
+______5/26/2024______
+- Adjusted a function that helps to reduce the bloat of confirmation windows and makes it so that all confirmation windows route back to the same function
+- Fixed a few grammatical errors. Don't know where they are? Exactly.
+- Removed a function that was no longer important
+    + (Known Issues) Stuff (I would elaborate further but I'm too tired just know that I'm aware of multiple issues)
+
 ______5/23/2024______
 - Completed the function that allows the user to completely reset the application data
 

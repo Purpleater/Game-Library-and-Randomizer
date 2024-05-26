@@ -47,6 +47,9 @@ class EditPersonalGameListWindow(QWidget):
         self.pListChangeSignal.emit()
         logProcess("Personal Tables table refresh signal relayed to main widget")
 
+    def hideWindow(self):
+        self.hide()
+
 
 class SwapOutMenu(QWidget):
     continueSignal = pyqtSignal()
@@ -169,6 +172,7 @@ class SwapInMenu(QWidget):
         selectedGames = [self.selectedSwapOutGame, selectedSwapInGame]
 
         gameSwapConfirmation = self.showGameEditConfirmationWindow(selectedGames)
+        print(gameSwapConfirmation)
         if gameSwapConfirmation:
             list = loadPersonalList()
             for i in range(len(list)):
@@ -193,33 +197,13 @@ class SwapInMenu(QWidget):
         self.updatePersonalListSignal.emit()
 
     def showGameEditConfirmationWindow(self, selectedGames):
-
-        editGameConfirmationWindow = QMessageBox()
-        editGameConfirmationWindow.setText(f"Would you like to swap [{searchGameByID(selectedGames[0])['name']}] for [{searchGameByID(selectedGames[1])['name']}]?")
-        editGameConfirmationWindow.setWindowTitle("Edit Game Confirmation")
-        editGameConfirmationWindow.setStandardButtons(QMessageBox.Yes | QMessageBox.No)
-
-        returnValue = editGameConfirmationWindow.exec_()
-
-        if returnValue == QMessageBox.Yes:
-            logProcess(
-                f"[{searchGameByID(selectedGames[0])['name']}] swapped for [{searchGameByID(selectedGames[1])['name']}] in personal games list")
-            return True
-        if returnValue == QMessageBox.No:
-            logProcess(f"Cancelled a game swap in the personal list")
-            return False
+        processText = f"Would you like to swap [{searchGameByID(selectedGames[0])['name']}] for [{searchGameByID(selectedGames[1])['name']}]?"
+        trueArrayList = [windowLogProcess(f"[{searchGameByID(selectedGames[0])['name']}] swapped for [{searchGameByID(selectedGames[1])['name']}] in personal games list")]
+        falseArrayList = [windowLogProcess(f"Cancelled a game swap in the personal list")]
+        return createStandardConfirmationWindow(processText, "Swap Confirmation", trueArrayList, falseArrayList)
 
     def closeWindowRequest(self):
-        editGameConfirmationWindow = QMessageBox()
-        editGameConfirmationWindow.setText(f"Game swap was successful, would you like to close the window?")
-        editGameConfirmationWindow.setWindowTitle("Game Swap Successful")
-        editGameConfirmationWindow.setStandardButtons(QMessageBox.Yes | QMessageBox.No)
+        processText = f"Game swap was successful, would you like to close the window?"
+        trueArrayList = [windowLogProcess("Game Swap Successful"), self.returnToPreviousPage, self.closeWindowRequestSignal.emit, self.updatePersonalList]
+        createStandardConfirmationWindow(processText, "Game Swap Successful", trueArrayList, [])
 
-        returnValue = editGameConfirmationWindow.exec_()
-
-        if returnValue == QMessageBox.Yes:
-            logProcess(f"Closing personal games list window")
-            self.returnToPreviousPage()
-            return True
-        if returnValue == QMessageBox.No:
-            return False

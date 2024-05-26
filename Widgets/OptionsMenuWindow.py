@@ -166,8 +166,11 @@ class MainMenu(QWidget):
 
         # reset the last game id
         data["lastGameId"] = 16
-        updateJSONData(data)
+        # updateJSONData(data)
         logProcess("Fully reset saved application data")
+
+    def refreshAndCloseWindow(self):
+        printMeese()
 
 
 # __COLOR MENU LAYOUT__
