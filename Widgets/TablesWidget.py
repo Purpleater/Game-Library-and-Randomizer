@@ -1,5 +1,6 @@
 from common import *
 from Widgets.EditPersonalGameListWindow import EditPersonalGameListWindow
+from Widgets.OptionsMenuWindow import MainMenu
 
 
 class TablesWidget(QWidget):
@@ -12,6 +13,7 @@ class TablesWidget(QWidget):
 
     def widgetUI(self):
 
+        self.optionsMenu = MainMenu()
 
         self.mainLayout = QVBoxLayout()
         self.tableLayout = QHBoxLayout()

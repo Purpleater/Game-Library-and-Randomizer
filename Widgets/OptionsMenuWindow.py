@@ -2,6 +2,7 @@ import common
 from common import *
 
 
+
 def returnToMainMenuRequest(process, returnMethod):
     closeRequestWindow = QMessageBox()
     closeRequestWindow.setText(f"{process} successful, would you like to return to the main menu?")
@@ -24,6 +25,7 @@ class MainMenu(QWidget):
     showColorPaletteButtonSignal = pyqtSignal()
     closeMenuSignal = pyqtSignal()
     showToggleWidgetsWindowSignal = pyqtSignal()
+    closeApplicationSignal = pyqtSignal()
 
     def __init__(self):
         super().__init__()
@@ -166,11 +168,18 @@ class MainMenu(QWidget):
 
         # reset the last game id
         data["lastGameId"] = 16
-        # updateJSONData(data)
+        updateJSONData(data)
         logProcess("Fully reset saved application data")
+        self.refreshAndCloseWindow()
 
     def refreshAndCloseWindow(self):
-        printMeese()
+        self.secondResetValidation.decisionInput.clear()
+        self.secondResetValidation.hide()
+        self.refreshApplicationWidgetSignal()
+
+    def refreshApplicationWidgetSignal(self):
+        self.closeApplicationSignal.emit()
+
 
 
 # __COLOR MENU LAYOUT__

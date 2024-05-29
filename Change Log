@@ -1,5 +1,8 @@
 This text document is used to keep track of all of the changes that I make to this program. The top-most updates are the most recent.
 
+______5/29/2024______
+- Created a function and signal set that closes the entire application window after completely resetting application data
+
 ______5/26/2024______
 - Adjusted a function that helps to reduce the bloat of confirmation windows and makes it so that all confirmation windows route back to the same function
 - Fixed a few grammatical errors. Don't know where they are? Exactly.

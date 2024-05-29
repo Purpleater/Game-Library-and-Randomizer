@@ -15,6 +15,7 @@ from Widgets.CustomPointsValueWindow import CustomPointsValueWidget
 from Widgets.EditPersonalGameListWindow import EditPersonalGameListWindow
 from Widgets.CustomStyleSheetNamingWindow import CustomStyleSheetNamingWindow
 from Widgets.OptionsMenuWindow import OptionsMenu
+from Widgets.OptionsMenuWindow import ResetAllDataConfirmationWindow
 
 
 
@@ -83,7 +84,7 @@ class MainApplication(QMainWindow):
             self.editGameListWindow,
             self.customPointsValueWidget,
             self.editPersonalGamesListInfo,
-            self.optionsMenu
+            self.optionsMenu,
         ]
 
         # color selected signal
@@ -106,6 +107,9 @@ class MainApplication(QMainWindow):
 
         # Connect signal that closes the options menu
         self.optionsMenu.mainMenu.closeMenuSignal.connect(self.hideOptionsWindow)
+
+        # Connect signal that closes the application after all data has been fully reset
+        self.optionsMenu.mainMenu.closeApplicationSignal.connect(self.showApplicationResetWindow)
 
         # because I wanted to have both the points widget and weekly information widget below the tables
         # I combined these two widgets into the same layout
@@ -177,6 +181,17 @@ class MainApplication(QMainWindow):
     def quitApplication(self):
         logProcess("Closing application")
         QApplication.quit()
+
+    def showApplicationResetWindow(self):
+        resetWindowConfirmation = QMessageBox()
+        resetWindowConfirmation.setText("Saved data has been fully reset, this application will close now.")
+        resetWindowConfirmation.setWindowTitle("Restart Notice")
+        resetWindowConfirmation.setStandardButtons(QMessageBox.Ok)
+
+        returnValue = resetWindowConfirmation.exec_()
+
+        if returnValue == QMessageBox.Ok:
+            self.quitApplication()
 
 
 
