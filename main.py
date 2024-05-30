@@ -15,11 +15,13 @@ from Widgets.CustomPointsValueWindow import CustomPointsValueWidget
 from Widgets.EditPersonalGameListWindow import EditPersonalGameListWindow
 from Widgets.CustomStyleSheetNamingWindow import CustomStyleSheetNamingWindow
 from Widgets.OptionsMenuWindow import OptionsMenu
-from Widgets.OptionsMenuWindow import ResetAllDataConfirmationWindow
+
 
 
 
 class MainApplication(QMainWindow):
+    # signal for styling application
+    applyStylingSignal = pyqtSignal()
 
     def __init__(self):
         super().__init__()
@@ -111,6 +113,9 @@ class MainApplication(QMainWindow):
         # Connect signal that closes the application after all data has been fully reset
         self.optionsMenu.mainMenu.closeApplicationSignal.connect(self.showApplicationResetWindow)
 
+        # connect applyAllStyle signal
+        self.applyStylingSignal.connect(self.loadAllStyling)
+
         # because I wanted to have both the points widget and weekly information widget below the tables
         # I combined these two widgets into the same layout
         self.informationButtonLayout.addWidget(self.pointInfoWidget)
@@ -144,12 +149,18 @@ class MainApplication(QMainWindow):
             style = stylesheet.read()
             self.setStyleSheet(style)
 
+    def loadAllStyling(self):
+        data = loadJSONData()
+        savedPalette = data['savedColorPalette']
+        self.applyAllStyles(savedPalette)
+
     def applyAllStyles(self, palette):
         massApplyStyles(self.widgetList, palette)
         self.updateColorPalette(palette)
         self.tableWidget.applyIndividualStyling(palette.lower())
         self.editGameListWindow.applyIndividualStyling(palette.lower())
         self.customPointsValueWidget.applyIndividualStyling(palette.lower())
+        self.editPersonalGamesListInfo.swapInMenu.styleInputField(palette.lower())
         logProcess(f"Applied ({palette}) to program")
 
     def showEditPersonalGamesWindow(self):
@@ -199,6 +210,7 @@ def main():
     app = QApplication(sys.argv)
     mainApplication = MainApplication()
     mainApplication.loadPreferredColorPalette()
+    mainApplication.applyStylingSignal.emit()
     massApplyStyles(mainApplication.getWidgetList(), loadColorPallet())
     mainApplication.show()
     sys.exit((app.exec_()))

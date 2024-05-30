@@ -167,6 +167,9 @@ class SwapInMenu(QWidget):
                 if searchValue in game["name"].lower():
                     self.selectionList.addItem(game["name"])
 
+    def styleInputField(self, palette):
+        self.listSearch.setStyleSheet(setColorForInputLines(palette))
+
     def submitGame(self):
         selectedSwapInGame = getIdByName(self.selectionList.selectedItems()[0].text())
         selectedGames = [self.selectedSwapOutGame, selectedSwapInGame]
@@ -206,4 +209,5 @@ class SwapInMenu(QWidget):
         processText = f"Game swap was successful, would you like to close the window?"
         trueArrayList = [windowLogProcess("Game Swap Successful"), self.returnToPreviousPage, self.closeWindowRequestSignal.emit, self.updatePersonalList]
         createStandardConfirmationWindow(processText, "Game Swap Successful", trueArrayList, [])
+
 

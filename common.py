@@ -229,8 +229,12 @@ def setColorForInputLines(palette):
         "black-space": "yellow",
         "strange-waters": "",
     }
-    print("applying to input lines")
-    return f"QLineEdit:focus{{color:{inputLineDictionary[palette]};}}"
+
+    styling = (
+        f"QLineEdit{{color:{inputLineDictionary[palette]}; border: 1px solid {inputLineDictionary[palette]}}}"
+        f"QLineEdit:focus{{color:{inputLineDictionary[palette]};}}"
+    )
+    return styling
 
 
 def logProcess(process):

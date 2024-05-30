@@ -1,5 +1,5 @@
 {
-    "savedColorPalette": "black-space",
+    "savedColorPalette": "sunset",
     "colorPaletteList": [
         "Contrast",
         "Sunset",
@@ -69,7 +69,7 @@
         121,
         3
     ],
-    "numberOfPoints": 25,
+    "numberOfPoints": 26,
     "lastGameId": 162,
     "fullGameList": [
         {

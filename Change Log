@@ -2,6 +2,10 @@ This text document is used to keep track of all of the changes that I make to th
 
 ______5/29/2024______
 - Created a function and signal set that closes the entire application window after completely resetting application data
+- Fixed the issue where styling to particular parts of the program wouldn't be applied upon load
+- Added a method that allows for the styling of the search field in the editPersonalGamesList Swap-In menu
+- Removed the annoying white border from various input boxes
+    + (Known Issue) Currently these input boxes aren't exactly easily recognizable as, well, input boxes. I plan to adjust this later.
 
 ______5/26/2024______
 - Adjusted a function that helps to reduce the bloat of confirmation windows and makes it so that all confirmation windows route back to the same function
