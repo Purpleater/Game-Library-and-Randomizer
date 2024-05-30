@@ -5,6 +5,8 @@ ______5/30/2024______
 - Alleviated a very temporary error where the "sunset" color theme would make the selected list item text and background color the same.
 - Adjusted the wording on the positive/negative combo box in the points adjustment window
 - Deleted some old comments that don't matter anymore
+- Implemented the code that allows you add custom stylesheets to the Color Palettes file directory.
+    + (Known Issue) This feature isn't fully flushed out yet, so it lacks the ability to add a name to the UI list and also the ability to style more...tricky aspects.
 
 
 ______5/29/2024______
@@ -40,7 +42,7 @@ ______5/17/2024______
   This is why you don't program past 3am kids.
 
 ______5/16/2024______
-- Created a back button for the window that makes you input the word 'cheeseburge' to check to see if you want to reset all of the application's data.
+- Created a back button for the window that makes you input the word 'cheeseburger' to check to see if you want to reset all of the application's data.
 - Started writing the code that will allow for the user to fully reset the application's data.
     + (Known Issue) The code hasn't been fully implemented to link with the json files
 

@@ -1,3 +1,5 @@
+import shutil
+
 import common
 from common import *
 
@@ -225,6 +227,31 @@ class ColorWidgetMenu(QWidget):
         updateJSONData(data)
         logProcess("Saved currently applied palette")
         returnToMainMenuRequest("Save", self.returnToMainMenu)
+
+    def addCustomStylesheet(self):
+        options = QFileDialog.Options()
+        options |= QFileDialog.DontUseNativeDialog
+
+        fileName, _ = QFileDialog.getOpenFileName(self, "Select File", "", "All Files (*)", options=options)
+
+        if fileName.endswith(".css"):
+            splitFile = fileName.split("/")[-1]
+            if self.addCustomStylesheetConfirmationWindow(splitFile):
+                shutil.copy(fileName, 'Color Palettes')
+                showProcessConfirmationWindow(f"Addition of the ({splitFile}) file successful")
+        else:
+            errorWindow = QErrorMessage(self)
+            errorWindow.showMessage("The file that you have selected is not a .css file.")
+
+    def addCustomStylesheetConfirmationWindow(self, fileName):
+        promptString = f"Would you like to add ({fileName}) to the styling directory?"
+        windowTitle = "Stylesheet Addition Confirmation"
+        return createStandardConfirmationWindow(promptString, windowTitle, [], [])
+
+
+
+
+
 
 class ToggleWidgetsMenu(QWidget):
     returnToMainMenuSignal = pyqtSignal()
