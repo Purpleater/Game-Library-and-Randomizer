@@ -97,18 +97,6 @@ class MainMenu(QWidget):
     def resetAllData(self):
         data = loadJSONData()
 
-        '''
-        RESET THE FOLLOWING: 
-        - savedColorPalette (back to contrast, or some other bright styling) ✓
-        - savedDate ✓ 
-        - gameOfTheWeek ✓ 
-        - rollgameList ✓
-        - cardDrawList ✓
-        - personalGameList ✓
-        - number of points ✓
-        - lastGameID ✓
-        - fullGameList ✓
-        '''
         data["savedColorPalette"] = 'contrast'
         data["savedDate"] = datetime.now().strftime("%Y,%m,%d")
         data["fullGameList"] = []
@@ -204,6 +192,7 @@ class ColorWidgetMenu(QWidget):
         self.returnToMenuButton = QPushButton("Return To Main Menu")
 
         self.returnToMenuButton.clicked.connect(self.returnToMainMenu)
+        self.addCustomFile.clicked.connect(self.addCustomStylesheet)
 
         self.mainLayout.addWidget(self.palettelistSelection)
         self.mainLayout.addWidget(self.testColorPaletteButton)
@@ -236,7 +225,6 @@ class ColorWidgetMenu(QWidget):
         updateJSONData(data)
         logProcess("Saved currently applied palette")
         returnToMainMenuRequest("Save", self.returnToMainMenu)
-
 
 class ToggleWidgetsMenu(QWidget):
     returnToMainMenuSignal = pyqtSignal()

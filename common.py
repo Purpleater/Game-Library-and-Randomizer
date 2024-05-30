@@ -220,7 +220,7 @@ def setColorForInputLines(palette):
         "contrast": "white",
         "sunset": "#5c374c",
         "black-space": "yellow",
-        "strange-waters": "#296647",
+        "strange-waters": "#23AD8F",
 
     }
     fontWeight = {
@@ -230,8 +230,15 @@ def setColorForInputLines(palette):
         "strange-waters": "",
     }
 
+    inputBorderColor = {
+        "contrast": "white",
+        "sunset": "#985277",
+        "black-space": "white",
+        "strange-waters": "#23AD8F"
+    }
+
     styling = (
-        f"QLineEdit{{color:{inputLineDictionary[palette]}; border: 1px solid {inputLineDictionary[palette]}}}"
+        f"QLineEdit{{color:{inputLineDictionary[palette]}; border: 2px solid {inputBorderColor[palette]}}}"
         f"QLineEdit:focus{{color:{inputLineDictionary[palette]};}}"
     )
     return styling

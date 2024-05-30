@@ -6,7 +6,6 @@ QMainWindow{
 
 QWidget{
     background-color: #ff8c61;
-    color: white;
 }
 
 QPushButton{
@@ -102,7 +101,7 @@ QScrollBar{
 }
 #editGameListWindow QListWidget::item:selected{
     background-color: #5c374c;
-    color: #5c374c;
+    color: #faa275;
 }
 
 #editGameListWindow QScrollBar{

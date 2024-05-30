@@ -13,9 +13,9 @@ class CustomPointsValueWidget(QWidget):
 
         self.inputLabel = QLineEdit()
         self.plusMinus = QComboBox()
-        self.plusMinus.addItems(["+", "-"])
+        self.plusMinus.addItems(["Add (+)", "Subtract (-)"])
         self.plusMinus.setStyleSheet(setColorPalletForComboBox(loadColorPallet()))
-        self.numberLabel = QLabel("Please provide the amount of points you would like to add/subtract: ")
+        self.numberLabel = QLabel("Input the number of points you would like to add/subtract: ")
         self.submitButton = QPushButton("Add/Subtract Points")
 
         # connect button to function
@@ -75,4 +75,4 @@ class CustomPointsValueWidget(QWidget):
 
     def applyIndividualStyling(self, palette):
         self.plusMinus.setStyleSheet(setColorPalletForComboBox(palette))
-
+        self.inputLabel.setStyleSheet(setColorForInputLines(palette))

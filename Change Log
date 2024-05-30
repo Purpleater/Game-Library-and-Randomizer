@@ -1,5 +1,12 @@
 This text document is used to keep track of all of the changes that I make to this program. The top-most updates are the most recent.
 
+______5/30/2024______
+- Finished applying styling all parts of the application
+- Alleviated a very temporary error where the "sunset" color theme would make the selected list item text and background color the same.
+- Adjusted the wording on the positive/negative combo box in the points adjustment window
+- Deleted some old comments that don't matter anymore
+
+
 ______5/29/2024______
 - Created a function and signal set that closes the entire application window after completely resetting application data
 - Fixed the issue where styling to particular parts of the program wouldn't be applied upon load
