@@ -196,7 +196,7 @@ class ColorWidgetMenu(QWidget):
         self.returnToMenuButton = QPushButton("Return To Main Menu")
 
         self.returnToMenuButton.clicked.connect(self.returnToMainMenu)
-        self.addCustomFile.clicked.connect(self.addCustomStylesheet)
+        self.addCustomFile.clicked.connect(self.getCustomStyleSheet)
 
         self.mainLayout.addWidget(self.palettelistSelection)
         self.mainLayout.addWidget(self.testColorPaletteButton)
@@ -230,23 +230,25 @@ class ColorWidgetMenu(QWidget):
         logProcess("Saved currently applied palette")
         returnToMainMenuRequest("Save", self.returnToMainMenu)
 
-    def addCustomStylesheet(self):
+    def getCustomStyleSheet(self):
         options = QFileDialog.Options()
         options |= QFileDialog.DontUseNativeDialog
 
         fileName, _ = QFileDialog.getOpenFileName(self, "Select File", "", "All Files (*)", options=options)
 
-        if fileName.endswith(".css"):
+        #FINISH THIS LATER WHEN YOUR BRAIN ISN'T FRIED
+        '''
+                if fileName.endswith(".css"):
             splitFile = fileName.split("/")[-1]
-            if not checkForPreexistingFile("Color Palettes", splitFile) and self.addCustomStylesheetConfirmationWindow(splitFile):
+            if not checkForPreexistingFile("Color Palettes", splitFile) and self.addCustomStylesheetConfirmationWindow(splitFile) and self.customStylingWindow.submitInformation():
                 self.showStyleSheetNamingWindow()
-            # shutil.copy(fileName, 'Color Palettes')
-            # showProcessConfirmationWindow(f"Addition of the ({splitFile}) file successful")
+                    shutil.copy(fileName, 'Color Palettes')
+                showProcessConfirmationWindow(f"Addition of the ({splitFile}) file successful")
 
         else:
             errorWindow = QErrorMessage(self)
             errorWindow.showMessage("The file that you have selected is not a .css file.")
-
+        '''
     def addCustomStylesheetConfirmationWindow(self, fileName):
         promptString = f"Would you like to add ({fileName}) to the styling directory?"
         windowTitle = "Stylesheet Addition Confirmation"
