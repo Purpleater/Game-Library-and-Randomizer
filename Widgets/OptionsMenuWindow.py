@@ -2,7 +2,7 @@ import shutil
 
 import common
 from common import *
-
+from Widgets.CustomStyleSheetNamingWindow import CustomStyleSheetNamingWindow
 
 
 def returnToMainMenuRequest(process, returnMethod):
@@ -171,7 +171,6 @@ class MainMenu(QWidget):
         self.closeApplicationSignal.emit()
 
 
-
 # __COLOR MENU LAYOUT__
 class ColorWidgetMenu(QWidget):
     returnToMainMenuSignal = pyqtSignal()
@@ -185,6 +184,9 @@ class ColorWidgetMenu(QWidget):
         self.mainLayout = QVBoxLayout()
         self.palettelistSelection = QListWidget()
         self.loadThemeList()
+
+        # import the custom stylesheet naming window
+        self.customStylingWindow = CustomStyleSheetNamingWindow()
 
         self.testColorPaletteButton = QPushButton("Test Color Palette")
         self.testColorPaletteButton.clicked.connect(self.testColorPalette)
@@ -236,9 +238,11 @@ class ColorWidgetMenu(QWidget):
 
         if fileName.endswith(".css"):
             splitFile = fileName.split("/")[-1]
-            if self.addCustomStylesheetConfirmationWindow(splitFile):
-                shutil.copy(fileName, 'Color Palettes')
-                showProcessConfirmationWindow(f"Addition of the ({splitFile}) file successful")
+            if not checkForPreexistingFile("Color Palettes", splitFile) and self.addCustomStylesheetConfirmationWindow(splitFile):
+                self.showStyleSheetNamingWindow()
+            # shutil.copy(fileName, 'Color Palettes')
+            # showProcessConfirmationWindow(f"Addition of the ({splitFile}) file successful")
+
         else:
             errorWindow = QErrorMessage(self)
             errorWindow.showMessage("The file that you have selected is not a .css file.")
@@ -248,7 +252,9 @@ class ColorWidgetMenu(QWidget):
         windowTitle = "Stylesheet Addition Confirmation"
         return createStandardConfirmationWindow(promptString, windowTitle, [], [])
 
-
+    def showStyleSheetNamingWindow(self):
+        self.customStylingWindow.setWindowTitle("Set Style Name")
+        self.customStylingWindow.show()
 
 
 

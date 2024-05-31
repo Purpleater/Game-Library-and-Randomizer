@@ -29,6 +29,10 @@ class CustomStyleSheetNamingWindow(QWidget):
 
 
     def submitInformation(self):
-        printMeese()
+        try:
+            stylesheetName = self.nameInput.text()
+        except ValueError:
+            errorMessage = QErrorMessage()
+            errorMessage.showMessage("Please provide a name for the stylesheet")
 
 

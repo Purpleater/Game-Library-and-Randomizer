@@ -7,6 +7,7 @@ from PyQt5.QtCore import Qt, pyqtSignal, QObject
 from PyQt5.QtGui import QColor
 from datetime import *
 from PyQt5.QtCore import pyqtSignal
+import os
 
 completionStatusReference = {
     "Incomplete": 0,
@@ -109,6 +110,7 @@ def showProcessConfirmationWindow(specificProcess):
         processConfirmationWindow.setWindowTitle("Success")
 
         returnValue = processConfirmationWindow.exec_()
+
     return processConfirmation()
 
 
@@ -294,6 +296,13 @@ def getIdByName(gameName):
     for game in loadSortedList():
         if gameName == game["name"]:
             return game["id"]
+
+
+def checkForPreexistingFile(directory, newFile):
+    directoryFiles = os.listdir(directory)
+    if newFile in directoryFiles:
+        logProcess("Duplicate styling file detected")
+        return True
 
 
 # this is just a debug method

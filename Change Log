@@ -7,6 +7,7 @@ ______5/30/2024______
 - Deleted some old comments that don't matter anymore
 - Implemented the code that allows you add custom stylesheets to the Color Palettes file directory.
     + (Known Issue) This feature isn't fully flushed out yet, so it lacks the ability to add a name to the UI list and also the ability to style more...tricky aspects.
+- Created a function that checks to make sure the user isn't adding a custom styling sheet that shares a name already present in the directory
 
 
 ______5/29/2024______
