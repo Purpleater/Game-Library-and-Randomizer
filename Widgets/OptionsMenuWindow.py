@@ -1,8 +1,10 @@
 import shutil
 
+import Widgets.StyleSheetSetter
 import common
 from common import *
 from Widgets.CustomStyleSheetNamingWindow import CustomStyleSheetNamingWindow
+
 
 
 def returnToMainMenuRequest(process, returnMethod):
@@ -211,9 +213,10 @@ class ColorWidgetMenu(QWidget):
 
     def testColorPalette(self):
         selectedPalette = self.palettelistSelection.selectedItems()[0].text()
-        common.currentlyAppliedColorScheme = selectedPalette
-        if selectedPalette:
-            self.testColorTheme.emit(selectedPalette)
+        paletteFile = Widgets.StyleSheetSetter.processTheme(selectedPalette)
+        common.currentlyAppliedColorScheme = paletteFile
+        if paletteFile:
+            self.testColorTheme.emit(paletteFile)
         logProcess(f"Temporarily applied the ({selectedPalette}) palette")
 
     def loadThemeList(self):
@@ -221,11 +224,11 @@ class ColorWidgetMenu(QWidget):
         paletteList = data["colorPaletteList"]
         self.mainLayout.addWidget(self.palettelistSelection)
         for i in range(len(paletteList)):
-            self.palettelistSelection.addItem(paletteList[i])
+            self.palettelistSelection.addItem(paletteList[i]["name"])
 
     def saveAppliedPalette(self):
         data = loadJSONData()
-        data['savedColorPalette'] = common.currentlyAppliedColorScheme.lower()
+        data['savedColorPalette'] = common.currentlyAppliedColorScheme
         updateJSONData(data)
         logProcess("Saved currently applied palette")
         returnToMainMenuRequest("Save", self.returnToMainMenu)

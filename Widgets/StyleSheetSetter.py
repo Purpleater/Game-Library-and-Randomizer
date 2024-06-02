@@ -13,8 +13,18 @@ def setStyle(widget, colorPalette):
         style = stylesheet.read()
     widget.setStyleSheet(style)
 
+
 def massApplyStyles(moduleList, colorPalette):
     for item in moduleList:
         setStyle(item, colorPalette)
 
     logProcess(f"Applied ({colorPalette}) theme to program")
+
+
+def processTheme(listSelectValue):
+    data = loadJSONData()
+    themeList = data["colorPaletteList"]
+    for palette in themeList:
+        if palette["name"] == listSelectValue:
+            print(palette["file"])
+            return palette["file"]

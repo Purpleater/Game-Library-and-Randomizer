@@ -1,5 +1,8 @@
 This text document is used to keep track of all of the changes that I make to this program. The top-most updates are the most recent.
 
+______6/01/2024______
+- Made the theme-loading methods more robust. That way they'll be able to handle the navigation of custom theme stylesheets
+
 ______5/30/2024______
 - Finished applying styling all parts of the application
 - Alleviated a very temporary error where the "sunset" color theme would make the selected list item text and background color the same.

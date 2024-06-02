@@ -1,10 +1,22 @@
 {
-    "savedColorPalette": "strange-waters",
+    "savedColorPalette": "black-space",
     "colorPaletteList": [
-        "Contrast",
-        "Sunset",
-        "Black-Space",
-        "Strange-Waters"
+        {
+            "name": "Contrast",
+            "file": "contrast"
+        },
+        {
+            "name": "Sunset",
+            "file": "sunset"
+        },
+        {
+            "name": "Black Space",
+            "file": "black-space"
+        },
+        {
+            "name": "Strange Waters",
+            "file": "strange-waters"
+        }
     ],
     "savedDate": "2024,05,26",
     "gameOfTheWeek": 131,
@@ -69,7 +81,7 @@
         121,
         3
     ],
-    "numberOfPoints": 27,
+    "numberOfPoints": 30,
     "lastGameId": 162,
     "fullGameList": [
         {
