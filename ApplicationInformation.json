@@ -3,23 +3,39 @@
     "colorPaletteList": [
         {
             "name": "Contrast",
-            "file": "contrast"
+            "file": "contrast",
+
+            "inputLineStyling": ["white", "white"],
+            "tableCornerColor": "black",
+            "comboBoxStyling": ["white", "white", ""]
         },
         {
             "name": "Sunset",
-            "file": "sunset"
+            "file": "sunset",
+
+            "inputLineStyling": ["#5c374c", "#985277"],
+            "tableCornerColor": "#ff8c61",
+            "comboBoxStyling": ["#985277", "#5c374c", "font-weight: bold;"]
         },
         {
             "name": "Black Space",
-            "file": "black-space"
+            "file": "black-space",
+
+            "inputLineStyling": ["#c79c00", "#white"],
+            "tableCornerColor": "#c79c00",
+            "comboBoxStyling": ["#D4D4D4", "#D4D4D4", ""]
         },
         {
             "name": "Strange Waters",
-            "file": "strange-waters"
+            "file": "strange-waters",
+
+            "inputLineStyling": ["#23AD8F", "#23AD8F"],
+            "tableCornerColor": "#173535",
+            "comboBoxStyling": ["#296647", "#23AD8F", ""]
         }
     ],
-    "savedDate": "2024,05,26",
-    "gameOfTheWeek": 131,
+    "savedDate": "2024,06,02",
+    "gameOfTheWeek": 135,
     "weeklyListSelection": [
         "Want To Continue Playing",
         "Roll",
@@ -30,41 +46,41 @@
         "Roll"
     ],
     "rollGameList": [
-        27,
-        70,
-        132,
-        116,
-        149,
-        135,
-        126,
-        70,
-        74,
-        36,
-        135,
-        149,
+        34,
+        39,
+        109,
+        67,
+        82,
+        5,
+        80,
         146,
+        143,
+        22,
+        135,
+        22,
+        136,
+        156,
+        31,
+        56,
+        90,
         45,
-        35,
-        113,
-        46,
-        86,
-        43,
+        81,
         -1
     ],
     "cardDrawList": [
-        155,
-        25,
-        135,
-        84,
-        52,
-        44,
-        12,
-        68,
-        22,
-        146,
-        105,
+        67,
+        75,
+        136,
+        107,
+        144,
+        129,
+        36,
+        156,
+        114,
         11,
-        108,
+        27,
+        47,
+        60,
         -1
     ],
     "personalGameList": [
@@ -81,7 +97,7 @@
         121,
         3
     ],
-    "numberOfPoints": 30,
+    "numberOfPoints": 88,
     "lastGameId": 162,
     "fullGameList": [
         {

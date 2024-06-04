@@ -30,12 +30,17 @@ class CustomPointsValueWidget(QWidget):
 
         self.setLayout(self.mainLayout)
 
-
+    def processInteger(self):
+        if self.plusMinus.currentText() == "Add (+)":
+            return "+"
+        elif self.plusMinus.currentText() == "Subtract (-)":
+            return "-"
 
     def adjustPointValue(self):
         data = loadJSONData()
         totalPointsNumber = data['numberOfPoints']
-        completeNumber = f'{self.plusMinus.currentText()}{self.inputLabel.text()}'
+
+        completeNumber = f'{self.processInteger()}{self.inputLabel.text()}'
 
         totalPointsNumber += int(completeNumber)
         data['numberOfPoints'] = totalPointsNumber

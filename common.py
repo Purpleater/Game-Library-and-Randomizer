@@ -176,72 +176,53 @@ def setStyle(widget, colorPalette):
     print(f'Applied ({colorPalette}) style to: {widget}')
 
 
-def setColorPalletForComboBox(colorPalette):
-    borderColorDictionary = {
-        "contrast": "white",
-        "sunset": "#985277",
-        "black-space": "#D4D4D4",
-        "strange-waters": "#296647",
-    }
-    textColorDictionary = {
-        "contrast": "white",
-        "sunset": "#5c374c",
-        "black-space": "#D4D4D4",
-        "strange-waters": "#23AD8F",
+def setColorPalletForComboBox(palette):
+    # idk why but I started at the bottom for all manual styling and then went up from there
+    # whatever
+    # [0] for the border color
+    # [1] for textColor
+    # [2] for the font weight of the combo box
 
-    }
-    fontWeight = {
-        "contrast": "",
-        "sunset": "font-weight: bold;",
-        "black-space": "",
-        "strange-waters": "",
-    }
-    editableTextColor = {
-        "contrast": "white",
-        "sunset": "#5c374c",
-        "black-space": "yellow",
-        "strange-waters": "#296647",
+    paletteList = loadJSONData()["colorPaletteList"]
+    stylingList = []
+    for item in paletteList:
+        if palette == item["file"]:
+            stylingList = item["comboBoxStyling"]
+    borderColor = stylingList[0]
+    textColor = stylingList[1]
+    fontWeight = stylingList[2]
 
-    }
-    borderColor = borderColorDictionary[colorPalette]
-    return f"QComboBox {{ border: 1px solid {borderColor}; color: {textColorDictionary[colorPalette]}; {fontWeight[colorPalette]};}}"
+    return f"QComboBox {{ border: 1px solid {borderColor}; color: {textColor}; {fontWeight};}}"
 
 
 def setColorofTableCorner(palette):
-    cornerColorDictionary = {
-        "contrast": "black",
-        "sunset": "#ff8c61",
-        "black-space": "#c79c00",
-        "strange-waters": "#173535",
-    }
-    return f"QTableView QTableCornerButton::section{{ background: {cornerColorDictionary[palette]}; }}"
+    paletteList = loadJSONData()["colorPaletteList"]
+    cornerColor = ''
+    for item in paletteList:
+        if palette == item["file"]:
+            cornerColor = item["tableCornerColor"]
+
+    return f"QTableView QTableCornerButton::section{{ background: {cornerColor}; }}"
 
 
 def setColorForInputLines(palette):
-    inputLineDictionary = {
-        "contrast": "white",
-        "sunset": "#5c374c",
-        "black-space": "yellow",
-        "strange-waters": "#23AD8F",
+    # drawing from colorPaletteList in ApplicationInformation.json
+    # more specifically the inputLineStyling array, which stores the hexcode values
+    # [0] in the array is the inputLine Coloring
+    # [1] is the border color
 
-    }
-    fontWeight = {
-        "contrast": "",
-        "sunset": "font-weight: bold;",
-        "black-space": "yellow",
-        "strange-waters": "",
-    }
+    paletteList = loadJSONData()["colorPaletteList"]
+    stylingList = []
+    for item in paletteList:
+        if palette == item["file"]:
+            stylingList = item["inputLineStyling"]
 
-    inputBorderColor = {
-        "contrast": "white",
-        "sunset": "#985277",
-        "black-space": "white",
-        "strange-waters": "#23AD8F"
-    }
+    inputTextStylingColor = stylingList[0]
+    inputBorderColor = stylingList[1]
 
     styling = (
-        f"QLineEdit{{color:{inputLineDictionary[palette]}; border: 2px solid {inputBorderColor[palette]}}}"
-        f"QLineEdit:focus{{color:{inputLineDictionary[palette]};}}"
+        f"QLineEdit{{color:{inputTextStylingColor}; border: 2px solid {inputBorderColor}}}"
+        f"QLineEdit:focus{{color:{inputTextStylingColor};}}"
     )
     return styling
 

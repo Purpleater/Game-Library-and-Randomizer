@@ -1,7 +1,12 @@
 This text document is used to keep track of all of the changes that I make to this program. The top-most updates are the most recent.
 
+______6/04/2024______
+- Changed up some of the values for the black space styling
+- Made the styling of the more particular widgets (i.e inputLines, Comboboxes, etc.) more dynamic to allow for the implementation of new stylesheets
+
 ______6/01/2024______
 - Made the theme-loading methods more robust. That way they'll be able to handle the navigation of custom theme stylesheets
+- Fixed a small error where the adjustment of the wording in the custom point adjustment window prevented a user from adding points
 
 ______5/30/2024______
 - Finished applying styling all parts of the application
