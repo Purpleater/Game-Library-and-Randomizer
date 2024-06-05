@@ -3,6 +3,7 @@ This text document is used to keep track of all of the changes that I make to th
 ______6/04/2024______
 - Changed up some of the values for the black space styling
 - Made the styling of the more particular widgets (i.e inputLines, Comboboxes, etc.) more dynamic to allow for the implementation of new stylesheets
+- Starting to implement the ability for the user to add in details to the more specific styling points
 
 ______6/01/2024______
 - Made the theme-loading methods more robust. That way they'll be able to handle the navigation of custom theme stylesheets

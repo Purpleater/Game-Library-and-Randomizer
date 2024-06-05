@@ -20,7 +20,6 @@ def returnToMainMenuRequest(process, returnMethod):
     if returnValue == QMessageBox.No:
         return
 
-
 # the only reason I'm adding multiple classes here is because I"m experimenting with stacked widgets
 # that and also these menus are going to be hidden within the main layout anyways so it makes sense that I would consolidate related components
 
@@ -239,19 +238,18 @@ class ColorWidgetMenu(QWidget):
 
         fileName, _ = QFileDialog.getOpenFileName(self, "Select File", "", "All Files (*)", options=options)
 
-        #FINISH THIS LATER WHEN YOUR BRAIN ISN'T FRIED
-        '''
-                if fileName.endswith(".css"):
+        if fileName.endswith(".css"):
             splitFile = fileName.split("/")[-1]
-            if not checkForPreexistingFile("Color Palettes", splitFile) and self.addCustomStylesheetConfirmationWindow(splitFile) and self.customStylingWindow.submitInformation():
+            if not checkForPreexistingFile("Color Palettes", splitFile) and self.addCustomStylesheetConfirmationWindow(splitFile):
                 self.showStyleSheetNamingWindow()
-                    shutil.copy(fileName, 'Color Palettes')
-                showProcessConfirmationWindow(f"Addition of the ({splitFile}) file successful")
 
+                # UNCOMMENT THESE LATER
+                # shutil.copy(fileName, 'Color Palettes')
+                # showProcessConfirmationWindow(f"Addition of the ({splitFile}) file successful")
         else:
             errorWindow = QErrorMessage(self)
-            errorWindow.showMessage("The file that you have selected is not a .css file.")
-        '''
+            errorWindow.showMessage("The file that you have selected is not a .css file")
+
     def addCustomStylesheetConfirmationWindow(self, fileName):
         promptString = f"Would you like to add ({fileName}) to the styling directory?"
         windowTitle = "Stylesheet Addition Confirmation"
