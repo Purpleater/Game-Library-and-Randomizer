@@ -1,5 +1,9 @@
 This text document is used to keep track of all of the changes that I make to this program. The top-most updates are the most recent.
 
+______6/06/2024______
+- Added the rest of the stylesheet submission form
+- Created a system that prevents the user from continuing to the next step of the submission process until all of the fields are filled to some sort of capacity.
+
 ______6/04/2024______
 - Changed up some of the values for the black space styling
 - Made the styling of the more particular widgets (i.e inputLines, Comboboxes, etc.) more dynamic to allow for the implementation of new stylesheets
