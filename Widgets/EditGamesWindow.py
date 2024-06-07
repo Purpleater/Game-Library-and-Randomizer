@@ -1,6 +1,5 @@
 from common import *
 
-
 def showGameEditConfirmationWindow():
     promptString = "The game that you are trying to submit is already present within the list. Would you like to re-submit this information?"
     windowTitle = "Edit Game Confirmation"

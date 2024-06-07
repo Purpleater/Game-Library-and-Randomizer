@@ -1,10 +1,40 @@
 from common import *
 
+comboBoxFontWeightRef = {
+    0: "N/A",
+    1: "",
+    2: "Bold"
+}
+
+class Stylesheet:
+    def __init__(self, name, file, inputLineStylingList, tableCornerColor, comboBoxStylingList):
+        self.name = name
+        self.file = file
+        self.inputStyling = inputLineStylingList
+        self.tableCornerColor = tableCornerColor
+        self.comboBoxStyling = comboBoxStylingList
+
+    def toJSON(self):
+        return {
+            "name": self.name,
+            "file": self.file,
+            "inputLineStyling": self.inputStyling,
+            "tableCornerColor": self.tableCornerColor,
+            "comboBoxStyling": self.comboBoxStyling
+        }
+
 class CustomStyleSheetNamingWindow(QWidget):
     addStyleSignal = pyqtSignal()
     def __init__(self):
         super().__init__()
         self.widgetUI()
+
+        self.styleSheetName = ''
+        self.styleSheetFileName = ''
+        self.inputLineStylingList = []
+        self.tableCornerColor = ''
+        self.comboBoxStylingList = []
+        self.styleSheetFilePath = ''
 
     def widgetUI(self):
         self.mainLayout = QStackedLayout()
@@ -21,7 +51,7 @@ class CustomStyleSheetNamingWindow(QWidget):
         self.sheetNameSubmitButton.setEnabled(False)
 
         self.styleSheetNameInput.textChanged.connect(self.checkIfFileNameInputHasCharacters)
-        self.sheetNameSubmitButton.clicked.connect(self.showLineEditInformationWindow)
+        self.sheetNameSubmitButton.clicked.connect(self.submitFileNameInformation)
 
         self.menu1FormLayout.addWidget(self.sheetNamePromptLabel)
         self.menu1FormLayout.addWidget(self.styleSheetNameInput)
@@ -50,7 +80,7 @@ class CustomStyleSheetNamingWindow(QWidget):
         self.lineEditSubmissionButton = QPushButton("Submit")
         self.lineEditSubmissionButton.setEnabled(False)
 
-        self.lineEditSubmissionButton.clicked.connect(self.showTableCornerInformationWindow)
+        self.lineEditSubmissionButton.clicked.connect(self.submitInputFieldStylingInformation)
         self.lineEditBackButton.clicked.connect(self.showStylesheetNamingMenu)
 
         self.lineEditButtonRow.addWidget(self.lineEditBackButton)
@@ -81,7 +111,7 @@ class CustomStyleSheetNamingWindow(QWidget):
         self.tableCornerSubmitButton.setEnabled(False)
 
         self.tableCornerBackButton.clicked.connect(self.showLineEditInformationWindow)
-        self.tableCornerSubmitButton.clicked.connect(self.showComboBoxInformationWindow)
+        self.tableCornerSubmitButton.clicked.connect(self.submitTableCornerInformation)
 
         self.menu3MainLayout.addLayout(self.tableCornerFormRow)
         self.menu3MainLayout.addLayout(self.tableCornerButtonRow)
@@ -122,6 +152,7 @@ class CustomStyleSheetNamingWindow(QWidget):
         self.comboBoxSubmitButton.setEnabled(False)
 
         self.comboBoxBackButton.clicked.connect(self.showTableCornerInformationWindow)
+        self.comboBoxSubmitButton.clicked.connect(self.submitComboBoxInformation)
 
         self.menu4MainLayout.addLayout(self.comboBoxBorderColorRow)
         self.menu4MainLayout.addLayout(self.comboBoxTextColorRow)
@@ -146,6 +177,10 @@ class CustomStyleSheetNamingWindow(QWidget):
         else:
             self.sheetNameSubmitButton.setEnabled(True)
 
+    def submitFileNameInformation(self):
+        self.styleSheetName = self.styleSheetNameInput.text()
+        self.showLineEditInformationWindow()
+
     def checkIfInputFieldStyleFieldsHaveCharacters(self):
         textColorInput = self.lineEditTextColorInput.text()
         borderColorInput = self.lineEditBorderColorInput.text()
@@ -155,6 +190,12 @@ class CustomStyleSheetNamingWindow(QWidget):
         else:
             self.lineEditSubmissionButton.setEnabled(True)
 
+    def submitInputFieldStylingInformation(self):
+        inputFieldTextColor = self.lineEditTextColorInput.text()
+        inputFieldBorderColor = self.lineEditBorderColorInput.text()
+        self.inputLineStylingList = [f'#{inputFieldTextColor}', f'#{inputFieldBorderColor}']
+        self.showTableCornerInformationWindow()
+
     def checkIfTableCornerFieldHasCharacters(self):
         tableCornerInput = self.tableCornerColorInput.text()
 
@@ -163,21 +204,51 @@ class CustomStyleSheetNamingWindow(QWidget):
         else:
             self.tableCornerSubmitButton.setEnabled(True)
 
+    def submitTableCornerInformation(self):
+        tableCornerColor = self.tableCornerColorInput.text()
+        self.tableCornerColor = f'#{tableCornerColor}'
+        self.showComboBoxInformationWindow()
+
     def checkIfAllComboBoxInformationIsComplete(self):
         comboBoxBorderInput = self.comboBoxBorderColorInput.text()
         comboBoxTextColorInput = self.comboBoxTextColorInput.text()
         comboBoxFontWeightSelection = self.comboBoxFontWeightList.currentIndex()
 
-        if comboBoxFontWeightSelection == "Select Option":
-            comboBoxFontWeightSelection = ""
-
-        if len(comboBoxBorderInput) == 0 or len(comboBoxTextColorInput) == 0 or comboBoxFontWeightSelection == "":
+        comboBoxFontWeightSelection = comboBoxFontWeightRef[comboBoxFontWeightSelection]
+        if len(comboBoxBorderInput) == 0 or len(comboBoxTextColorInput) == 0 or comboBoxFontWeightSelection == 'N/A':
             self.comboBoxSubmitButton.setEnabled(False)
         else:
             self.comboBoxSubmitButton.setEnabled(True)
 
-    def submitSheetNameInformation(self):
-        self.showLineEditInformationWindow()
+    def submitComboBoxInformation(self):
+        comboBoxBorderColor = self.comboBoxBorderColorInput.text()
+        comboBoxTextColor = self.comboBoxTextColorInput.text()
+        comboBoxFontWeight = self.comboBoxFontWeightList.currentIndex()
+
+        if comboBoxFontWeightRef[comboBoxFontWeight] == "Bold":
+            comboBoxFontWeight = "font-weight: bold;"
+
+        self.comboBoxStylingList = [f'#{comboBoxBorderColor}', f'#{comboBoxTextColor}', comboBoxFontWeight]
+        self.submitFullSheetInformation()
+
+    def submitFullSheetInformation(self):
+
+        newStyleSheet = Stylesheet(
+            self.styleSheetName,
+            self.styleSheetFileName,
+            self.inputLineStylingList,
+            self.tableCornerColor,
+            self.comboBoxStylingList
+        )
+
+        print(newStyleSheet.toJSON())
+
+        self.showStylingConfirmationWindow()
+
+        # UNCOMMENT THESE LATER
+        # shutil.copy(fileName, 'Color Palettes')
+        # showProcessConfirmationWindow(f"Addition of the ({splitFile}) file successful")
+
         '''
                 data = loadJSONData()
         nameInput = self.styleSheetNameInput.text()
@@ -212,6 +283,17 @@ class CustomStyleSheetNamingWindow(QWidget):
 
     def showComboBoxInformationWindow(self):
         self.mainLayout.setCurrentIndex(3)
+
+    def showStylingConfirmationWindow(self):
+        textString = f"Does the following information look correct?\n\n" \
+                     f"Stylesheet Name: ({self.styleSheetName})\nStylesheet Filepath: ({self.styleSheetFilePath})\n\n" \
+                     f"Input field text color: ({self.inputLineStylingList[0]})\n Input field border color: ({self.inputLineStylingList[1]})\n\n" \
+                     f"Table Corner Color: ({self.tableCornerColor})\n\n" \
+                     f"Combo Box Border Color: ({self.comboBoxStylingList[0]})\nCombo Box Text Color: ({self.comboBoxStylingList[1]})\n Combo Box Font Weight: ({self.comboBoxStylingList[2]})"
+        windowTitle = "Stylesheet Info Confirmation"
+        trueProcessArray = []
+        falseProcessArray = []
+        createStandardConfirmationWindow(textString, windowTitle, trueProcessArray, falseProcessArray)
 
 
 

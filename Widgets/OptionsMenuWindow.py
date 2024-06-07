@@ -241,11 +241,9 @@ class ColorWidgetMenu(QWidget):
         if fileName.endswith(".css"):
             splitFile = fileName.split("/")[-1]
             if not checkForPreexistingFile("Color Palettes", splitFile) and self.addCustomStylesheetConfirmationWindow(splitFile):
+                self.customStylingWindow.styleSheetFileName = splitFile
+                self.customStylingWindow.styleSheetFilePath = fileName
                 self.showStyleSheetNamingWindow()
-
-                # UNCOMMENT THESE LATER
-                # shutil.copy(fileName, 'Color Palettes')
-                # showProcessConfirmationWindow(f"Addition of the ({splitFile}) file successful")
         else:
             errorWindow = QErrorMessage(self)
             errorWindow.showMessage("The file that you have selected is not a .css file")
@@ -256,7 +254,7 @@ class ColorWidgetMenu(QWidget):
         return createStandardConfirmationWindow(promptString, windowTitle, [], [])
 
     def showStyleSheetNamingWindow(self):
-        self.customStylingWindow.setWindowTitle("Set Style Name")
+        self.customStylingWindow.setWindowTitle("Set Style Information")
         self.customStylingWindow.show()
 
 
