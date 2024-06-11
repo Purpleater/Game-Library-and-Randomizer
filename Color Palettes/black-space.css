@@ -32,7 +32,7 @@ QListWidget::item:selected{
 
 QLabel{
     background-color: #1a1a1a;
-    color: #D4D4D4;
+    color: #c79c00;
     font-weight: bold;
 }
 QScrollBar{

@@ -1,5 +1,12 @@
 This text document is used to keep track of all of the changes that I make to this program. The top-most updates are the most recent.
 
+______6/10/2024______
+- Made some adjustments to text color on the "black-space" stylesheet
+- Set a maximum character limit for hex code inputs
+- Discovered that hex code validation methods look like block chain codes
+    - (Known Issue) I want to learn how this works before I implement this
+- Pretty sure I correctly implemented the ability to add custom stylesheets. I'll have to get back to that one though
+
 ______6/07/2024______
 - Continued working on the stylesheet submission form
 
@@ -13,7 +20,7 @@ ______6/04/2024______
 - Starting to implement the ability for the user to add in details to the more specific styling points
 
 ______6/01/2024______
-- Made the theme-loading methods more robust. That way they'll be able to handle the navigation of custom theme stylesheets
+- Made the theme-loading methods more robust. That way users will be able to handle the navigation of custom theme stylesheets
 - Fixed a small error where the adjustment of the wording in the custom point adjustment window prevented a user from adding points
 
 ______5/30/2024______

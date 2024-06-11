@@ -1,5 +1,3 @@
-import shutil
-
 import Widgets.StyleSheetSetter
 import common
 from common import *

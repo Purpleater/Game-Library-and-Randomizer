@@ -39,7 +39,7 @@
             "tableCornerColor": "#c79c00",
             "comboBoxStyling": [
                 "#D4D4D4",
-                "#D4D4D4",
+                "#c79c00",
                 ""
             ]
         },
@@ -58,8 +58,8 @@
             ]
         }
     ],
-    "savedDate": "2024,06,02",
-    "gameOfTheWeek": 135,
+    "savedDate": "2024,06,09",
+    "gameOfTheWeek": 83,
     "weeklyListSelection": [
         "Want To Continue Playing",
         "Roll",
@@ -70,41 +70,41 @@
         "Roll"
     ],
     "rollGameList": [
-        34,
-        39,
-        109,
-        67,
-        82,
-        5,
-        80,
-        146,
-        143,
-        22,
-        135,
-        22,
         136,
-        156,
-        31,
+        117,
+        141,
+        82,
+        39,
+        41,
+        12,
+        147,
+        138,
+        13,
+        52,
+        125,
+        97,
+        26,
+        78,
+        79,
         56,
-        90,
-        45,
-        81,
+        8,
+        15,
         -1
     ],
     "cardDrawList": [
-        67,
-        75,
-        136,
-        107,
-        144,
-        129,
-        36,
-        156,
+        141,
+        135,
+        134,
+        105,
+        39,
+        69,
+        78,
+        54,
+        64,
         114,
+        129,
+        3,
         11,
-        27,
-        47,
-        60,
         -1
     ],
     "personalGameList": [
@@ -121,7 +121,7 @@
         121,
         3
     ],
-    "numberOfPoints": 94,
+    "numberOfPoints": 108,
     "lastGameId": 162,
     "fullGameList": [
         {

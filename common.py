@@ -8,6 +8,7 @@ from PyQt5.QtGui import QColor
 from datetime import *
 from PyQt5.QtCore import pyqtSignal
 import os
+import shutil
 
 completionStatusReference = {
     "Incomplete": 0,

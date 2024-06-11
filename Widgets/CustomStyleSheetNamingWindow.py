@@ -3,7 +3,7 @@ from common import *
 comboBoxFontWeightRef = {
     0: "N/A",
     1: "",
-    2: "Bold"
+    2: "font-weight: bold;"
 }
 
 class Stylesheet:
@@ -65,12 +65,14 @@ class CustomStyleSheetNamingWindow(QWidget):
 
         self.lineEditTextColorRow = QHBoxLayout()
         self.lineEditTextColorInput = QLineEdit()
+        self.lineEditTextColorInput.setMaxLength(6)
         self.lineEditTextColorRow.addWidget(QLabel("Text Color Hex: #"))
         self.lineEditTextColorRow.addWidget(self.lineEditTextColorInput)
         self.lineEditTextColorInput.textChanged.connect(self.checkIfInputFieldStyleFieldsHaveCharacters)
 
         self.lineEditBorderColorRow = QHBoxLayout()
         self.lineEditBorderColorInput = QLineEdit()
+        self.lineEditBorderColorInput.setMaxLength(6)
         self.lineEditBorderColorRow.addWidget(QLabel("Border Color Hex: #"))
         self.lineEditBorderColorRow.addWidget(self.lineEditBorderColorInput)
         self.lineEditBorderColorInput.textChanged.connect(self.checkIfInputFieldStyleFieldsHaveCharacters)
@@ -98,6 +100,7 @@ class CustomStyleSheetNamingWindow(QWidget):
 
         self.tableCornerFormRow = QHBoxLayout()
         self.tableCornerColorInput = QLineEdit()
+        self.tableCornerColorInput.setMaxLength(6)
         self.tableCornerFormRow.addWidget(QLabel("Table Corner Hex: #"))
         self.tableCornerFormRow.addWidget(self.tableCornerColorInput)
 
@@ -123,12 +126,14 @@ class CustomStyleSheetNamingWindow(QWidget):
 
         self.comboBoxBorderColorRow= QHBoxLayout()
         self.comboBoxBorderColorInput = QLineEdit()
+        self.comboBoxBorderColorInput.setMaxLength(6)
         self.comboBoxBorderColorRow.addWidget(QLabel("Border Color Hex: #"))
         self.comboBoxBorderColorRow.addWidget(self.comboBoxBorderColorInput)
         self.comboBoxBorderColorInput.textChanged.connect(self.checkIfAllComboBoxInformationIsComplete)
 
         self.comboBoxTextColorRow= QHBoxLayout()
         self.comboBoxTextColorInput = QLineEdit()
+        self.comboBoxTextColorInput.setMaxLength(6)
         self.comboBoxTextColorRow.addWidget(QLabel("Text Color Hex: #"))
         self.comboBoxTextColorRow.addWidget(self.comboBoxTextColorInput)
         self.comboBoxBorderColorInput.textChanged.connect(self.checkIfAllComboBoxInformationIsComplete)
@@ -178,8 +183,17 @@ class CustomStyleSheetNamingWindow(QWidget):
             self.sheetNameSubmitButton.setEnabled(True)
 
     def submitFileNameInformation(self):
+        validation = True
         self.styleSheetName = self.styleSheetNameInput.text()
-        self.showLineEditInformationWindow()
+        for item in loadJSONData()["colorPaletteList"]:
+            if self.styleSheetName.lower() == item["name"].lower():
+                alertMessage = QMessageBox()
+                alertMessage.setText("The name that you have provided already exists within the given directory")
+                alertMessage.exec_()
+                self.styleSheetNameInput.clear()
+                validation = False
+        if validation:
+            self.showLineEditInformationWindow()
 
     def checkIfInputFieldStyleFieldsHaveCharacters(self):
         textColorInput = self.lineEditTextColorInput.text()
@@ -225,10 +239,7 @@ class CustomStyleSheetNamingWindow(QWidget):
         comboBoxTextColor = self.comboBoxTextColorInput.text()
         comboBoxFontWeight = self.comboBoxFontWeightList.currentIndex()
 
-        if comboBoxFontWeightRef[comboBoxFontWeight] == "Bold":
-            comboBoxFontWeight = "font-weight: bold;"
-
-        self.comboBoxStylingList = [f'#{comboBoxBorderColor}', f'#{comboBoxTextColor}', comboBoxFontWeight]
+        self.comboBoxStylingList = [f'#{comboBoxBorderColor}', f'#{comboBoxTextColor}', comboBoxFontWeightRef[comboBoxFontWeight]]
         self.submitFullSheetInformation()
 
     def submitFullSheetInformation(self):
@@ -241,25 +252,22 @@ class CustomStyleSheetNamingWindow(QWidget):
             self.comboBoxStylingList
         )
 
-        print(newStyleSheet.toJSON())
+        if self.showStylingConfirmationWindow():
+            showProcessConfirmationWindow(f"Addition of the ({self.styleSheetName}) file successful")
+            data = loadJSONData()
+            data["colorPaletteList"].append(newStyleSheet.toJSON())
+            updateJSONData(data)
+            shutil.copy(self.styleSheetFilePath, 'Color Palettes')
 
-        self.showStylingConfirmationWindow()
 
-        # UNCOMMENT THESE LATER
-        # shutil.copy(fileName, 'Color Palettes')
-        # showProcessConfirmationWindow(f"Addition of the ({splitFile}) file successful")
+
+
 
         '''
                 data = loadJSONData()
         nameInput = self.styleSheetNameInput.text()
 
-        for item in data["colorPaletteList"]:
-            if nameInput.lower() == item.lower():
-                alertMessage = QMessageBox()
-                alertMessage.setText("The name that you have provided already exists within the given directory")
-                alertMessage.exec_()
-                self.styleSheetNameInput.clear()
-                break
+        
         splitString = nameInput.split(" ")
         finalString = ''
         for item in splitString:
@@ -293,7 +301,7 @@ class CustomStyleSheetNamingWindow(QWidget):
         windowTitle = "Stylesheet Info Confirmation"
         trueProcessArray = []
         falseProcessArray = []
-        createStandardConfirmationWindow(textString, windowTitle, trueProcessArray, falseProcessArray)
+        return createStandardConfirmationWindow(textString, windowTitle, trueProcessArray, falseProcessArray)
 
 
 
