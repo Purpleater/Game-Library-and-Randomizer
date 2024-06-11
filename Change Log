@@ -1,5 +1,9 @@
 This text document is used to keep track of all of the changes that I make to this program. The top-most updates are the most recent.
 
+______6/11/2024______
+- Tested the implementation of the custom spreadsheet add option and hammered out the up-front issues
+- Added the "Flashbang" stylesheet (ow)
+
 ______6/10/2024______
 - Made some adjustments to text color on the "black-space" stylesheet
 - Set a maximum character limit for hex code inputs

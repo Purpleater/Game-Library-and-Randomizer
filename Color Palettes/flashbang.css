@@ -1,0 +1,22 @@
+QPushButton{
+    border: 1px solid #000000;
+    padding: 5px;
+    font-size: 15px;
+}
+
+QPushButton:hover{
+    background-color: #d1fff8;
+    border: 1px solid #000000;
+    padding: 5px;
+    font-size: 15px;
+}
+
+#timeSensitiveInfoWidget QLabel{
+    padding: 5px;
+    font-size: 16px;
+}
+
+#pointInfoWidget QLabel{
+    padding: 5px;
+    font-size: 16px;
+}

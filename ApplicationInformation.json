@@ -56,6 +56,20 @@
                 "#23AD8F",
                 ""
             ]
+        },
+        {
+            "name": "Flashbang",
+            "file": "flashbang",
+            "inputLineStyling": [
+                "#000000",
+                "#000000"
+            ],
+            "tableCornerColor": "#ffffff",
+            "comboBoxStyling": [
+                "#000000",
+                "#000000",
+                ""
+            ]
         }
     ],
     "savedDate": "2024,06,09",
@@ -121,7 +135,7 @@
         121,
         3
     ],
-    "numberOfPoints": 108,
+    "numberOfPoints": 111,
     "lastGameId": 162,
     "fullGameList": [
         {
