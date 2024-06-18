@@ -1,6 +1,3 @@
-
-from PyQt5.QtCore import QCoreApplication
-
 import common
 from common import *
 from Widgets.StyleSheetSetter import *
@@ -30,6 +27,7 @@ class MainApplication(QMainWindow):
 
     def getWidgetList(self):
         return self.widgetList
+
     def init_ui(self):
         self.setWindowTitle("Main Application")
         self.setGeometry(100, 100, 1200, 855)
@@ -89,32 +87,23 @@ class MainApplication(QMainWindow):
             self.optionsMenu,
         ]
 
-        # color selected signal
-        self.optionsMenu.colorThemeMenu.testColorTheme.connect(self.applyAllStyles)
+        self.signalConnections = [
+            (self.optionsMenu.colorThemeMenu.testColorTheme, self.applyAllStyles),
+            (self.tableWidget.personalGamesButtonSignal, self.showEditPersonalGamesWindow),
+            (self.pointInfoWidget.pointsAdjustmentSignal, self.showCustomPointsWindow),
+            (self.customPointsValueWidget.pointsChangedSignal, self.pointInfoWidget.updatePoints),
+            (self.editPersonalGamesListInfo.pListChangeSignal, self.refreshPersonalListTable),
+            (self.optionsButton.clicked, self.showOptionsWindow),
+            (self.optionsMenu.mainMenu.closeMenuSignal, self.hideOptionsWindow),
+            (self.optionsMenu.mainMenu.closeApplicationSignal, self.showApplicationResetWindow),
+            (self.applyStylingSignal, self.loadAllStyling)
+        ]
 
-        # signal to show personal games list window
-        self.tableWidget.personalGamesButtonSignal.connect(self.showEditPersonalGamesWindow)
+        for signal, slot in self.signalConnections:
+            signal.connect(slot)
+            print(slot)
 
-        # show custom points value window signal
-        self.pointInfoWidget.pointsAdjustmentSignal.connect(self.showCustomPointsWindow)
 
-        # Connect the custom points value widget's pointsChangedSignal to point info widget's update points function
-        self.customPointsValueWidget.pointsChangedSignal.connect(self.pointInfoWidget.updatePoints)
-
-        # Connect signal that updates the personal game list after a game has been switched out
-        self.editPersonalGamesListInfo.pListChangeSignal.connect(self.refreshPersonalListTable)
-
-        # Connect options menu button to show the options menu
-        self.optionsButton.clicked.connect(self.showOptionsWindow)
-
-        # Connect signal that closes the options menu
-        self.optionsMenu.mainMenu.closeMenuSignal.connect(self.hideOptionsWindow)
-
-        # Connect signal that closes the application after all data has been fully reset
-        self.optionsMenu.mainMenu.closeApplicationSignal.connect(self.showApplicationResetWindow)
-
-        # connect applyAllStyle signal
-        self.applyStylingSignal.connect(self.loadAllStyling)
 
         # because I wanted to have both the points widget and weekly information widget below the tables
         # I combined these two widgets into the same layout

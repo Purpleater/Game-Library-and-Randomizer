@@ -269,6 +269,7 @@ class ToggleWidgetsMenu(QWidget):
         self.mainLayout = QVBoxLayout()
 
         # create widgets
+        self.togglePointWidgetButton = QPushButton("Toggle Points Interface")
         self.backButton = QPushButton("Return To Menu")
 
         # connections

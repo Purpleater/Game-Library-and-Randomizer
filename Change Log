@@ -1,5 +1,10 @@
 This text document is used to keep track of all of the changes that I make to this program. The top-most updates are the most recent.
 
+______6/17/2024______
+- Readjusted the table layout to include labels specifying what each table is
+- Attempting (key word here) to add a means of updating table information after a game's title has been updated.
+    + (Known Issue) I think I might have maxed out my signal slots for main. I am currently investigating the issue
+    
 ______6/11/2024______
 - Tested the implementation of the custom spreadsheet add option and hammered out the up-front issues
 - Added the "Flashbang" stylesheet (ow)

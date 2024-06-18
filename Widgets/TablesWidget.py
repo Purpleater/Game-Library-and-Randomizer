@@ -27,18 +27,33 @@ class TablesWidget(QWidget):
 
         # __TABLES LAYOUT__
 
-        # Dice Roll Table
+        # Dice Roll Table Layout
+        self.rollTableLayout = QVBoxLayout()
+        self.rollTableLabel = QLabel("D20 Table")
+        self.rollTableLabel.setAlignment(Qt.AlignCenter)
+
         self.rollTable = QTableWidget(20, 1, self)
         self.rollTable.setHorizontalHeaderLabels(["Game"])
         self.rollTable.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
         self.rollTable.setStyleSheet(setColorofTableCorner(loadColorPallet()))
 
-        # Card Draw Table
+        self.rollTableLayout.addWidget(self.rollTableLabel)
+        self.rollTableLayout.addWidget(self.rollTable)
+
+
+        # Card Draw Table Layout
+        self.cardDrawTableLayout = QVBoxLayout()
+        self.cardDrawTableLabel = QLabel("Card Draw Table")
+        self.cardDrawTableLabel.setAlignment(Qt.AlignCenter)
+
         self.cardTable = QTableWidget(14, 2, self)
         self.cardTable.setHorizontalHeaderLabels(["Card", "Game"])
         self.cardTable.horizontalHeader().setSectionResizeMode(0, QHeaderView.Fixed)
         self.cardTable.horizontalHeader().setSectionResizeMode(1, QHeaderView.Stretch)
         self.cardTable.setStyleSheet(setColorofTableCorner(loadColorPallet()))
+
+        self.cardDrawTableLayout.addWidget(self.cardDrawTableLabel)
+        self.cardDrawTableLayout.addWidget(self.cardTable)
 
         # load the card names for the card-draw table
         for i in range(14):
@@ -47,14 +62,16 @@ class TablesWidget(QWidget):
             rowName.setForeground(QColor(Qt.black))
             self.cardTable.setItem(i, 0, rowName)
 
-        # Personal Preference Table + Button
+        # Personal Preference Table Layout
+
         self.personalTable = QTableWidget(12, 1, self)
         self.personalTable.setHorizontalHeaderLabels(["Game"])
         self.personalTable.setColumnWidth(0, 275)
         self.personalTable.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
         self.personalTable.setStyleSheet(setColorofTableCorner(loadColorPallet()))
 
-        self.loadPersonalList()
+        self.personalTableLabel =QLabel("Games I Want To Continue Playing")
+        self.personalTableLabel.setAlignment(Qt.AlignCenter)
 
         # I just decided to create the edit window here because it correlates with the personal preference table only
         self.editPersonalTableButton = QPushButton("Edit Want-To-Continue-Playing List")
@@ -65,9 +82,10 @@ class TablesWidget(QWidget):
         self.editPersonalTableButton.clicked.connect(self.showEditPersonalGamesWindow)
 
         # add widgets to table layout
-        self.tableLayout.addWidget(self.rollTable)
-        self.tableLayout.addWidget(self.cardTable)
+        self.tableLayout.addLayout(self.rollTableLayout)
+        self.tableLayout.addLayout(self.cardDrawTableLayout)
 
+        self.personalTableLayout.addWidget(self.personalTableLabel)
         self.personalTableLayout.addWidget(self.personalTable)
         self.personalTableLayout.addWidget(self.editPersonalTableButton)
 
@@ -79,6 +97,9 @@ class TablesWidget(QWidget):
         # connect buttons
         self.rerollTables.clicked.connect(self.generateTableContents)
         self.saveTables.clicked.connect(self.otherSaveAllInformationFunction)
+
+        # connect signal
+        # updateTableSignal.connect(printMeese)
 
         # add widgets to button layout
         self.buttonLayout.addWidget(self.rerollTables)
@@ -116,6 +137,15 @@ class TablesWidget(QWidget):
             item.setFlags(item.flags() & Qt.ItemIsEditable)
             item.setForeground((QColor(Qt.black)))
             self.cardTable.setItem(i, 1, item)
+
+        data = loadJSONData()
+        loadedPersonalList = data['personalGameList']
+
+        for i in range(len(loadedPersonalList)):
+            item = QTableWidgetItem(searchGameByID(loadedPersonalList[i])["name"])
+            item.setFlags(item.flags() & Qt.ItemIsEditable)
+            item.setForeground((QColor(Qt.black)))
+            self.personalTable.setItem(i, 0, item)
 
     def generateTableContents(self):
         self.diceRollList.clear()
@@ -171,17 +201,6 @@ class TablesWidget(QWidget):
             self.cardTable.setItem(i, 1, item)
 
         logProcess("Table contents generated")
-
-    def loadPersonalList(self):
-        data = loadJSONData()
-        loadedPersonalList = data['personalGameList']
-
-
-        for i in range(len(loadedPersonalList)):
-            item = QTableWidgetItem(searchGameByID(loadedPersonalList[i])["name"])
-            item.setFlags(item.flags() & Qt.ItemIsEditable)
-            item.setForeground((QColor(Qt.black)))
-            self.personalTable.setItem(i, 0, item)
 
     def saveAllInformation(self):
         data = loadJSONData()

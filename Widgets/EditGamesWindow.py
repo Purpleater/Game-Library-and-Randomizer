@@ -1,4 +1,6 @@
+import Widgets.TablesWidget
 from common import *
+
 
 def showGameEditConfirmationWindow():
     promptString = "The game that you are trying to submit is already present within the list. Would you like to re-submit this information?"
@@ -13,7 +15,6 @@ class EditGameWindow(QWidget):
         self.currentGameID = -1
 
     def widgetUI(self):
-
 
         self.mainLayout = QVBoxLayout()
         self.inputForm = QFormLayout()
@@ -77,8 +78,7 @@ class EditGameWindow(QWidget):
         self.mainLayout.addWidget(self.deleteGameButton)
         self.setLayout(self.mainLayout)
 
-        # the method that loads all of the games and adds them to the list
-
+    # the method that loads all of the games and adds them to the list
     def populateList(self):
         self.editGameSelectionList.clear()
         self.editGameSelectionList.addItem(
@@ -97,15 +97,18 @@ class EditGameWindow(QWidget):
         if validation == 1:
             completionStatus = findDictionaryKey(completionStatusReference, self.completionStatus.currentIndex())
             replayabilityStatus = findDictionaryKey(replayabilityStatusReference, self.replayabilityFactor.currentIndex())
-            editExistingGameInformation(self.currentGameID, gameName, completionStatus, replayabilityStatus)
+            # editExistingGameInformation(self.currentGameID, gameName, completionStatus, replayabilityStatus)
+            updateTableSignal.emit()
             self.populateList()
             self.resetPage()
+
 
         if validation == 2:
             newGame = Game(gameName, completionStatus, replayabilityStatus)
             updateFullGameList(newGame.toJSON())
             closeWindowRequest("Game submission", self)
             self.populateList()
+
             self.resetPage()
         if validation == 0:
             logProcess("Edit of pre-existing entry cancelled")

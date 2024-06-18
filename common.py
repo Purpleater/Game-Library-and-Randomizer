@@ -3,10 +3,9 @@ import random
 from PyQt5.QtWidgets import *
 import json
 from json import JSONEncoder
-from PyQt5.QtCore import Qt, pyqtSignal, QObject
+from PyQt5.QtCore import Qt, pyqtSignal, QObject, pyqtSlot, pyqtSignal
 from PyQt5.QtGui import QColor
 from datetime import *
-from PyQt5.QtCore import pyqtSignal
 import os
 import shutil
 
@@ -29,6 +28,7 @@ weeklySelectionPool = ["Roll", "Roll", "Card Draw", "Card Draw", "Want To Contin
                        "Free Day"]
 currentlyAppliedColorScheme = ""
 
+# updateTableSignal = pyqtSignal()
 
 class Game:
     def __init__(self, name, completed, replayabilityFactor):
