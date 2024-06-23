@@ -28,8 +28,6 @@ weeklySelectionPool = ["Roll", "Roll", "Card Draw", "Card Draw", "Want To Contin
                        "Free Day"]
 currentlyAppliedColorScheme = ""
 
-# updateTableSignal = pyqtSignal()
-
 class Game:
     def __init__(self, name, completed, replayabilityFactor):
         self.name = name

@@ -15,6 +15,7 @@ class EditGameWindow(QWidget):
         self.currentGameID = -1
 
     def widgetUI(self):
+        self.updateTableSignal = pyqtSignal()
 
         self.mainLayout = QVBoxLayout()
         self.inputForm = QFormLayout()
@@ -98,7 +99,7 @@ class EditGameWindow(QWidget):
             completionStatus = findDictionaryKey(completionStatusReference, self.completionStatus.currentIndex())
             replayabilityStatus = findDictionaryKey(replayabilityStatusReference, self.replayabilityFactor.currentIndex())
             # editExistingGameInformation(self.currentGameID, gameName, completionStatus, replayabilityStatus)
-            updateTableSignal.emit()
+            # updateTableSignal.emit()
             self.populateList()
             self.resetPage()
 

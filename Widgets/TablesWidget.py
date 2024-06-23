@@ -99,7 +99,6 @@ class TablesWidget(QWidget):
         self.saveTables.clicked.connect(self.otherSaveAllInformationFunction)
 
         # connect signal
-        # updateTableSignal.connect(printMeese)
 
         # add widgets to button layout
         self.buttonLayout.addWidget(self.rerollTables)

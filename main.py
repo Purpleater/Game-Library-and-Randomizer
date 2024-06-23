@@ -96,7 +96,8 @@ class MainApplication(QMainWindow):
             (self.optionsButton.clicked, self.showOptionsWindow),
             (self.optionsMenu.mainMenu.closeMenuSignal, self.hideOptionsWindow),
             (self.optionsMenu.mainMenu.closeApplicationSignal, self.showApplicationResetWindow),
-            (self.applyStylingSignal, self.loadAllStyling)
+            (self.applyStylingSignal, self.loadAllStyling),
+            # (self.editGameListWindow.updateTableSignal, printMeese)
         ]
 
         for signal, slot in self.signalConnections:
