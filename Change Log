@@ -1,5 +1,8 @@
 This text document is used to keep track of all of the changes that I make to this program. The top-most updates are the most recent.
 
+______6/28/2024______
+- Implemented a means of updating table information after a game's title has been updated.
+
 ______6/17/2024______
 - Readjusted the table layout to include labels specifying what each table is
 - Attempting (key word here) to add a means of updating table information after a game's title has been updated.

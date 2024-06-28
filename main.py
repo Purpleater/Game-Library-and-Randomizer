@@ -97,12 +97,12 @@ class MainApplication(QMainWindow):
             (self.optionsMenu.mainMenu.closeMenuSignal, self.hideOptionsWindow),
             (self.optionsMenu.mainMenu.closeApplicationSignal, self.showApplicationResetWindow),
             (self.applyStylingSignal, self.loadAllStyling),
-            # (self.editGameListWindow.updateTableSignal, printMeese)
+            (self.editGameListWindow.updateTableSignal, self.tableWidget.loadStoredTablesSignalMethod)
+
         ]
 
         for signal, slot in self.signalConnections:
             signal.connect(slot)
-            print(slot)
 
 
 

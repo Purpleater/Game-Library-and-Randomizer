@@ -123,6 +123,9 @@ class TablesWidget(QWidget):
     def showEditPersonalGamesWindow(self):
         self.personalGamesButtonSignal.emit()
 
+    def loadStoredTablesSignalMethod(self):
+        self.loadStoredTables(loadSpecificList("rollGameList"), loadSpecificList("cardDrawList"))
+
     def loadStoredTables(self, diceList, cardList):
 
         for i in range(20):

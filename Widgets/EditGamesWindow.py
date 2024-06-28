@@ -9,13 +9,15 @@ def showGameEditConfirmationWindow():
 
 
 class EditGameWindow(QWidget):
+    updateTableSignal = pyqtSignal()
+
     def __init__(self):
         super().__init__()
         self.widgetUI()
         self.currentGameID = -1
 
     def widgetUI(self):
-        self.updateTableSignal = pyqtSignal()
+
 
         self.mainLayout = QVBoxLayout()
         self.inputForm = QFormLayout()
@@ -98,8 +100,8 @@ class EditGameWindow(QWidget):
         if validation == 1:
             completionStatus = findDictionaryKey(completionStatusReference, self.completionStatus.currentIndex())
             replayabilityStatus = findDictionaryKey(replayabilityStatusReference, self.replayabilityFactor.currentIndex())
-            # editExistingGameInformation(self.currentGameID, gameName, completionStatus, replayabilityStatus)
-            # updateTableSignal.emit()
+            editExistingGameInformation(self.currentGameID, gameName, completionStatus, replayabilityStatus)
+            self.updateTableSignal.emit()
             self.populateList()
             self.resetPage()
 
