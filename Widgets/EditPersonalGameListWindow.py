@@ -29,6 +29,7 @@ class EditPersonalGameListWindow(QWidget):
         self.swapInMenu.backSignal.connect(self.showSwapOutMenu)
         self.swapInMenu.updatePersonalListSignal.connect(self.updatePersonalList)
         self.swapInMenu.closeWindowRequestSignal.connect(self.hide)
+        self.swapInMenu.updateSwapOutSignal.connect(self.swapOutMenu.populateList)
 
         # set the main layout as, well, the main layout
         self.setLayout(self.mainLayout)
@@ -91,10 +92,12 @@ class SwapOutMenu(QWidget):
         self.selectedGameSignal.emit(getIdByName(self.selectionList.selectedItems()[0].text()))
 
 
+
 class SwapInMenu(QWidget):
     backSignal = pyqtSignal()
     updatePersonalListSignal = pyqtSignal()
     closeWindowRequestSignal = pyqtSignal()
+    updateSwapOutSignal= pyqtSignal()
 
     def __init__(self):
         super().__init__()
@@ -207,7 +210,7 @@ class SwapInMenu(QWidget):
 
     def closeWindowRequest(self):
         processText = f"Game swap was successful, would you like to close the window?"
-        trueArrayList = [windowLogProcess("Game Swap Successful"), self.returnToPreviousPage, self.closeWindowRequestSignal.emit, self.updatePersonalList]
+        trueArrayList = [windowLogProcess("Game Swap Successful"), self.returnToPreviousPage, self.closeWindowRequestSignal.emit, self.updatePersonalList, self.updatePersonalList, self.updateSwapOutSignal.emit]
         createStandardConfirmationWindow(processText, "Game Swap Successful", trueArrayList, [])
 
 

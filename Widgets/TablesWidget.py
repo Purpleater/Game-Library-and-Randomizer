@@ -233,3 +233,13 @@ class TablesWidget(QWidget):
         self.rollTable.setStyleSheet(setColorofTableCorner(palette))
         self.cardTable.setStyleSheet(setColorofTableCorner(palette))
         self.personalTable.setStyleSheet(setColorofTableCorner(palette))
+
+    def loadPersonalList(self):
+        data = loadJSONData()
+        loadedPersonalList = data['personalGameList']
+
+        for i in range(len(loadedPersonalList)):
+            item = QTableWidgetItem(searchGameByID(loadedPersonalList[i])["name"])
+            item.setFlags(item.flags() & Qt.ItemIsEditable)
+            item.setForeground((QColor(Qt.black)))
+            self.personalTable.setItem(i, 0, item)

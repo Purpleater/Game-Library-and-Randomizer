@@ -256,13 +256,9 @@ class CustomStyleSheetNamingWindow(QWidget):
             showProcessConfirmationWindow(f"Addition of the ({self.styleSheetName}) file successful")
             data = loadJSONData()
             data["colorPaletteList"].append(newStyleSheet.toJSON())
-            # updateJSONData(data)
-            # shutil.copy(self.styleSheetFilePath, 'Color Palettes')
+            updateJSONData(data)
+            shutil.copy(self.styleSheetFilePath, 'Color Palettes')
             closeWindowRequest("Stylesheet addition", self)
-
-
-
-
 
         '''
                 data = loadJSONData()

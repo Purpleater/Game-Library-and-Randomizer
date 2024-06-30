@@ -1,5 +1,5 @@
 {
-    "savedColorPalette": "black-space",
+    "savedColorPalette": "aurora",
     "colorPaletteList": [
         {
             "name": "Contrast",
@@ -70,6 +70,20 @@
                 "#000000",
                 ""
             ]
+        },
+        {
+            "name": "Aurora",
+            "file": "aurora",
+            "inputLineStyling": [
+                "#89ce94",
+                "#86A59"
+            ],
+            "tableCornerColor": "#86A59",
+            "comboBoxStyling": [
+                "#86A59",
+                "#89CE9",
+                "font-weight: bold;"
+            ]
         }
     ],
     "savedDate": "2024,06,23",
@@ -132,10 +146,10 @@
         11,
         90,
         125,
-        121,
+        47,
         3
     ],
-    "numberOfPoints": 130,
+    "numberOfPoints": 182,
     "lastGameId": 162,
     "fullGameList": [
         {

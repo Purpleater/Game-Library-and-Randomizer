@@ -1,7 +1,11 @@
 This text document is used to keep track of all of the changes that I make to this program. The top-most updates are the most recent.
 
+______6/29/2024______
+- Fixed some issues associated with the personal games list and the swapping out games (for the umpteenth time since I started this project)
+- Modified some of the stylesheets after adding the table description table labels.
+
 ______6/28/2024______
-- Implemented a means of updating table information after a game's title has been updated.
+- Implemented a means of updating table information after a game's title/information has been updated
 
 ______6/17/2024______
 - Readjusted the table layout to include labels specifying what each table is
