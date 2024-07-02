@@ -261,24 +261,81 @@ class ColorWidgetMenu(QWidget):
 class ToggleWidgetsMenu(QWidget):
     returnToMainMenuSignal = pyqtSignal()
 
+    pointsUISignal = pyqtSignal(bool)
+    dailyWeeklySignal = pyqtSignal(bool)
+
     def __init__(self):
         super().__init__()
         self.widgetUI()
+
+        self.pointsUIPreference = ''
+        self.dailyWeeklyUIPreference = ''
+
 
     def widgetUI(self):
         self.mainLayout = QVBoxLayout()
 
         # create widgets
-        self.togglePointWidgetButton = QPushButton("Toggle Points Interface")
+        self.togglePointWidgetButton = QCheckBox("Point UI Toggle")
+        self.toggleTimeSensitiveUI = QCheckBox("Weekly Game + List Toggle")
+        self.saveChangesButton = QPushButton("Save Changes")
         self.backButton = QPushButton("Return To Menu")
+
 
         # connections
         self.backButton.clicked.connect(self.returnToMainMenu)
+        self.togglePointWidgetButton.stateChanged.connect(self.changePointsUIPreference)
+        self.toggleTimeSensitiveUI.stateChanged.connect(self.changeDailyWeeklyUIPreference)
 
         # add widgets
+        self.mainLayout.addWidget(self.togglePointWidgetButton)
+        self.mainLayout.addWidget(self.toggleTimeSensitiveUI)
+        self.mainLayout.addWidget(self.saveChangesButton)
         self.mainLayout.addWidget(self.backButton)
 
+        self.loadTogglePreferences()
         self.setLayout(self.mainLayout)
+
+    def loadTogglePreferences(self):
+        data = loadJSONData()
+
+        self.pointsUIPreference = data["uiTogglePreferences"]["pointsUI"]
+        self.dailyWeeklyUIPreference = data["uiTogglePreferences"]["dailyWeeklyUI"]
+
+        if self.pointsUIPreference:
+            self.togglePointWidgetButton.setCheckState(1)
+            print(self.togglePointWidgetButton.checkState())
+        else:
+            self.togglePointWidgetButton.setCheckState(0)
+
+        if self.dailyWeeklyUIPreference:
+            self.toggleTimeSensitiveUI.setCheckState(1)
+            print(self.toggleTimeSensitiveUI.checkState())
+
+        logProcess("Loaded UI Preferences")
+
+    def pingPointsUISignal(self):
+        self.pointsUISignal.emit(bool(self.pointsUIPreference))
+
+    def pingDailyWeeklySignal(self):
+        self.dailyWeeklySignal.emit(bool(self.dailyWeeklyUIPreference))
+
+
+    def changePointsUIPreference(self):
+        if self.pointsUIPreference:
+            self.pointsUIPreference = False
+        else:
+            self.pointsUIPreference = True
+        logProcess(f'Changed Points UI Preference To: {self.pointsUIPreference}')
+        self.pingPointsUISignal()
+
+    def changeDailyWeeklyUIPreference(self):
+        if self.dailyWeeklyUIPreference:
+            self.dailyWeeklyUIPreference = False
+        else:
+            self.dailyWeeklyUIPreference = True
+        logProcess(f'Changed Daily/Weekly UI Preference To: {self.dailyWeeklyUIPreference}')
+        self.pingDailyWeeklySignal()
 
     def returnToMainMenu(self):
         self.returnToMainMenuSignal.emit()

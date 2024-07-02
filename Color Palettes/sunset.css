@@ -31,7 +31,6 @@ QListWidget::item:selected{
 }
 
 QLabel{
-    background-color: #ff8c61;
     color: #5c374c;
     font-weight: bold;
 }
@@ -50,25 +49,23 @@ QScrollBar{
 
 /* TABLE WIDGET */
 #tableWidget QTableWidget{
- background-color: #ff8c61;
  margin: 5px;
  border: 1px solid #985277;
+ background-color: #5c374c;
 }
 
 #tableWidget QTableWidget::item{
     color: #faa275;
     border: 1px solid #985277;
+    background-color: #5c374c;
 }
 
 #tableWidget QHeaderView::section{
     background-color: #ff8c61;
     color: #5c374c;
-    font-weight: bold
+    font-weight: bold;
 }
 
-#tableWidget QWidget{
-    background-color: #5c374c;
-}
 
 #tableWidget QPushButton:hover{
     background-color: #ce6a85;

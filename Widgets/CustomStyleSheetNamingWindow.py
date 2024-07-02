@@ -126,7 +126,7 @@ class CustomStyleSheetNamingWindow(QWidget):
 
         self.comboBoxBorderColorRow= QHBoxLayout()
         self.comboBoxBorderColorInput = QLineEdit()
-        self.comboBoxBorderColorInput.setMaxLength(6)
+        self.comboBoxBorderColorInput.setMaxLength(10)
         self.comboBoxBorderColorRow.addWidget(QLabel("Border Color Hex: #"))
         self.comboBoxBorderColorRow.addWidget(self.comboBoxBorderColorInput)
         self.comboBoxBorderColorInput.textChanged.connect(self.checkIfAllComboBoxInformationIsComplete)
@@ -260,23 +260,6 @@ class CustomStyleSheetNamingWindow(QWidget):
             shutil.copy(self.styleSheetFilePath, 'Color Palettes')
             closeWindowRequest("Stylesheet addition", self)
 
-        '''
-                data = loadJSONData()
-        nameInput = self.styleSheetNameInput.text()
-
-        
-        splitString = nameInput.split(" ")
-        finalString = ''
-        for item in splitString:
-            if item != splitString[-1]:
-                finalString += item
-                finalString += "-"
-            else:
-                finalString += item
-        data["colorPaletteList"].append(finalString)
-        # updateJSONData(data)
-        self.addStyleSignal.emit()
-        '''
     def showStylesheetNamingMenu(self):
         self.mainLayout.setCurrentIndex(0)
 

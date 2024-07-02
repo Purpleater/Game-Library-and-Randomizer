@@ -97,8 +97,9 @@ class MainApplication(QMainWindow):
             (self.optionsMenu.mainMenu.closeMenuSignal, self.hideOptionsWindow),
             (self.optionsMenu.mainMenu.closeApplicationSignal, self.showApplicationResetWindow),
             (self.applyStylingSignal, self.loadAllStyling),
-            (self.editGameListWindow.updateTableSignal, self.tableWidget.loadStoredTablesSignalMethod)
-
+            (self.editGameListWindow.updateTableSignal, self.tableWidget.loadStoredTablesSignalMethod),
+            (self.optionsMenu.toggleWidgetsMenu.pointsUISignal, self.adjustPointsUI),
+            (self.optionsMenu.toggleWidgetsMenu.dailyWeeklySignal, self.adjustDailyWeeklyUI)
         ]
 
         for signal, slot in self.signalConnections:
@@ -193,6 +194,16 @@ class MainApplication(QMainWindow):
 
         if returnValue == QMessageBox.Ok:
             self.quitApplication()
+
+    def adjustPointsUI(self, signalPing):
+        if not signalPing:
+            self.pointInfoWidget.hide()
+        else:
+            self.pointInfoWidget.show()
+
+    def adjustDailyWeeklyUI(self, signalPing):
+        if not signalPing:
+            self.timeSensitiveInfoWidget.hide()
 
 
 

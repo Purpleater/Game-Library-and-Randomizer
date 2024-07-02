@@ -1,5 +1,10 @@
 This text document is used to keep track of all of the changes that I make to this program. The top-most updates are the most recent.
 
+______7/2/2024______
+- Added the Aurora stylesheet
+- Started implementing the toggle option
+- Continued working on adjusting the stylesheets to fit newer additions
+
 ______6/29/2024______
 - Fixed some issues associated with the personal games list and the swapping out games (for the umpteenth time since I started this project)
 - Modified some of the stylesheets after adding the table description table labels.
