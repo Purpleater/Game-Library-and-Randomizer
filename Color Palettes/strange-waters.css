@@ -32,7 +32,6 @@ QListWidget::item:selected{
 }
 
 QLabel{
-    background-color: #173535;
     color: #23AD8F;
     font-weight: bold;
 }
@@ -72,6 +71,10 @@ QScrollBar{
 #tableWidget QScrollBar{
     background-color: #65823C;
     border: 1px solid #A1A1A1;
+}
+
+#tableWidget QLabel{
+    background-color: #173535;
 }
 #pointInfoWidget QLabel{
     color:  #5c374c;

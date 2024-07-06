@@ -41,7 +41,7 @@ QScrollBar{
 
 /* TABLE WIDGET */
 #tableWidget QTableWidget{
- background-color: #5c374c;
+ background-color: #171325;
  margin: 5px;
  border: 1px solid #296647;
 
@@ -61,7 +61,7 @@ QScrollBar{
 }
 
 #tableWidget QHeaderView{
-    background-color: #5c374c;
+    background-color: #171325;
 }
 
 

@@ -66,6 +66,9 @@ QScrollBar{
     font-weight: bold;
 }
 
+#tableWidget QHeaderView{
+    background-color: #5c374c;
+}
 
 #tableWidget QPushButton:hover{
     background-color: #ce6a85;
@@ -76,6 +79,7 @@ QScrollBar{
     background-color: #ce6a85;
     border: 1px solid #985277;
 }
+
 #pointInfoWidget QLabel{
     color:  #5c374c;
     padding: 5px;

@@ -294,23 +294,29 @@ class ToggleWidgetsMenu(QWidget):
         self.mainLayout.addWidget(self.backButton)
 
         self.loadTogglePreferences()
+        self.pingPointsUISignal()
+        self.pingDailyWeeklySignal()
+
         self.setLayout(self.mainLayout)
 
     def loadTogglePreferences(self):
         data = loadJSONData()
 
-        self.pointsUIPreference = data["uiTogglePreferences"]["pointsUI"]
-        self.dailyWeeklyUIPreference = data["uiTogglePreferences"]["dailyWeeklyUI"]
+        if data["uiTogglePreferences"]["pointsUI"] == "False":
+            self.pointsUIPreference = ''
+
+        if data["uiTogglePreferences"]["dailyWeeklyUI"] == "False":
+            self.dailyWeeklyUIPreference = ''
 
         if self.pointsUIPreference:
-            self.togglePointWidgetButton.setCheckState(1)
-            print(self.togglePointWidgetButton.checkState())
+            self.togglePointWidgetButton.setCheckState(2)
         else:
             self.togglePointWidgetButton.setCheckState(0)
 
         if self.dailyWeeklyUIPreference:
-            self.toggleTimeSensitiveUI.setCheckState(1)
-            print(self.toggleTimeSensitiveUI.checkState())
+            self.toggleTimeSensitiveUI.setCheckState(2)
+        else:
+            self.toggleTimeSensitiveUI.setCheckState(0)
 
         logProcess("Loaded UI Preferences")
 
@@ -319,7 +325,6 @@ class ToggleWidgetsMenu(QWidget):
 
     def pingDailyWeeklySignal(self):
         self.dailyWeeklySignal.emit(bool(self.dailyWeeklyUIPreference))
-
 
     def changePointsUIPreference(self):
         if self.pointsUIPreference:

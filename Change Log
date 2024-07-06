@@ -1,5 +1,9 @@
 This text document is used to keep track of all of the changes that I make to this program. The top-most updates are the most recent.
 
+______7/6/2024______
+- Continued adjusting styling
++ (Known Issue) the toggle feature has kicked the bucket. Currently looking into the issue.
+
 ______7/2/2024______
 - Added the Aurora stylesheet
 - Started implementing the toggle option

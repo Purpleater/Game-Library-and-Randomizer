@@ -98,8 +98,8 @@ class MainApplication(QMainWindow):
             (self.optionsMenu.mainMenu.closeApplicationSignal, self.showApplicationResetWindow),
             (self.applyStylingSignal, self.loadAllStyling),
             (self.editGameListWindow.updateTableSignal, self.tableWidget.loadStoredTablesSignalMethod),
-            (self.optionsMenu.toggleWidgetsMenu.pointsUISignal, self.adjustPointsUI),
-            (self.optionsMenu.toggleWidgetsMenu.dailyWeeklySignal, self.adjustDailyWeeklyUI)
+            (self.optionsMenu.toggleWidgetsMenu.pointsUISignal, printMeese),
+            (self.optionsMenu.toggleWidgetsMenu.dailyWeeklySignal, printMeese)
         ]
 
         for signal, slot in self.signalConnections:
@@ -200,10 +200,14 @@ class MainApplication(QMainWindow):
             self.pointInfoWidget.hide()
         else:
             self.pointInfoWidget.show()
+        printMeese()
 
     def adjustDailyWeeklyUI(self, signalPing):
         if not signalPing:
             self.timeSensitiveInfoWidget.hide()
+        else:
+            self.timeSensitiveInfoWidget.show()
+        printMeese()
 
 
 
