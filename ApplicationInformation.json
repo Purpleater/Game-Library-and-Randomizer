@@ -1,5 +1,5 @@
 {
-    "savedColorPalette": "strange-waters",
+    "savedColorPalette": "black-space",
     "colorPaletteList": [
         {
             "name": "Contrast",
@@ -90,8 +90,8 @@
         "pointsUI": "False",
         "dailyWeeklyUI": "False"
     },
-    "savedDate": "2024,06,30",
-    "gameOfTheWeek": 136,
+    "savedDate": "2024,07,12",
+    "gameOfTheWeek": 66,
     "weeklyListSelection": [
         "Want To Continue Playing",
         "Roll",
@@ -102,41 +102,41 @@
         "Roll"
     ],
     "rollGameList": [
-        143,
-        152,
+        159,
+        19,
+        41,
+        136,
+        156,
         68,
-        128,
-        101,
-        23,
-        85,
-        117,
-        109,
-        158,
-        43,
-        33,
-        28,
-        138,
-        64,
-        138,
-        121,
-        22,
+        34,
+        20,
+        119,
+        79,
         31,
+        164,
+        51,
+        96,
+        22,
+        15,
+        166,
+        58,
+        155,
         -1
     ],
     "cardDrawList": [
-        70,
+        144,
+        131,
+        84,
+        82,
+        138,
+        68,
+        56,
+        27,
+        112,
+        74,
         156,
-        48,
-        109,
-        146,
-        44,
-        46,
-        108,
-        132,
-        69,
-        47,
-        83,
-        52,
+        18,
+        20,
         -1
     ],
     "personalGameList": [
@@ -153,8 +153,8 @@
         47,
         3
     ],
-    "numberOfPoints": 197,
-    "lastGameId": 162,
+    "numberOfPoints": 124,
+    "lastGameId": 170,
     "fullGameList": [
         {
             "name": "A Hat In Time",
@@ -1113,6 +1113,54 @@
         {
             "name": "Mahokenshi",
             "id": 161,
+            "completed": "Incomplete",
+            "replayabilityFactor": "Low"
+        },
+        {
+            "name": "Chillquarium",
+            "id": 162,
+            "completed": "Incomplete",
+            "replayabilityFactor": "Low"
+        },
+        {
+            "name": "Cocoon",
+            "id": 163,
+            "completed": "Incomplete",
+            "replayabilityFactor": "Low"
+        },
+        {
+            "name": "Outer Wilds",
+            "id": 164,
+            "completed": "Incomplete",
+            "replayabilityFactor": "Low"
+        },
+        {
+            "name": "Gris",
+            "id": 165,
+            "completed": "Incomplete",
+            "replayabilityFactor": "Low"
+        },
+        {
+            "name": "Journey",
+            "id": 166,
+            "completed": "Incomplete",
+            "replayabilityFactor": "Low"
+        },
+        {
+            "name": "House Flipper",
+            "id": 167,
+            "completed": "Incomplete",
+            "replayabilityFactor": "Low"
+        },
+        {
+            "name": "Manifold Garden",
+            "id": 168,
+            "completed": "Incomplete",
+            "replayabilityFactor": "Low"
+        },
+        {
+            "name": "Papers, Please",
+            "id": 169,
             "completed": "Incomplete",
             "replayabilityFactor": "Low"
         }

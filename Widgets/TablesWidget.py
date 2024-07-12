@@ -111,6 +111,7 @@ class TablesWidget(QWidget):
 
         if detectIfEnoughTimeHasPassed() is True:
             self.generateTableContents()
+            self.loadStoredTables(loadSpecificList("rollGameList"), loadSpecificList("cardDrawList"))
             self.saveAllInformation()
         else:
             self.loadStoredTables(loadSpecificList("rollGameList"), loadSpecificList("cardDrawList"))

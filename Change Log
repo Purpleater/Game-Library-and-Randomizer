@@ -1,4 +1,6 @@
 This text document is used to keep track of all of the changes that I make to this program. The top-most updates are the most recent.
+______7/12/2024______
+- Located and fixed an issue that would prevent the personal games list from loading upon a weekly reset.
 
 ______7/6/2024______
 - Continued adjusting styling
