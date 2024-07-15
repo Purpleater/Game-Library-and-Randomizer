@@ -40,7 +40,6 @@ class TablesWidget(QWidget):
         self.rollTableLayout.addWidget(self.rollTableLabel)
         self.rollTableLayout.addWidget(self.rollTable)
 
-
         # Card Draw Table Layout
         self.cardDrawTableLayout = QVBoxLayout()
         self.cardDrawTableLabel = QLabel("Card Draw Table")
@@ -70,7 +69,7 @@ class TablesWidget(QWidget):
         self.personalTable.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
         self.personalTable.setStyleSheet(setColorofTableCorner(loadColorPallet()))
 
-        self.personalTableLabel =QLabel("Games I Want To Continue Playing")
+        self.personalTableLabel = QLabel("Games I Want To Continue Playing")
         self.personalTableLabel.setAlignment(Qt.AlignCenter)
 
         # I just decided to create the edit window here because it correlates with the personal preference table only
@@ -179,7 +178,6 @@ class TablesWidget(QWidget):
             item.setForeground((QColor(Qt.black)))
             self.rollTable.setItem(i, 0, item)
 
-
         # card draw list
 
         while len(self.cardDrawList) < 14:
@@ -213,22 +211,45 @@ class TablesWidget(QWidget):
 
         data["gameOfTheWeek"] = random.choice(loadSortedList())['id']
 
+        for row in range(20):
+            rollId = getIdByName(self.rollTable.item(row, 0).text())
+            if rollId == None:
+                self.diceRollList.append(-1)
+            else:
+                self.diceRollList.append(rollId)
+
+        for row in range(14):
+            drawId = getIdByName(self.cardTable.item(row, 1).text())
+            if drawId == None:
+                self.cardDrawList.append(-1)
+            else:
+                self.cardDrawList.append(drawId)
+
+        data['rollGameList'] = self.diceRollList
+        data['cardDrawList'] = self.cardDrawList
+
         updateJSONData(data)
         replaceDate()
 
     def otherSaveAllInformationFunction(self):
-        if self.saveTableInformationConfirmationWindow():
+        confirmationValidation = self.saveTableInformationConfirmationWindow()
+        printMeese()
+        if confirmationValidation:
             self.saveAllInformation()
 
-
     def saveTableInformationConfirmationWindow(self):
-        textPrompt = f"Would you like to save the information present on the tables?"
-        windowTitle = "Save Information Confirmation"
-        trueProcessArray = [windowLogProcess("Table information saved"), showProcessConfirmationWindow("Saving of new table information")]
-        falseProcessArray = [windowLogProcess("Cancelled saving table information")]
+        confirmationWindow = QMessageBox()
+        confirmationWindow.setText(f"Would you like to save the information present on the tables?")
+        confirmationWindow.setWindowTitle("Save Information Confirmation")
+        confirmationWindow.setStandardButtons(QMessageBox.Yes | QMessageBox.No)
 
-        return createStandardConfirmationWindow(textPrompt, windowTitle, trueProcessArray, falseProcessArray)
+        returnValue = confirmationWindow.exec_()
 
+        if returnValue == QMessageBox.Yes:
+            showProcessConfirmationWindow("Saving of table information")
+            return True
+        if returnValue == QMessageBox.No:
+            return False
 
     def applyIndividualStyling(self, palette):
         self.rollTable.setStyleSheet(setColorofTableCorner(palette))

@@ -226,11 +226,13 @@ def setColorForInputLines(palette):
     )
     return styling
 
+# one of these is for standard processes
+# and the other is specifically for confirmation display windows
+# I wish it wasn't this way but this is the reality we live in
 
 def logProcess(process):
     currentTime = datetime.now().strftime('%H:%M:%S')
     print(f'{currentTime} - {process}')
-
 
 def windowLogProcess(process):
     def log():
@@ -238,7 +240,6 @@ def windowLogProcess(process):
         print(f'{currentTime} - {process}')
 
     return log
-
 
 def createStandardConfirmationWindow(textString, windowTitle, trueProcessArray, falseProcessArray):
     standardConfirmationWindow = QMessageBox()
