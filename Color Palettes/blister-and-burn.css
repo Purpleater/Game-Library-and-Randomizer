@@ -1,0 +1,70 @@
+QWidget{
+    background-color: #0C0C0C;
+}
+
+QPushButton{
+    background-color: #481E14;
+    color: #F2613F;
+    border: 1px solid #9B3922;
+    padding: 5px;
+    font-size: 15px;
+    font-weight: bold
+}
+
+QPushButton:hover{
+    background-color: #3F88C5;
+    color: #481E14;
+}
+
+QListWidget{
+    background-color: #481E14;
+    color: #F2613F;
+}
+QListWidget::item:selected{
+    background-color: #3F88C5;
+    color: #0C0C0C;
+}
+
+QLabel{
+    color: #F2613F;
+    font-weight: bold;
+}
+QScrollBar{
+    background-color: #F2613F;
+}
+
+#tableWidget QTableWidget{
+    background-color: #481E14;
+}
+#tableWidget QTableWidget::item{
+    color: #F2613F;
+    font-weight: bold;
+    border: 1px solid #9B3922;
+}
+
+#tableWidget QHeaderView::section{
+    background-color: #481E14;
+    color: #3F88C5;
+    font-weight: bold;
+}
+
+#tableWidget QHeaderView{
+    background-color: #481E14;
+}
+
+/* TIME SENSITIVE INFO WIDGET */
+#timeSensitiveInfoWidget QLabel{
+    color: #F2613F;
+    padding: 5px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+/* POINT INFO WIDGET */
+
+#pointInfoWidget QLabel{
+    color: #F2613F;
+    padding: 5px;
+    font-size: 16px;
+    font-weight: bold;
+}

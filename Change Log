@@ -1,5 +1,11 @@
 This text document is used to keep track of all of the changes that I make to this program. The top-most updates are the most recent.
 
+______7/17/2024______
+- Added a new stylesheet
+- Started attempting to restructure the application where the game of the week gets rerolled alongside the other information contents
+    + (Known Issue) This doesn't work
+    + (Known Issue) Also the toggle function is still wonky
+
 ______7/15/2024______
 - Actually re-implemented the overhauled 'save table information' function
 

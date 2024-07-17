@@ -5,6 +5,7 @@ from Widgets.OptionsMenuWindow import MainMenu
 
 class TablesWidget(QWidget):
     personalGamesButtonSignal = pyqtSignal()
+    rerollWeeklyGameSignal = pyqtSignal()
 
     def __init__(self):
         super().__init__()
@@ -201,7 +202,10 @@ class TablesWidget(QWidget):
             item.setForeground((QColor(Qt.black)))
             self.cardTable.setItem(i, 1, item)
 
-        logProcess("Table contents generated")
+        self.rerollWeeklyGameSignal.emit()
+
+
+        logProcess("New table contents generated")
 
     def saveAllInformation(self):
         data = loadJSONData()
