@@ -105,7 +105,7 @@
         "dailyWeeklyUI": "False"
     },
     "savedDate": "2024,07,17",
-    "gameOfTheWeek": 48,
+    "gameOfTheWeek": 41,
     "weeklyListSelection": [
         "Want To Continue Playing",
         "Roll",
@@ -116,26 +116,6 @@
         "Roll"
     ],
     "rollGameList": [
-        15,
-        90,
-        85,
-        125,
-        155,
-        34,
-        141,
-        58,
-        38,
-        131,
-        32,
-        168,
-        13,
-        169,
-        6,
-        85,
-        68,
-        148,
-        6,
-        -1,
         15,
         90,
         85,
@@ -171,20 +151,6 @@
         75,
         65,
         54,
-        -1,
-        163,
-        117,
-        77,
-        27,
-        68,
-        80,
-        22,
-        10,
-        19,
-        47,
-        75,
-        65,
-        54,
         -1
     ],
     "personalGameList": [
@@ -201,7 +167,7 @@
         47,
         3
     ],
-    "numberOfPoints": 153,
+    "numberOfPoints": 156,
     "lastGameId": 170,
     "fullGameList": [
         {
