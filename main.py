@@ -1,5 +1,4 @@
 import common
-from common import *
 from Widgets.StyleSheetSetter import *
 
 
@@ -100,7 +99,8 @@ class MainApplication(QMainWindow):
             (self.editGameListWindow.updateTableSignal, self.tableWidget.loadStoredTablesSignalMethod),
             (self.optionsMenu.toggleWidgetsMenu.pointsUISignal, printMeese),
             (self.optionsMenu.toggleWidgetsMenu.dailyWeeklySignal, printMeese),
-            (self.tableWidget.rerollWeeklyGameSignal, self.rerollWeeklyGame)
+            (self.tableWidget.rerollWeeklyGameSignal, self.rerollWeeklyGame),
+            (self.tableWidget.saveWeeklyGameSignal, self.saveWeeklyGame)
         ]
 
         for signal, slot in self.signalConnections:
@@ -212,6 +212,10 @@ class MainApplication(QMainWindow):
 
     def rerollWeeklyGame(self):
         self.timeSensitiveInfoWidget.setGameOfTheWeek()
+
+    def saveWeeklyGame(self):
+        self.timeSensitiveInfoWidget.saveGameOfTheWeek()
+
 
 def main():
     app = QApplication(sys.argv)

@@ -6,6 +6,7 @@ from Widgets.OptionsMenuWindow import MainMenu
 class TablesWidget(QWidget):
     personalGamesButtonSignal = pyqtSignal()
     rerollWeeklyGameSignal = pyqtSignal()
+    saveWeeklyGameSignal = pyqtSignal()
 
     def __init__(self):
         super().__init__()
@@ -113,6 +114,7 @@ class TablesWidget(QWidget):
             self.generateTableContents()
             self.loadStoredTables(loadSpecificList("rollGameList"), loadSpecificList("cardDrawList"))
             self.saveAllInformation()
+            replaceDate()
         else:
             self.loadStoredTables(loadSpecificList("rollGameList"), loadSpecificList("cardDrawList"))
             print("Data load successful")
@@ -203,17 +205,13 @@ class TablesWidget(QWidget):
             self.cardTable.setItem(i, 1, item)
 
         self.rerollWeeklyGameSignal.emit()
-
-
         logProcess("New table contents generated")
 
     def saveAllInformation(self):
         data = loadJSONData()
 
-        data['rollGameList'] = self.diceRollList
-        data['cardDrawList'] = self.cardDrawList
-
-        data["gameOfTheWeek"] = random.choice(loadSortedList())['id']
+        self.diceRollList = []
+        self.cardDrawList = []
 
         for row in range(20):
             rollId = getIdByName(self.rollTable.item(row, 0).text())
@@ -233,11 +231,15 @@ class TablesWidget(QWidget):
         data['cardDrawList'] = self.cardDrawList
 
         updateJSONData(data)
-        replaceDate()
+        self.saveWeeklyGameSignal.emit()
+        logProcess(f"Current information data set saved\n"
+                   f"New Dice Roll ID Array: {self.diceRollList}\n"
+                   f"New Card Draw ID Array: {self.cardDrawList}\n"
+                   f"New Game of The Week: {searchGameByID(loadJSONData()['gameOfTheWeek'])['name']}")
+
 
     def otherSaveAllInformationFunction(self):
         confirmationValidation = self.saveTableInformationConfirmationWindow()
-        printMeese()
         if confirmationValidation:
             self.saveAllInformation()
 

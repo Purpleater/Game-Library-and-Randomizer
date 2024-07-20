@@ -1,5 +1,9 @@
 This text document is used to keep track of all of the changes that I make to this program. The top-most updates are the most recent.
 
+______7/20/2024______
+- Finished the restructuring of the application to allow for the game of the week to be rerolled with the other information
+- Also added more logProcess functions for further debugging
+
 ______7/17/2024______
 - Added a new stylesheet
 - Started attempting to restructure the application where the game of the week gets rerolled alongside the other information contents

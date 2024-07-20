@@ -7,6 +7,8 @@ class TimeSensitiveInfoWidget(QWidget):
         self.widgetUI()
 
     def widgetUI(self):
+        self.gameOfTheWeek = ''
+
         self.mainLayout = QHBoxLayout()
 
         self.gameOfTheWeekLabel = QLabel()
@@ -32,19 +34,19 @@ class TimeSensitiveInfoWidget(QWidget):
         with open('ApplicationInformation.json', 'r') as file:
             data = json.load(file)
             loadedGameID = data["gameOfTheWeek"]
-            gameOfTheWeek = ''
 
             for game in loadSortedList():
                 if game["id"] == loadedGameID:
-                    gameOfTheWeek = game["name"]
-                    logProcess(f"Loaded weekly game ({gameOfTheWeek})")
+                    self.gameOfTheWeek = game["name"]
+                    logProcess(f"Loaded weekly game ({self.gameOfTheWeek})")
 
-            self.gameOfTheWeekLabel.setText(f"__Game of the week__\n\n{gameOfTheWeek}")
+            self.gameOfTheWeekLabel.setText(f"__Game of the week__\n\n{self.gameOfTheWeek}")
 
     def setGameOfTheWeek(self):
-        gameOfTheWeek = random.choice(loadSortedList())["name"]
+        self.gameOfTheWeek = random.choice(loadSortedList())["name"]
+
         self.gameOfTheWeekLabel.clear()
-        self.gameOfTheWeekLabel.setText(f"__Game of the week__\n\n{gameOfTheWeek}")
+        self.gameOfTheWeekLabel.setText(f"__Game of the week__\n\n{self.gameOfTheWeek}")
 
     def getSelectedList(self):
         with open('ApplicationInformation.json', 'r') as file:
@@ -63,5 +65,10 @@ class TimeSensitiveInfoWidget(QWidget):
         weeklyListSelection = weeklySelectionPool
 
         data['weeklyListSelection'] = weeklyListSelection
+        updateJSONData(data)
+
+    def saveGameOfTheWeek(self):
+        data = loadJSONData()
+        data["gameOfTheWeek"] = getIdByName(self.gameOfTheWeek)
         updateJSONData(data)
 
