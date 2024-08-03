@@ -5,7 +5,7 @@ from Widgets.OptionsMenuWindow import MainMenu
 
 class TablesWidget(QWidget):
     personalGamesButtonSignal = pyqtSignal()
-    rerollWeeklyGameSignal = pyqtSignal()
+    generateWeeklyGameSignal = pyqtSignal()
     saveWeeklyGameSignal = pyqtSignal()
 
     def __init__(self):
@@ -110,11 +110,12 @@ class TablesWidget(QWidget):
         self.mainLayout.addLayout(self.tableLayout)
         self.mainLayout.addLayout(self.buttonLayout)
 
-        if detectIfEnoughTimeHasPassed() is True:
+        if detectIfEnoughTimeHasPassed():
             self.generateTableContents()
-            self.loadStoredTables(loadSpecificList("rollGameList"), loadSpecificList("cardDrawList"))
             self.saveAllInformation()
             replaceDate()
+            self.loadStoredTables(loadSpecificList("rollGameList"), loadSpecificList("cardDrawList"))
+            self.pingWeeklyGameReroll()
         else:
             self.loadStoredTables(loadSpecificList("rollGameList"), loadSpecificList("cardDrawList"))
             print("Data load successful")
@@ -203,8 +204,7 @@ class TablesWidget(QWidget):
             item.setFlags(item.flags() & Qt.ItemIsEditable)
             item.setForeground((QColor(Qt.black)))
             self.cardTable.setItem(i, 1, item)
-
-        self.rerollWeeklyGameSignal.emit()
+        self.pingWeeklyGameReroll()
         logProcess("New table contents generated")
 
     def saveAllInformation(self):
@@ -229,13 +229,13 @@ class TablesWidget(QWidget):
 
         data['rollGameList'] = self.diceRollList
         data['cardDrawList'] = self.cardDrawList
-
         updateJSONData(data)
         self.saveWeeklyGameSignal.emit()
+
         logProcess(f"Current information data set saved\n"
                    f"New Dice Roll ID Array: {self.diceRollList}\n"
-                   f"New Card Draw ID Array: {self.cardDrawList}\n"
-                   f"New Game of The Week: {searchGameByID(loadJSONData()['gameOfTheWeek'])['name']}")
+                   f"New Card Draw ID Array: {self.cardDrawList}\n")
+
 
 
     def otherSaveAllInformationFunction(self):
@@ -271,3 +271,7 @@ class TablesWidget(QWidget):
             item.setFlags(item.flags() & Qt.ItemIsEditable)
             item.setForeground((QColor(Qt.black)))
             self.personalTable.setItem(i, 0, item)
+
+    def pingWeeklyGameReroll(self):
+        self.generateWeeklyGameSignal.emit()
+        print("this is pinging the weekly game reroll")

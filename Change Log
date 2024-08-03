@@ -1,5 +1,8 @@
 This text document is used to keep track of all of the changes that I make to this program. The top-most updates are the most recent.
 
+______8/03/2024______
+- Discovered that there apparently isn't a slot set up for one of the functions that would allow the game of the week to automatically reroll.
+
 ______7/20/2024______
 - Finished the restructuring of the application to allow for the game of the week to be rerolled with the other information
 - Also added more logProcess functions for further debugging

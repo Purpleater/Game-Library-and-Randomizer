@@ -47,6 +47,7 @@ class TimeSensitiveInfoWidget(QWidget):
 
         self.gameOfTheWeekLabel.clear()
         self.gameOfTheWeekLabel.setText(f"__Game of the week__\n\n{self.gameOfTheWeek}")
+        logProcess(f"New temporary weekly game: ({self.gameOfTheWeek})")
 
     def getSelectedList(self):
         with open('ApplicationInformation.json', 'r') as file:
@@ -68,7 +69,10 @@ class TimeSensitiveInfoWidget(QWidget):
         updateJSONData(data)
 
     def saveGameOfTheWeek(self):
+        print(self.gameOfTheWeek)
         data = loadJSONData()
         data["gameOfTheWeek"] = getIdByName(self.gameOfTheWeek)
+        print(data["gameOfTheWeek"])
         updateJSONData(data)
+        logProcess(f"New Game of The Week: {searchGameByID(loadJSONData()['gameOfTheWeek'])['name']}")
 

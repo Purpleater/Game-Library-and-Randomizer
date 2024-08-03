@@ -290,3 +290,6 @@ def checkForPreexistingFile(directory, newFile):
 # this is just a debug method
 def printMeese():
     print("Meese")
+
+def printBees():
+    print("Bees")

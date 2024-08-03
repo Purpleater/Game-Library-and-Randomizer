@@ -98,13 +98,13 @@ class MainApplication(QMainWindow):
             (self.applyStylingSignal, self.loadAllStyling),
             (self.editGameListWindow.updateTableSignal, self.tableWidget.loadStoredTablesSignalMethod),
             (self.optionsMenu.toggleWidgetsMenu.pointsUISignal, printMeese),
-            (self.optionsMenu.toggleWidgetsMenu.dailyWeeklySignal, printMeese),
-            (self.tableWidget.rerollWeeklyGameSignal, self.rerollWeeklyGame),
-            (self.tableWidget.saveWeeklyGameSignal, self.saveWeeklyGame)
+            (self.optionsMenu.toggleWidgetsMenu.dailyWeeklySignal, printBees)
         ]
 
         for signal, slot in self.signalConnections:
             signal.connect(slot)
+            print(signal)
+            print(slot)
 
 
 
@@ -212,6 +212,7 @@ class MainApplication(QMainWindow):
 
     def rerollWeeklyGame(self):
         self.timeSensitiveInfoWidget.setGameOfTheWeek()
+        print("attempting to reroll the weekly game")
 
     def saveWeeklyGame(self):
         self.timeSensitiveInfoWidget.saveGameOfTheWeek()
