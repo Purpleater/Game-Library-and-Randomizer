@@ -1,7 +1,9 @@
+import numpy as np
+
 from common import *
 
+# oh yeah lol I was looking into hex code validation
 '''
-
 import re
 
 
@@ -13,31 +15,10 @@ string = "#100"
 print(is_valid_hexa_code(string))
 '''
 
-class TestClass(QObject):  # Inherit from QObject to use signals
 
-    testSignal = pyqtSignal()  # Define the signal as a class attribute
+my_list = [1, 2, 3, 4, 5]
 
-    def __init__(self):
-        super().__init__()  # Call the superclass's constructor
+shuffled_list = sorted(my_list, key=lambda x: random.random())
 
-    def emitSignal(self):
-        self.testSignal.emit()
-
-
-class OtherTestClass:
-
-    def __init__(self):
-        self.firstTestClass = TestClass()  # Store the instance in an attribute
-        self.firstTestClass.testSignal.connect(self.printMeese)
-
-    def printMeese(self):
-        print("Signal received!")
-
-
-# Create an instance of OtherTestClass, which sets up the signal connection
-other_test_instance = OtherTestClass()
-
-# Emit the signal using the instance of TestClass stored in OtherTestClass
-other_test_instance.firstTestClass.emitSignal()
-
-
+print("Original list:", my_list)
+print("Shuffled list:", shuffled_list)

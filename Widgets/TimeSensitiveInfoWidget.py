@@ -7,6 +7,8 @@ class TimeSensitiveInfoWidget(QWidget):
         self.widgetUI()
 
     def widgetUI(self):
+
+        # GUI variables
         self.mainLayout = QHBoxLayout()
 
         self.gameOfTheWeekLabel = QLabel()
@@ -19,32 +21,34 @@ class TimeSensitiveInfoWidget(QWidget):
         self.mainLayout.addWidget(self.dailyListLabel)
         self.setLayout(self.mainLayout)
 
-        if detectIfEnoughTimeHasPassed() is True:
-            self.setGameOfTheWeek()
-            self.generateNewListSelection()
-
-        else:
-            self.loadGameOfTheWeek()
-            self.getSelectedList()
-
-
+        # Class variables
+        self.currentGameOfTheWeekID = ''
     def loadGameOfTheWeek(self):
         with open('ApplicationInformation.json', 'r') as file:
             data = json.load(file)
             loadedGameID = data["gameOfTheWeek"]
-            gameOfTheWeek = ''
+            print(loadedGameID)
 
             for game in loadSortedList():
                 if game["id"] == loadedGameID:
-                    gameOfTheWeek = game["name"]
-                    logProcess(f"Loaded weekly game ({gameOfTheWeek})")
+                    gameOfWeek = game["name"]
+                    logProcess(f"Loaded weekly game ({gameOfWeek})")
 
-            self.gameOfTheWeekLabel.setText(f"__Game of the week__\n\n{gameOfTheWeek}")
+            self.gameOfTheWeekLabel.setText(f"__Game of the week__\n\n{loadGameOfTheWeek()}")
 
-    def setGameOfTheWeek(self):
-        gameOfTheWeek = random.choice(loadSortedList())["name"]
+    def setGameOfTheWeekLabel(self):
         self.gameOfTheWeekLabel.clear()
-        self.gameOfTheWeekLabel.setText(f"__Game of the week__\n\n{gameOfTheWeek}")
+        self.gameOfTheWeekLabel.setText(f"__Game of the week__\n\n{loadGameOfTheWeek()}")
+
+
+    # this creates a temporary game of the week when the app contents are rerolled manually
+    def createTempWeeklyGame(self):
+        data = loadJSONData()
+        tempWeeklyGameSelection = random.choice(data["fullGameList"])
+        self.gameOfTheWeekLabel.setText(f"__Game of the week__\n\n{tempWeeklyGameSelection['name']}")
+        self.currentGameOfTheWeekID = tempWeeklyGameSelection['id']
+        print(f'Current Game of the Week ID: {self.currentGameOfTheWeekID}')
+
 
     def getSelectedList(self):
         with open('ApplicationInformation.json', 'r') as file:
@@ -57,11 +61,19 @@ class TimeSensitiveInfoWidget(QWidget):
         # load the weekly list and clear it
         data = loadJSONData()
         weeklyListSelection = data['weeklyListSelection']
+        print(f"Previous list selection: {weeklyListSelection}")
         weeklyListSelection.clear()
         # shuffle the base selection pool
-        random.shuffle(weeklySelectionPool)
-        weeklyListSelection = weeklySelectionPool
-
+        weeklyListSelection = sorted(weeklySelectionPool, key=lambda x: random.random())
+        print(f"New list selection: {weeklyListSelection}")
         data['weeklyListSelection'] = weeklyListSelection
         updateJSONData(data)
 
+
+    def weeklyUpdate(self, timePassedConditional):
+        if timePassedConditional:
+            self.setGameOfTheWeekLabel()
+            self.generateNewListSelection()
+        else:
+            self.loadGameOfTheWeek()
+            self.getSelectedList()

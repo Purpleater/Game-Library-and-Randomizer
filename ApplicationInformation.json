@@ -90,53 +90,53 @@
         "pointsUI": "False",
         "dailyWeeklyUI": "False"
     },
-    "savedDate": "2024,07,12",
-    "gameOfTheWeek": 66,
+    "savedDate": "2024,12,11",
+    "gameOfTheWeek": 30,
     "weeklyListSelection": [
         "Want To Continue Playing",
         "Roll",
-        "Want To Continue Playing",
         "Card Draw",
+        "Card Draw",
+        "Roll",
         "Free Day",
-        "Card Draw",
-        "Roll"
+        "Want To Continue Playing"
     ],
     "rollGameList": [
-        159,
-        19,
-        41,
-        136,
-        156,
-        68,
-        34,
-        20,
-        119,
-        79,
-        31,
-        164,
+        2,
+        42,
+        64,
+        61,
+        102,
+        128,
+        90,
+        56,
+        110,
+        161,
+        48,
         51,
-        96,
-        22,
-        15,
-        166,
-        58,
-        155,
+        176,
+        75,
+        140,
+        81,
+        68,
+        126,
+        160,
         -1
     ],
     "cardDrawList": [
-        144,
-        131,
-        84,
-        82,
-        138,
+        107,
+        71,
+        129,
+        38,
         68,
-        56,
-        27,
-        112,
-        74,
-        156,
-        18,
-        20,
+        35,
+        148,
+        69,
+        85,
+        37,
+        149,
+        164,
+        100,
         -1
     ],
     "personalGameList": [
@@ -144,17 +144,17 @@
         92,
         23,
         120,
-        22,
-        77,
+        104,
+        157,
         103,
-        11,
+        167,
         90,
-        125,
+        119,
         47,
         3
     ],
-    "numberOfPoints": 124,
-    "lastGameId": 170,
+    "numberOfPoints": 118,
+    "lastGameId": 179,
     "fullGameList": [
         {
             "name": "A Hat In Time",
@@ -381,12 +381,6 @@
         {
             "name": "Frostpunk",
             "id": 38,
-            "completed": "No Ending",
-            "replayabilityFactor": "Moderate"
-        },
-        {
-            "name": "Frozenheim",
-            "id": 39,
             "completed": "No Ending",
             "replayabilityFactor": "Moderate"
         },
@@ -1163,6 +1157,60 @@
             "id": 169,
             "completed": "Incomplete",
             "replayabilityFactor": "Low"
+        },
+        {
+            "name": "Quilts and Cats of Calico",
+            "id": 170,
+            "completed": "No Ending",
+            "replayabilityFactor": "High"
+        },
+        {
+            "name": "Dune Imperium",
+            "id": 171,
+            "completed": "No Ending",
+            "replayabilityFactor": "High"
+        },
+        {
+            "name": "Everdell",
+            "id": 172,
+            "completed": "No Ending",
+            "replayabilityFactor": "High"
+        },
+        {
+            "name": "Root",
+            "id": 173,
+            "completed": "No Ending",
+            "replayabilityFactor": "High"
+        },
+        {
+            "name": "Scythe - Digital Edition",
+            "id": 174,
+            "completed": "No Ending",
+            "replayabilityFactor": "High"
+        },
+        {
+            "name": "Sagrada",
+            "id": 175,
+            "completed": "No Ending",
+            "replayabilityFactor": "High"
+        },
+        {
+            "name": "Wingspan",
+            "id": 176,
+            "completed": "No Ending",
+            "replayabilityFactor": "High"
+        },
+        {
+            "name": "Terraforming Mars",
+            "id": 177,
+            "completed": "No Ending",
+            "replayabilityFactor": "High"
+        },
+        {
+            "name": "Nine Sols",
+            "id": 178,
+            "completed": "Incomplete",
+            "replayabilityFactor": "Moderate"
         }
     ]
 }

@@ -5,6 +5,9 @@ from Widgets.OptionsMenuWindow import MainMenu
 
 class TablesWidget(QWidget):
     personalGamesButtonSignal = pyqtSignal()
+    weeklyInfoSignal = pyqtSignal()
+    tempWeeklyGameSignal = pyqtSignal()
+    saveWeeklyGameSignal = pyqtSignal()
 
     def __init__(self):
         super().__init__()
@@ -109,15 +112,18 @@ class TablesWidget(QWidget):
         self.mainLayout.addLayout(self.tableLayout)
         self.mainLayout.addLayout(self.buttonLayout)
 
-        if detectIfEnoughTimeHasPassed() is True:
+        '''
+            if detectIfEnoughTimeHasPassed():
             self.generateTableContents()
             self.loadStoredTables(loadSpecificList("rollGameList"), loadSpecificList("cardDrawList"))
             self.saveAllInformation()
+            self.weeklyInfoSignal.emit()
         else:
             self.loadStoredTables(loadSpecificList("rollGameList"), loadSpecificList("cardDrawList"))
+            self.weeklyInfoSignal.emit(False)
             print("Data load successful")
             printNumberOfDaysLeft()
-
+        '''
         # set main layout
         self.setLayout(self.mainLayout)
 
@@ -136,6 +142,7 @@ class TablesWidget(QWidget):
             self.rollTable.setItem(i, 0, item)
 
         for i in range(len(cardList)):
+            print(cardList[i])
             item = QTableWidgetItem(searchGameByID(cardList[i])["name"])
             item.setFlags(item.flags() & Qt.ItemIsEditable)
             item.setForeground((QColor(Qt.black)))
@@ -203,28 +210,35 @@ class TablesWidget(QWidget):
             item.setForeground((QColor(Qt.black)))
             self.cardTable.setItem(i, 1, item)
 
+        self.tempWeeklyGameSignal.emit()
         logProcess("Table contents generated")
+
+
 
     def saveAllInformation(self):
         data = loadJSONData()
 
         data['rollGameList'] = self.diceRollList
         data['cardDrawList'] = self.cardDrawList
+        print(loadGameOfTheWeek())
+        # data["gameOfTheWeek"] = globalGameOfTheWeek
 
-        data["gameOfTheWeek"] = random.choice(loadSortedList())['id']
+        print(data['rollGameList'])
+        print(data['cardDrawList'])
 
         updateJSONData(data)
         replaceDate()
+        self.saveWeeklyGameSignal.emit()
 
     def otherSaveAllInformationFunction(self):
-        if self.saveTableInformationConfirmationWindow():
-            self.saveAllInformation()
+        self.saveAllInformation()
+        # if self.saveTableInformationConfirmationWindow():
 
 
     def saveTableInformationConfirmationWindow(self):
         textPrompt = f"Would you like to save the information present on the tables?"
         windowTitle = "Save Information Confirmation"
-        trueProcessArray = [windowLogProcess("Table information saved"), showProcessConfirmationWindow("Saving of new table information")]
+        trueProcessArray = [printMeese]
         falseProcessArray = [windowLogProcess("Cancelled saving table information")]
 
         return createStandardConfirmationWindow(textPrompt, windowTitle, trueProcessArray, falseProcessArray)

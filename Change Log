@@ -1,4 +1,13 @@
 This text document is used to keep track of all of the changes that I make to this program. The top-most updates are the most recent.
+
+______12/11/2024______
+- Saving the weekly game after it's been re-rolled now works.
+
+______12/08/2024______
+- Attempting to create the reroll and save function (again).
+- It seems that the weekly game stuff is working fine (for the most part).
+    + (Known Issue) Everything is rolling fine, however it fails to save after being re-rolled.
+
 ______7/12/2024______
 - Located and fixed an issue that would prevent the personal games list from loading upon a weekly reset.
 

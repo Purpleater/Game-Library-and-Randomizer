@@ -2,7 +2,6 @@ import common
 from common import *
 from Widgets.StyleSheetSetter import *
 
-
 # import Widgets
 from Widgets.TablesWidget import TablesWidget
 from Widgets.PointsAdjustmentWidget import PointsAdjustmentWidget
@@ -14,8 +13,6 @@ from Widgets.CustomStyleSheetNamingWindow import CustomStyleSheetNamingWindow
 from Widgets.OptionsMenuWindow import OptionsMenu
 
 
-
-
 class MainApplication(QMainWindow):
     # signal for styling application
     applyStylingSignal = pyqtSignal()
@@ -23,7 +20,6 @@ class MainApplication(QMainWindow):
     def __init__(self):
         super().__init__()
         self.init_ui()
-
 
     def getWidgetList(self):
         return self.widgetList
@@ -47,13 +43,11 @@ class MainApplication(QMainWindow):
         self.editGameListInformationButton.clicked.connect(self.showGameListWindow)
         self.exitButton.clicked.connect(self.quitApplication)
 
-
         # add extra settings buttons to layout
 
         self.extraSettingsBar.addWidget(self.editGameListInformationButton)
         self.extraSettingsBar.addWidget(self.optionsButton)
         self.extraSettingsBar.addWidget(self.exitButton)
-
 
         # initialize the windows within the scope of the main application
         self.tableWidget = TablesWidget()
@@ -64,7 +58,6 @@ class MainApplication(QMainWindow):
         self.editPersonalGamesListInfo = EditPersonalGameListWindow()
         self.customStyleSheetNamingWindow = CustomStyleSheetNamingWindow()
         self.optionsMenu = OptionsMenu()
-
 
         # set object names for the stylesheet to reference
 
@@ -77,6 +70,8 @@ class MainApplication(QMainWindow):
         self.customStyleSheetNamingWindow.setObjectName("customStyleSheetNamingWindow")
         self.optionsMenu.setObjectName("optionsMenu")
 
+        # relay signal slots
+        self.timeSensitivePingSignal = pyqtSignal()
         self.widgetList = [
             self.tableWidget,
             self.pointInfoWidget,
@@ -99,13 +94,13 @@ class MainApplication(QMainWindow):
             (self.applyStylingSignal, self.loadAllStyling),
             (self.editGameListWindow.updateTableSignal, self.tableWidget.loadStoredTablesSignalMethod),
             (self.optionsMenu.toggleWidgetsMenu.pointsUISignal, printMeese),
-            (self.optionsMenu.toggleWidgetsMenu.dailyWeeklySignal, printMeese)
+            (self.optionsMenu.toggleWidgetsMenu.dailyWeeklySignal, printMeese),
+            (self.tableWidget.tempWeeklyGameSignal, self.createTempWeeklyGame),
+            (self.tableWidget.saveWeeklyGameSignal, self.saveTempWeeklyGame)
         ]
 
         for signal, slot in self.signalConnections:
             signal.connect(slot)
-
-
 
         # because I wanted to have both the points widget and weekly information widget below the tables
         # I combined these two widgets into the same layout
@@ -122,6 +117,18 @@ class MainApplication(QMainWindow):
         centralWidget.setLayout(self.mainLayout)
         self.setCentralWidget(centralWidget)
 
+        if detectIfEnoughTimeHasPassed():
+            self.tableWidget.generateTableContents()
+            self.tableWidget.loadStoredTables(loadSpecificList("rollGameList"), loadSpecificList("cardDrawList"))
+            self.tableWidget.saveAllInformation()
+            # self.tableWidget.weeklyInfoSignal.emit()
+            self.timeSensitiveInfoWidget.weeklyUpdate(True)
+        else:
+            self.tableWidget.loadStoredTables(loadSpecificList("rollGameList"), loadSpecificList("cardDrawList"))
+            # self.weeklyInfoSignal.emit(False)
+            self.timeSensitiveInfoWidget.weeklyUpdate(False)
+            print("Data load successful")
+            printNumberOfDaysLeft()
 
     def showGameListWindow(self):
         self.editGameListWindow.setWindowTitle("View/Edit/Add Games")
@@ -209,6 +216,22 @@ class MainApplication(QMainWindow):
             self.timeSensitiveInfoWidget.show()
         printMeese()
 
+    def createTempWeeklyGame(self):
+        self.timeSensitiveInfoWidget.createTempWeeklyGame()
+
+    def saveTempWeeklyGame(self):
+        data = loadJSONData()
+        print(f'Old Game ID: {data["gameOfTheWeek"]}')
+        print(f'New Game ID: {self.timeSensitiveInfoWidget.currentGameOfTheWeekID}')
+        data["gameOfTheWeek"] = self.timeSensitiveInfoWidget.currentGameOfTheWeekID
+        print(f'Saved Game ID: {data["gameOfTheWeek"]}')
+        updateJSONData(data)
+        print(loadJSONData())
+
+
+    def weeklyUpdate(self):
+        print("this is functional)")
+        self.timeSensitiveInfoWidget.weeklyUpdate(True)
 
 
 def main():

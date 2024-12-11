@@ -9,7 +9,6 @@ from datetime import *
 import os
 import shutil
 
-
 completionStatusReference = {
     "Incomplete": 0,
     "Complete": 1,
@@ -28,6 +27,7 @@ cardDeckNames = ["Ace", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight",
 weeklySelectionPool = ["Roll", "Roll", "Card Draw", "Card Draw", "Want To Continue Playing", "Want To Continue Playing",
                        "Free Day"]
 currentlyAppliedColorScheme = ""
+
 
 class Game:
     def __init__(self, name, completed, replayabilityFactor):
@@ -284,6 +284,11 @@ def checkForPreexistingFile(directory, newFile):
     if newFile in directoryFiles:
         logProcess("Duplicate styling file detected")
         return True
+
+
+def loadGameOfTheWeek():
+    data = loadJSONData()
+    return searchGameByID(data["gameOfTheWeek"])["name"]
 
 
 # this is just a debug method
