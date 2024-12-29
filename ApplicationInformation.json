@@ -84,6 +84,20 @@
                 "#71C78B",
                 "font-weight: bold;"
             ]
+        },
+        {
+            "name": "Smolder",
+            "file": "blister-and-burn",
+            "inputLineStyling": [
+                "#F2613F",
+                "#3F88C5"
+            ],
+            "tableCornerColor": "#481E14",
+            "comboBoxStyling": [
+                "#9B3922",
+                "#F2613F",
+                "font-weight: bold;"
+            ]
         }
     ],
     "uiTogglePreferences": {
@@ -124,7 +138,7 @@
         -1
     ],
     "cardDrawList": [
-        148,
+       148,
         38,
         17,
         11,
@@ -138,9 +152,9 @@
         121,
         74,
         -1
-    ],
+],
     "personalGameList": [
-        53,
+       53,
         92,
         23,
         120,
@@ -155,6 +169,7 @@
     ],
     "numberOfPoints": 108,
     "lastGameId": 180,
+
     "fullGameList": [
         {
             "name": "A Hat In Time",
@@ -219,7 +234,7 @@
         {
             "name": "Black Book",
             "id": 11,
-            "completed": "Incomplete",
+            "completed": "Complete",
             "replayabilityFactor": "Moderate"
         },
         {
@@ -399,8 +414,8 @@
         {
             "name": "Half Life",
             "id": 42,
-            "completed": "Incomplete",
-            "replayabilityFactor": "Moderate"
+            "completed": "Complete",
+            "replayabilityFactor": "Low"
         },
         {
             "name": "Half Life 2",

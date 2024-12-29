@@ -12,6 +12,22 @@ ______12/08/2024______
 - Attempting to create the reroll and save function (again).
 - It seems that the weekly game stuff is working fine (for the most part).
     + (Known Issue) Everything is rolling fine, however it fails to save after being re-rolled.
+=======
+______8/03/2024______
+- Discovered that there apparently isn't a slot set up for one of the functions that would allow the game of the week to automatically reroll.
+
+______7/20/2024______
+- Finished the restructuring of the application to allow for the game of the week to be rerolled with the other information
+- Also added more logProcess functions for further debugging
+
+______7/17/2024______
+- Added a new stylesheet
+- Started attempting to restructure the application where the game of the week gets rerolled alongside the other information contents
+    + (Known Issue) This doesn't work
+    + (Known Issue) Also the toggle function is still wonky
+
+______7/15/2024______
+- Actually re-implemented the overhauled 'save table information' function
 
 ______7/12/2024______
 - Located and fixed an issue that would prevent the personal games list from loading upon a weekly reset.
