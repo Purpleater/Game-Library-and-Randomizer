@@ -1,5 +1,18 @@
 This text document is used to keep track of all of the changes that I make to this program. The top-most updates are the most recent.
 
+______12/29/2024______
+- Fixed an issue where the daily selected list wasn't loading after the tables have been re-rolled.
+- Added catch that prevents the user from saving table information if new information isn't present.
+- Cleaned up some old debug statements and vestigial code.
+
+______12/11/2024______
+- Saving the weekly game after it's been re-rolled now works.
+
+______12/08/2024______
+- Attempting to create the reroll and save function (again).
+- It seems that the weekly game stuff is working fine (for the most part).
+    + (Known Issue) Everything is rolling fine, however it fails to save after being re-rolled.
+=======
 ______8/03/2024______
 - Discovered that there apparently isn't a slot set up for one of the functions that would allow the game of the week to automatically reroll.
 

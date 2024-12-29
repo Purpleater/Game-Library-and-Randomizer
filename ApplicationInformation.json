@@ -104,71 +104,72 @@
         "pointsUI": "False",
         "dailyWeeklyUI": "False"
     },
-    "savedDate": "2024,08,03",
-    "gameOfTheWeek": 21,
+    "savedDate": "2024,12,29",
+    "gameOfTheWeek": 27,
     "weeklyListSelection": [
         "Want To Continue Playing",
+        "Free Day",
+        "Card Draw",
         "Roll",
         "Want To Continue Playing",
-        "Card Draw",
-        "Free Day",
         "Card Draw",
         "Roll"
     ],
     "rollGameList": [
-        79,
-        77,
-        161,
-        69,
-        20,
-        106,
-        41,
-        68,
-        58,
-        128,
-        128,
-        57,
-        125,
-        138,
-        21,
-        140,
+        108,
+        81,
+        6,
         82,
-        167,
-        58,
+        127,
+        155,
+        177,
+        17,
+        140,
+        23,
+        169,
+        48,
+        145,
+        122,
+        75,
+        15,
+        145,
+        175,
+        97,
         -1
     ],
     "cardDrawList": [
-        99,
-        56,
-        122,
-        96,
-        79,
-        155,
-        129,
-        131,
-        16,
-        12,
-        81,
-        46,
-        53,
+       148,
+        38,
+        17,
+        11,
+        179,
+        90,
+        127,
+        138,
+        45,
+        134,
+        103,
+        121,
+        74,
         -1
-    ],
+],
     "personalGameList": [
-        53,
+       53,
         92,
         23,
         120,
-        22,
-        77,
+        104,
+        157,
         103,
-        27,
+        167,
         90,
-        125,
+        119,
         47,
-        3
+        109
     ],
-    "numberOfPoints": 162,
-    "lastGameId": 170,
+    "numberOfPoints": 108,
+    "lastGameId": 180,
+
     "fullGameList": [
         {
             "name": "A Hat In Time",
@@ -395,12 +396,6 @@
         {
             "name": "Frostpunk",
             "id": 38,
-            "completed": "No Ending",
-            "replayabilityFactor": "Moderate"
-        },
-        {
-            "name": "Frozenheim",
-            "id": 39,
             "completed": "No Ending",
             "replayabilityFactor": "Moderate"
         },
@@ -1157,8 +1152,8 @@
         {
             "name": "Journey",
             "id": 166,
-            "completed": "Incomplete",
-            "replayabilityFactor": "Low"
+            "completed": "Complete",
+            "replayabilityFactor": "Moderate"
         },
         {
             "name": "House Flipper",
@@ -1177,6 +1172,66 @@
             "id": 169,
             "completed": "Incomplete",
             "replayabilityFactor": "Low"
+        },
+        {
+            "name": "Quilts and Cats of Calico",
+            "id": 170,
+            "completed": "No Ending",
+            "replayabilityFactor": "High"
+        },
+        {
+            "name": "Dune Imperium",
+            "id": 171,
+            "completed": "No Ending",
+            "replayabilityFactor": "High"
+        },
+        {
+            "name": "Everdell",
+            "id": 172,
+            "completed": "No Ending",
+            "replayabilityFactor": "High"
+        },
+        {
+            "name": "Root",
+            "id": 173,
+            "completed": "No Ending",
+            "replayabilityFactor": "High"
+        },
+        {
+            "name": "Scythe - Digital Edition",
+            "id": 174,
+            "completed": "No Ending",
+            "replayabilityFactor": "High"
+        },
+        {
+            "name": "Sagrada",
+            "id": 175,
+            "completed": "No Ending",
+            "replayabilityFactor": "High"
+        },
+        {
+            "name": "Wingspan",
+            "id": 176,
+            "completed": "No Ending",
+            "replayabilityFactor": "High"
+        },
+        {
+            "name": "Terraforming Mars",
+            "id": 177,
+            "completed": "No Ending",
+            "replayabilityFactor": "High"
+        },
+        {
+            "name": "Nine Sols",
+            "id": 178,
+            "completed": "Incomplete",
+            "replayabilityFactor": "Moderate"
+        },
+        {
+            "name": "In Stars and Time",
+            "id": 179,
+            "completed": "Complete",
+            "replayabilityFactor": "Moderate"
         }
     ]
 }
