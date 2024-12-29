@@ -127,7 +127,7 @@ class MainApplication(QMainWindow):
             self.tableWidget.loadStoredTables(loadSpecificList("rollGameList"), loadSpecificList("cardDrawList"))
             # self.weeklyInfoSignal.emit(False)
             self.timeSensitiveInfoWidget.weeklyUpdate(False)
-            print("Data load successful")
+            logProcess("Data load successful")
             printNumberOfDaysLeft()
 
     def showGameListWindow(self):
@@ -224,13 +224,9 @@ class MainApplication(QMainWindow):
         print(f'Old Game ID: {data["gameOfTheWeek"]}')
         print(f'New Game ID: {self.timeSensitiveInfoWidget.currentGameOfTheWeekID}')
         data["gameOfTheWeek"] = self.timeSensitiveInfoWidget.currentGameOfTheWeekID
-        print(f'Saved Game ID: {data["gameOfTheWeek"]}')
         updateJSONData(data)
-        print(loadJSONData())
-
 
     def weeklyUpdate(self):
-        print("this is functional)")
         self.timeSensitiveInfoWidget.weeklyUpdate(True)
 
 

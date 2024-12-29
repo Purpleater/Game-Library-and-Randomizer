@@ -90,53 +90,53 @@
         "pointsUI": "False",
         "dailyWeeklyUI": "False"
     },
-    "savedDate": "2024,12,11",
-    "gameOfTheWeek": 30,
+    "savedDate": "2024,12,29",
+    "gameOfTheWeek": 27,
     "weeklyListSelection": [
         "Want To Continue Playing",
-        "Roll",
-        "Card Draw",
-        "Card Draw",
-        "Roll",
         "Free Day",
-        "Want To Continue Playing"
+        "Card Draw",
+        "Roll",
+        "Want To Continue Playing",
+        "Card Draw",
+        "Roll"
     ],
     "rollGameList": [
-        2,
-        42,
-        64,
-        61,
-        102,
-        128,
-        90,
-        56,
-        110,
-        161,
-        48,
-        51,
-        176,
-        75,
-        140,
+        108,
         81,
-        68,
-        126,
-        160,
+        6,
+        82,
+        127,
+        155,
+        177,
+        17,
+        140,
+        23,
+        169,
+        48,
+        145,
+        122,
+        75,
+        15,
+        145,
+        175,
+        97,
         -1
     ],
     "cardDrawList": [
-        107,
-        71,
-        129,
-        38,
-        68,
-        35,
         148,
-        69,
-        85,
-        37,
-        149,
-        164,
-        100,
+        38,
+        17,
+        11,
+        179,
+        90,
+        127,
+        138,
+        45,
+        134,
+        103,
+        121,
+        74,
         -1
     ],
     "personalGameList": [
@@ -151,10 +151,10 @@
         90,
         119,
         47,
-        3
+        109
     ],
-    "numberOfPoints": 118,
-    "lastGameId": 179,
+    "numberOfPoints": 108,
+    "lastGameId": 180,
     "fullGameList": [
         {
             "name": "A Hat In Time",
@@ -1137,8 +1137,8 @@
         {
             "name": "Journey",
             "id": 166,
-            "completed": "Incomplete",
-            "replayabilityFactor": "Low"
+            "completed": "Complete",
+            "replayabilityFactor": "Moderate"
         },
         {
             "name": "House Flipper",
@@ -1210,6 +1210,12 @@
             "name": "Nine Sols",
             "id": 178,
             "completed": "Incomplete",
+            "replayabilityFactor": "Moderate"
+        },
+        {
+            "name": "In Stars and Time",
+            "id": 179,
+            "completed": "Complete",
             "replayabilityFactor": "Moderate"
         }
     ]

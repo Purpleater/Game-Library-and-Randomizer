@@ -112,18 +112,6 @@ class TablesWidget(QWidget):
         self.mainLayout.addLayout(self.tableLayout)
         self.mainLayout.addLayout(self.buttonLayout)
 
-        '''
-            if detectIfEnoughTimeHasPassed():
-            self.generateTableContents()
-            self.loadStoredTables(loadSpecificList("rollGameList"), loadSpecificList("cardDrawList"))
-            self.saveAllInformation()
-            self.weeklyInfoSignal.emit()
-        else:
-            self.loadStoredTables(loadSpecificList("rollGameList"), loadSpecificList("cardDrawList"))
-            self.weeklyInfoSignal.emit(False)
-            print("Data load successful")
-            printNumberOfDaysLeft()
-        '''
         # set main layout
         self.setLayout(self.mainLayout)
 
@@ -142,7 +130,6 @@ class TablesWidget(QWidget):
             self.rollTable.setItem(i, 0, item)
 
         for i in range(len(cardList)):
-            print(cardList[i])
             item = QTableWidgetItem(searchGameByID(cardList[i])["name"])
             item.setFlags(item.flags() & Qt.ItemIsEditable)
             item.setForeground((QColor(Qt.black)))
@@ -216,19 +203,16 @@ class TablesWidget(QWidget):
 
 
     def saveAllInformation(self):
-        data = loadJSONData()
+        if len(self.cardDrawList) == 0 or len(self.diceRollList) == 0:
+            QMessageBox.about(self, "New Data Not Present", "There is no new information to save. Please re-roll the tables and try again.")
+        else:
+            data = loadJSONData()
 
-        data['rollGameList'] = self.diceRollList
-        data['cardDrawList'] = self.cardDrawList
-        print(loadGameOfTheWeek())
-        # data["gameOfTheWeek"] = globalGameOfTheWeek
-
-        print(data['rollGameList'])
-        print(data['cardDrawList'])
-
-        updateJSONData(data)
-        replaceDate()
-        self.saveWeeklyGameSignal.emit()
+            data['rollGameList'] = self.diceRollList
+            data['cardDrawList'] = self.cardDrawList
+            updateJSONData(data)
+            replaceDate()
+            self.saveWeeklyGameSignal.emit()
 
     def otherSaveAllInformationFunction(self):
         self.saveAllInformation()

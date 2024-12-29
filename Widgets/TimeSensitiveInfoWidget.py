@@ -74,6 +74,7 @@ class TimeSensitiveInfoWidget(QWidget):
         if timePassedConditional:
             self.setGameOfTheWeekLabel()
             self.generateNewListSelection()
+            self.getSelectedList()
         else:
             self.loadGameOfTheWeek()
             self.getSelectedList()
