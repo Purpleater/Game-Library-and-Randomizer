@@ -9,7 +9,6 @@ from datetime import *
 import os
 import shutil
 
-
 completionStatusReference = {
     "Incomplete": 0,
     "Complete": 1,
@@ -28,6 +27,7 @@ cardDeckNames = ["Ace", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight",
 weeklySelectionPool = ["Roll", "Roll", "Card Draw", "Card Draw", "Want To Continue Playing", "Want To Continue Playing",
                        "Free Day"]
 currentlyAppliedColorScheme = ""
+
 
 class Game:
     def __init__(self, name, completed, replayabilityFactor):
@@ -226,13 +226,11 @@ def setColorForInputLines(palette):
     )
     return styling
 
-# one of these is for standard processes
-# and the other is specifically for confirmation display windows
-# I wish it wasn't this way but this is the reality we live in
 
 def logProcess(process):
     currentTime = datetime.now().strftime('%H:%M:%S')
     print(f'{currentTime} - {process}')
+
 
 def windowLogProcess(process):
     def log():
@@ -240,6 +238,7 @@ def windowLogProcess(process):
         print(f'{currentTime} - {process}')
 
     return log
+
 
 def createStandardConfirmationWindow(textString, windowTitle, trueProcessArray, falseProcessArray):
     standardConfirmationWindow = QMessageBox()
@@ -287,9 +286,11 @@ def checkForPreexistingFile(directory, newFile):
         return True
 
 
+def loadGameOfTheWeek():
+    data = loadJSONData()
+    return searchGameByID(data["gameOfTheWeek"])["name"]
+
+
 # this is just a debug method
 def printMeese():
     print("Meese")
-
-def printBees():
-    print("Bees")
