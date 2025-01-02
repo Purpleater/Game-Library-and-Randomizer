@@ -1,5 +1,12 @@
 This text document is used to keep track of all of the changes that I make to this program. The top-most updates are the most recent.
 
+______01/02/2024______
+- Did stuff
+- Normally I'd add what happened
+- But it's 3:39am on a work day
+- And the merge accidentally ate my previous change log notes.
+- Delete function for games was improved to prevent the app from shitting itself upon reloading the json file contents.
+
 ______12/29/2024______
 - Fixed an issue where the daily selected list wasn't loading after the tables have been re-rolled.
 - Added catch that prevents the user from saving table information if new information isn't present.
