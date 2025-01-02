@@ -191,15 +191,51 @@ class EditGameWindow(QWidget):
         self.nameValue.setStyleSheet(setColorForInputLines(palette))
         self.findGameInput.setStyleSheet(setColorForInputLines(palette))
 
-
+    # this method deletes the game and rerolls any instances of it within the list
+    # without the second part, the app crashes
     def deleteGame(self):
         selectedItem = self.editGameSelectionList.selectedItems()[0].text()
         data = loadJSONData()
         fullGameList = data["fullGameList"]
+        rollList = data["rollGameList"]
+        cardDrawList = data["cardDrawList"]
+        personalList = data["personalGameList"]
+
         for game in fullGameList:
             if game["name"] == selectedItem:
                 if self.showGameDeletionConfirmationWindow(game["name"]):
+                    # get game ID to adjust the values of the currently-printed lists
+                    deletedGameID = game["id"]
                     fullGameList.remove(game)
+
+                    # reroll deleted game ID for the roll game list
+                    for gameID in rollList:
+                        if gameID == deletedGameID:
+                            deletedGameIndex = (rollList.index(gameID))
+                            rollList[deletedGameIndex] = random.choice(fullGameList)['id']
+
+                    # reroll game ID for the card draw list
+                    for gameID in cardDrawList:
+                        if gameID == deletedGameID:
+                            newRandomGame = random.choice(fullGameList)['id']
+                            while newRandomGame in cardDrawList:
+                                newRandomGame = random.choice(fullGameList)['id']
+                            cardDrawList[cardDrawList.index(gameID)] = newRandomGame
+
+
+                    # reroll ID in personal games list (if necessary)
+                    for gameID in data['personalGameList']:
+                        if gameID == deletedGameID:
+                            print('the deleted game was present in the personal games list')
+                            newRandomPersonalGame = random.choice(fullGameList)['id']
+                            while newRandomPersonalGame in personalList:
+                                newRandomPersonalGame = random.choice(fullGameList)['id']
+                            personalList[personalList.index(gameID)] = newRandomPersonalGame
+
+                    data["rollGameList"] = rollList
+                    data["cardDrawList"] = cardDrawList
+                    data["personalGameList"] = personalList
+
                     updateJSONData(data)
                     showProcessConfirmationWindow("Game deletion")
                     self.resetPage()
