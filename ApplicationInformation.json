@@ -84,73 +84,59 @@
                 "#71C78B",
                 "font-weight: bold;"
             ]
-        },
-        {
-            "name": "Smolder",
-            "file": "blister-and-burn",
-            "inputLineStyling": [
-                "#F2613F",
-                "#3F88C5"
-            ],
-            "tableCornerColor": "#481E14",
-            "comboBoxStyling": [
-                "#9B3922",
-                "#F2613F",
-                "font-weight: bold;"
-            ]
         }
     ],
     "uiTogglePreferences": {
         "pointsUI": "False",
         "dailyWeeklyUI": "False"
     },
-    "savedDate": "2024,12,29",
-    "gameOfTheWeek": 27,
+    "savedDate": "2025,01,01",
+    "gameOfTheWeek": 177,
     "weeklyListSelection": [
         "Want To Continue Playing",
-        "Free Day",
         "Card Draw",
         "Roll",
+        "Free Day",
+        "Roll",
         "Want To Continue Playing",
-        "Card Draw",
-        "Roll"
+        "Card Draw"
     ],
     "rollGameList": [
-        79,
-        77,
-        161,
-        69,
-        20,
-        106,
-        41,
-        68,
-        58,
+        80,
+        141,
+        175,
+        72,
+        136,
+        109,
+        50,
+        85,
+        179,
+        25,
+        11,
+        34,
         128,
-        128,
-        57,
-        125,
-        138,
-        21,
-        140,
+        9,
         82,
-        167,
-        58,
+        129,
+        144,
+        70,
+        157,
         -1
     ],
     "cardDrawList": [
-        148,
-        38,
+        99,
+        82,
+        158,
+        174,
+        176,
+        70,
+        29,
         17,
-        11,
-        179,
+        20,
+        57,
+        118,
         90,
-        127,
-        138,
-        45,
-        134,
-        103,
-        121,
-        74,
+        129,
         -1
     ],
     "personalGameList": [
@@ -167,7 +153,7 @@
         47,
         109
     ],
-    "numberOfPoints": 108,
+    "numberOfPoints": 109,
     "lastGameId": 180,
     "fullGameList": [
         {
@@ -233,7 +219,7 @@
         {
             "name": "Black Book",
             "id": 11,
-            "completed": "Complete",
+            "completed": "Incomplete",
             "replayabilityFactor": "Moderate"
         },
         {
@@ -413,8 +399,8 @@
         {
             "name": "Half Life",
             "id": 42,
-            "completed": "Complete",
-            "replayabilityFactor": "Low"
+            "completed": "Incomplete",
+            "replayabilityFactor": "Moderate"
         },
         {
             "name": "Half Life 2",
